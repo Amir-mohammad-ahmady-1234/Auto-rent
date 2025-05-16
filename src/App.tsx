@@ -1,7 +1,11 @@
+import Header from './components/Header';
+import Home from './components/Home';
+
 function App() {
   return (
-    <div className="flex justify-center rounded-lg bg-black p-2 text-white">
-      Auto Rent
+    <div className="flex flex-col">
+      <Header />
+      <Home />
     </div>
   );
 }

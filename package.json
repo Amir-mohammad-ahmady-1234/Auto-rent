@@ -11,9 +11,12 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@builder.io/react": "^8.2.0",
     "@tailwindcss/vite": "^4.1.7",
+    "framer-motion": "^12.12.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {

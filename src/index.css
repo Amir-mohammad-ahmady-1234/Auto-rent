@@ -1,1 +1,13 @@
 @import 'tailwindcss';
+
+/* Import Estedad font */
+@import url('https://fonts.googleapis.com/css2?family=Estedad:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Custom colors */
+@layer base {
+  :root {
+    --primary-blue: #194bf0;
+    --primary-yellow: #fdb713;
+    --text-dark: #353535;
+  }
+}
