@@ -1026,13 +1026,6 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Footer Banner */}
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/95f36560f03793b2f7142786f04a8e885df56511?placeholderIfAbsent=true"
-          className="mt-20 aspect-[2.83] min-h-[432px] w-full max-w-[1224px] rounded-2xl object-contain object-center shadow-[0px_0px_6px_rgba(0,0,0,0.35)] md:mt-10 md:max-w-full"
-          alt="Footer banner"
-        />
       </div>
     </div>
   );

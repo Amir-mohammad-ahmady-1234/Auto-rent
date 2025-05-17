@@ -1,13 +1,7 @@
-import Header from './components/Header';
-import Home from './components/Home';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
-  return (
-    <div className="flex flex-col">
-      <Header />
-      <Home />
-    </div>
-  );
+  return <AppRoutes />;
 }
 
 export default App;
