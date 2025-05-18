@@ -9,8 +9,8 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
+          <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

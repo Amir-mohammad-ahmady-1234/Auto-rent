@@ -278,7 +278,7 @@ const Home: React.FC = () => {
 
         {/* Car Cards Section */}
         <div className="mt-6 font-[Estedad-FD] md:max-w-full">
-          <div className="flex flex-wrap items-start justify-start gap-6 md:max-w-full">
+          <div className="flex flex-wrap items-start justify-center gap-6 md:max-w-full">
             {/* Car Card 1 */}
             <div className="w-[392px] min-w-[240px] rounded-2xl border border-[#D7D7D7] bg-white p-4">
               <div className="flex w-full flex-col items-stretch justify-center border-b border-[#D7D7D7] pb-3">
