@@ -1,9 +1,9 @@
 import React from 'react';
 
-import AuthButton from '../components/AuthButton';
-import Logo from '../components/Logo';
-import MobileMenu from '../components/MobileMenu';
-import DesktopNav from '../components/DesktopNav';
+import AuthButton from '../components/HeaderNav/AuthButton';
+import Logo from '../components/HeaderNav/Logo';
+import MobileMenu from '../components/HeaderNav/MobileMenu';
+import DesktopNav from '../components/HeaderNav/DesktopNav';
 
 const Header: React.FC = () => {
   const links: string[] = [
