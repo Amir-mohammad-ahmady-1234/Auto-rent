@@ -1,10 +1,15 @@
-import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { FiMenu, FiX } from "react-icons/fi";
+import { AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { FiMenu, FiX, FiSearch } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import MobileNav from "./MobileNav";
+import MobileNav from './MobileNav';
 
-const MobileMenu: React.FC<{ links: string[] }> = ({ links }) => {
+interface MobileMenuProps {
+  links: string[];
+  includeSearch?: boolean;
+}
+
+const MobileMenu: React.FC<MobileMenuProps> = ({ links, includeSearch }) => {
   const [open, setOpen] = useState<boolean>(false);
   const toggleMenu = () => setOpen((prev) => !prev);
 
@@ -41,6 +46,17 @@ const MobileMenu: React.FC<{ links: string[] }> = ({ links }) => {
               >
                 <FiX size={28} />
               </button>
+              {/* Search Input for Mobile */}
+              {includeSearch && (
+                <div className="relative mb-4 w-full">
+                  <input
+                    type="text"
+                    placeholder="جستجو"
+                    className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                  <FiSearch className="absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-400" />
+                </div>
+              )}
               <MobileNav links={links} />
             </motion.div>
           </>
