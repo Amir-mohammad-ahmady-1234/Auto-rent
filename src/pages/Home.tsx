@@ -9,6 +9,7 @@ import RentSteps from '../components/Home/RentalMethod/RentSteps';
 import FAQContent from '../components/Home/FAQSection/FAQContent';
 import CustomerReviews from '../components/Home/CustomerReviws/CustomerReviews';
 import BlogSection from '../components/Home/BlogSection/BlogSection';
+import FAQTitle from '../components/Home/FAQSection/FAQTitle';
 
 const Home: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
 
       <div className="mt-[58px] flex w-full flex-col items-center px-20 md:mt-10 md:max-w-full md:px-5">
         <RentSteps />
+        <FAQTitle />
         <FAQContent />
         <CustomerReviews />
         <BlogSection />

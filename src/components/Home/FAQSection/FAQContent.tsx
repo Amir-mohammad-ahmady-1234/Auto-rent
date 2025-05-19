@@ -35,14 +35,6 @@ const FAQContent = () => {
       dir="ltr"
       className="mt-14 flex w-full max-w-full flex-col items-center px-4 font-[Estedad-FD] md:mt-10"
     >
-      <div className="flex w-full flex-col items-center justify-center text-center">
-        <div className="text-xl font-normal text-[#5E5E5E] sm:text-2xl">
-          پر تکرارترین سؤالاتی که پرسیدید
-        </div>
-        <div className="mt-2 text-[32px] leading-[1.4] font-bold text-[#353535] md:max-w-full">
-          سؤالات <span className="text-[#d79c10]">متداول</span>
-        </div>
-      </div>
       <div className="mt-6 flex w-full flex-wrap items-start justify-center gap-6">
         <div className="my-auto w-full min-w-[240px] self-stretch overflow-hidden rounded-2xl md:w-[392px]">
           <img
