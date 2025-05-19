@@ -6,7 +6,7 @@ import CarTypesSection from '../components/Home/CarTypesSection';
 import CarsList from '../components/Home/carsList/CarsList';
 import HowToRent from '../components/Home/RentalMethod/HowToRent';
 import RentSteps from '../components/Home/RentalMethod/RentSteps';
-import FAQContent from '../components/Home/FAQContent';
+import FAQContent from '../components/Home/FAQSection/FAQContent';
 import CustomerReviews from '../components/Home/CustomerReviws/CustomerReviews';
 import BlogSection from '../components/Home/BlogSection/BlogSection';
 
