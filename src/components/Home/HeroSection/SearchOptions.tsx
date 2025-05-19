@@ -1,81 +1,101 @@
-const SearchOptions = () => {
+import React from 'react';
+import { FiSearch } from 'react-icons/fi';
+import { FiCalendar, FiClock, FiMapPin, FiChevronDown } from 'react-icons/fi';
+
+const SearchOptions: React.FC = () => {
   return (
-    <div className="relative z-10 mt-[47px] ml-0 flex w-full max-w-[1223px] flex-col items-center justify-start rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mb-[10px] md:ml-[53px] md:w-full md:max-w-full">
+    <div className="relative z-10 mt-12 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mt-[47px] md:ml-0">
       {/* Top row: 'اطلاعات بیشتر' and rental types */}
-      <div className="flex w-full flex-wrap items-center justify-between gap-4 text-center font-[Estedad-FD] text-sm md:max-w-full md:gap-[40px_100px]">
-        <div className="my-auto self-stretch font-medium text-[#194BF0]">
+      <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+        <div className="text-sm font-normal text-[#194BF0]">
           اطلاعات بیشتر در مورد رزرو خودرو
         </div>
-        <div className="my-auto flex min-w-full flex-wrap items-center justify-center gap-2 self-stretch leading-[25px] font-semibold text-[#0C0C0C] capitalize md:max-w-full md:min-w-[240px]">
-          <div className="min-h-10 gap-[10px] rounded-[20px] border border-[#D7D7D7] px-3 py-1">
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
             اجاره ماشین عروس
           </div>
-          <div className="min-h-10 gap-[10px] rounded-[20px] border border-[#D7D7D7] px-3 py-1">
+          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
             اجاره خودرو بی راننده
           </div>
-          <div className="min-h-10 gap-[10px] rounded-[20px] border border-[#D7D7D7] bg-[#194BF0] px-3 py-1 text-white">
+          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
             اجاره خودرو با راننده
           </div>
         </div>
       </div>
 
-      {/* Search Form - Adjusted for vertical stacking on small screens */}
-      <div className="relative mt-4 flex w-full max-w-[1175px] flex-col items-center justify-center gap-3 self-end overflow-hidden rounded-2xl border border-[#F3F3F3] bg-white px-[14px] py-3 md:max-w-full md:flex-row md:justify-end">
-        {/* Location */}
-        <div className="z-0 my-auto flex w-full items-center justify-between gap-2 text-center font-[Estedad-FD] text-base leading-[29px] font-normal text-[#0C0C0C] capitalize md:w-[527px] md:min-w-[240px] md:flex-wrap md:justify-between">
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>
-          <div className="my-auto self-stretch">تهران-فرودگاه امام خمینی</div>
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Added placeholder for icon if needed */}
+      {/* Middle row: Selection options */}
+      <div className="mt-4 flex flex-wrap items-center justify-end gap-10 md:gap-10">
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-[#0C0C0C]">محل تحویل خودرو</span>
+          <FiChevronDown className="text-[#0C0C0C]" size={16} />
         </div>
-        <div className="z-0 my-auto h-px w-full flex-shrink-0 border border-solid border-[#D7D7D7] bg-[#D7D7D7] md:h-8 md:w-0"></div>{' '}
-        {/* Divider */}
-        {/* Date 1 */}
-        <div className="z-0 my-auto flex w-full items-center justify-between gap-2 text-center font-[Estedad-FD] text-base font-medium whitespace-nowrap text-[#212121] md:w-[111px] md:justify-between md:gap-[18px] md:whitespace-normal">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c72bfe452f463cd5decf7b159942396a8c51f8d?placeholderIfAbsent=true"
-            className="my-auto aspect-square w-5 flex-shrink-0 self-stretch object-contain object-center"
-            alt="Calendar icon"
-          />
-          <div className="my-auto self-stretch">1403٫02٫10</div>
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Placeholder for dropdown icon */}
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-[#0C0C0C]">تاریخ تحویل</span>
+          <FiChevronDown className="text-[#0C0C0C]" size={16} />
         </div>
-        <div className="z-0 my-auto h-px w-full flex-shrink-0 border border-solid border-[#D7D7D7] bg-[#D7D7D7] md:h-8 md:w-0"></div>{' '}
-        {/* Divider */}
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-[#0C0C0C]">ساعت تحویل</span>
+          <FiChevronDown className="text-[#0C0C0C]" size={16} />
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-[#0C0C0C]">تاریخ بازگشت</span>
+          <FiChevronDown className="text-[#0C0C0C]" size={16} />
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-[#0C0C0C]">ساعت بازگشت</span>
+          <FiChevronDown className="text-[#0C0C0C]" size={16} />
+        </div>
+      </div>
+
+      {/* Search Form */}
+      <div className="mt-4 flex w-full flex-col items-center justify-between gap-3 rounded-2xl border border-[#F3F3F3] bg-white p-3 md:flex-row">
         {/* Time 1 */}
-        <div className="z-0 my-auto flex w-full items-center justify-between gap-2 text-center font-[Estedad-FD] text-base font-medium whitespace-nowrap text-[#212121] md:w-[106px] md:justify-between md:gap-[40px_50px] md:whitespace-normal">
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Placeholder for time icon */}
-          <div className="my-auto self-stretch">07:00</div>
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Placeholder for dropdown icon */}
+        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
+          <FiClock className="text-[#727272]" size={16} />
+          <span className="text-base text-[#0C0C0C]">07:00</span>
         </div>
-        <div className="z-0 my-auto h-px w-full flex-shrink-0 border border-solid border-[#D7D7D7] bg-[#D7D7D7] md:h-8 md:w-0"></div>{' '}
+
         {/* Divider */}
-        {/* Date 2 */}
-        <div className="z-0 my-auto flex w-full items-center justify-between gap-2 text-center font-[Estedad-FD] text-base font-medium whitespace-nowrap text-[#0C0C0C] md:w-[111px] md:justify-between md:gap-[18px] md:whitespace-normal">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/9c72bfe452f463cd5decf7b159942396a8c51f8d?placeholderIfAbsent=true"
-            className="my-auto aspect-square w-5 flex-shrink-0 self-stretch object-contain object-center"
-            alt="Calendar icon"
-          />
-          <div className="my-auto self-stretch">1403٫02٫10</div>
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Placeholder for dropdown icon */}
+        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
+
+        {/* Date 1 */}
+        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
+          <FiCalendar className="text-[#727272]" size={16} />
+          <span className="text-base text-[#0C0C0C]">1403٫02٫10</span>
         </div>
-        <div className="z-0 my-auto h-px w-full flex-shrink-0 border border-solid border-[#D7D7D7] bg-[#D7D7D7] md:h-8 md:w-0"></div>{' '}
+
+        {/* Divider */}
+        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
+
         {/* Time 2 */}
-        <div className="z-0 my-auto flex w-full items-center justify-between gap-2 text-center font-[Estedad-FD] text-base font-medium whitespace-nowrap text-[#0C0C0C] md:w-[106px] md:justify-between md:gap-[40px_50px] md:whitespace-normal">
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Placeholder for time icon */}
-          <div className="my-auto self-stretch">07:00</div>
-          <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>{' '}
-          {/* Placeholder for dropdown icon */}
+        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
+          <FiClock className="text-[#727272]" size={16} />
+          <span className="text-base text-[#0C0C0C]">07:00</span>
         </div>
+
+        {/* Divider */}
+        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
+
+        {/* Date 2 */}
+        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
+          <FiCalendar className="text-[#727272]" size={16} />
+          <span className="text-base text-[#0C0C0C]">1403٫02٫10</span>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
+
+        {/* Location */}
+        <div className="flex w-full flex-1 items-center justify-between gap-2 md:order-first">
+          <FiChevronDown className="text-[#868686]" size={16} />
+          <span className="text-base text-[#0C0C0C]">
+            تهران-فرودگاه امام خمینی
+          </span>
+        </div>
+
         {/* Search Button */}
-        <div className="z-0 flex h-12 min-h-[48px] w-full items-center justify-center gap-[10px] self-stretch rounded-2xl bg-[#FDB713] md:absolute md:bottom-0 md:left-0 md:h-14 md:min-h-[56px] md:w-14 md:self-start">
-          <div className="my-auto flex min-h-6 w-6 self-stretch"></div>
+        <div className="flex h-14 w-full items-center justify-center rounded-2xl bg-[#FDB713] md:w-14">
+          <FiSearch className="text-[#212121]" size={16} />
         </div>
       </div>
     </div>
