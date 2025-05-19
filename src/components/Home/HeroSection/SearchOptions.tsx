@@ -1,10 +1,25 @@
 import React from 'react';
 import { FiSearch } from 'react-icons/fi';
-import { FiCalendar, FiClock, FiMapPin, FiChevronDown } from 'react-icons/fi';
+import { FiCalendar, FiClock, FiChevronDown, FiX } from 'react-icons/fi';
 
-const SearchOptions: React.FC = () => {
+interface SearchOptionsProps {
+  isModal?: boolean;
+  onClose?: () => void;
+}
+
+const SearchOptions: React.FC<SearchOptionsProps> = ({ isModal, onClose }) => {
   return (
-    <div className="relative z-10 mt-12 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mt-[47px] md:ml-0">
+    <div
+      className={`${isModal ? '' : 'relative z-10 mt-12 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mt-[47px] md:ml-0'}`}
+    >
+      {isModal && (
+        <div className="flex justify-end">
+          <button onClick={onClose}>
+            <FiX size={24} className="text-[#0C0C0C]" />
+          </button>
+        </div>
+      )}
+
       {/* Top row: 'اطلاعات بیشتر' and rental types */}
       <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <div className="text-sm font-normal text-[#194BF0]">
@@ -17,7 +32,7 @@ const SearchOptions: React.FC = () => {
           <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
             اجاره خودرو بی راننده
           </div>
-          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
+          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] bg-[#194BF0] px-3 py-1 text-sm font-bold text-white">
             اجاره خودرو با راننده
           </div>
         </div>
