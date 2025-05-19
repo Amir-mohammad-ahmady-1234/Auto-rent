@@ -4,7 +4,7 @@ import MachinLogo from '../../../assets/Frame 427320959.png'
 
 const RentSteps = () => {
   return (
-    <div className="w-full max-w-[1256px] self-start px-4 md:max-w-full md:px-0">
+    <div       dir="ltr" className="w-full max-w-[1256px] self-start px-4 md:max-w-full md:px-0">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:items-center md:gap-y-16">
         {/* Step 1 (Top Right on Desktop) */}
         <div className="flex flex-col items-center text-center md:col-start-3 md:items-end md:text-right">
