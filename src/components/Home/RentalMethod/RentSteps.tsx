@@ -1,6 +1,6 @@
-import keyLogo from '../../../assets/Frame 1430103011.png'
-import CartLogo from '../../../assets/Frame 427320960.png'
-import MachinLogo from '../../../assets/Frame 427320959.png'
+import keyLogo from '../../../assets/stepsLogo/Frame 1430103011.png'
+import CartLogo from '../../../assets/stepsLogo/Frame 427320960.png'
+import MachinLogo from '../../../assets/stepsLogo/Frame 427320959.png'
 
 const RentSteps = () => {
   return (

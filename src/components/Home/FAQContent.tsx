@@ -1,6 +1,9 @@
+import PlusLogo from '../../assets/+-Logo/add-square.png';
+import MinusLogo from '../../assets/+-Logo/minus-square.png';
+
 const FAQContent = () => {
   return (
-    <div className="mt-14 flex w-full max-w-full flex-col items-center px-4 font-[Estedad-FD] md:mt-10">
+    <div dir='ltr' className="mt-14 flex w-full max-w-full flex-col items-center px-4 font-[Estedad-FD] md:mt-10">
       <div className="flex w-full flex-col items-center justify-center text-center">
         <div className="text-xl font-normal text-[#5E5E5E] sm:text-2xl">
           پر تکرارترین سؤالاتی که پرسیدید
@@ -18,18 +21,20 @@ const FAQContent = () => {
           />
         </div>
         <div className="my-auto w-full min-w-[240px] self-stretch font-[Estedad-FD] md:flex-1">
-          <div className="flex w-full flex-wrap items-center justify-end gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4 text-right text-base font-medium text-[#353535]">
+          {/* FAQ Item 1 */}
+          <div className="flex w-full flex-wrap items-center justify-between gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4 text-right text-base font-medium text-[#353535]">
             <div className="my-auto self-stretch text-[#353535]">
               در صورت بروز نقص فنی برای خودرو چه اتفاقی می افتد؟
             </div>
-            <div className="my-auto flex h-6 w-6 flex-shrink-0 self-stretch"></div>
+            <img src={PlusLogo} alt="Toggle Icon" className="my-auto flex-shrink-0 self-stretch h-6 w-6 cursor-pointer"/>
           </div>
+          {/* FAQ Item 2 (with Answer) */}
           <div className="mt-4 flex w-full flex-col items-start justify-start gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4">
-            <div className="flex w-full items-center justify-end gap-2 text-right text-base font-medium text-[#353535]">
-              <div className="my-auto flex h-6 w-[19px] flex-shrink-0"></div>
+            <div className="flex w-full items-center justify-between gap-2 text-right text-base font-medium text-[#353535]">
               <div className="flex-1">
                 هزینه بنزین و کارواش در خودروهای اجاره ای به عهده کیست؟
               </div>
+              <img src={MinusLogo} alt="Toggle Icon" className="my-auto flex-shrink-0 h-6 w-6 cursor-pointer"/>
             </div>
             <div className="w-full text-justify text-sm leading-[25px] font-normal text-[#727272] capitalize">
               در زمان اجاره خودرو بدون راننده خودروها کارواش شده و با باک بنزین
@@ -38,17 +43,19 @@ const FAQContent = () => {
               بر عهده مشتری می باشد.
             </div>
           </div>
-          <div className="mt-4 flex w-full flex-wrap items-center justify-end gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4 text-right text-base font-medium text-[#353535]">
+          {/* FAQ Item 3 */}
+          <div className="mt-4 flex w-full flex-wrap items-center justify-between gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4 text-right text-base font-medium text-[#353535]">
             <div className="my-auto self-stretch text-[#353535]">
               آیا ماشین های اتورنت دارای بیمه هستند؟
             </div>
-            <div className="my-auto flex h-6 w-6 flex-shrink-0 self-stretch"></div>
+             <img src={PlusLogo} alt="Toggle Icon" className="my-auto flex-shrink-0 self-stretch h-6 w-6 cursor-pointer"/>
           </div>
-          <div className="mt-4 flex w-full flex-wrap items-center justify-end gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4 text-right text-base font-medium text-[#353535]">
+          {/* FAQ Item 4 */}
+          <div className="mt-4 flex w-full flex-wrap items-center justify-between gap-2 overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white p-4 text-right text-base font-medium text-[#353535]">
             <div className="my-auto self-stretch text-[#353535]">
               محدودیت کیلومتر در اجاره خودرو چقدر می باشد؟
             </div>
-            <div className="my-auto flex h-6 w-6 flex-shrink-0 self-stretch"></div>
+             <img src={PlusLogo} alt="Toggle Icon" className="my-auto flex-shrink-0 self-stretch h-6 w-6 cursor-pointer"/>
           </div>
         </div>
       </div>
