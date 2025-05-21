@@ -1,34 +1,13 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import ContactBanner from './ContactBanner';
-
-const pageData: Record<string, { title: string; subtitle: string }> = {
-  concat: {
-    title: 'تماس با ما',
-    subtitle: 'تماس با ما',
-  },
-  faq: {
-    title: 'سوالات ما',
-    subtitle: 'سؤالات متداول',
-  },
-};
+import usePageLocation from '../../hooks/usePageLocation';
 
 const BannerLayout = () => {
-  const { pathname } = useLocation();
-
-  // Drived state
-  const pageRoute = pathname.split('/')[1];
-
-  const current = pageData[pageRoute] || {
-    title: '',
-    subtitle: '',
-  };
+  const { title, subtitle } = usePageLocation();
 
   return (
     <>
-      <ContactBanner
-        title={current.title}
-        subtitle={`انتورنت < ${current.subtitle}`}
-      />
+      <ContactBanner title={title} subtitle={`انتورنت < ${subtitle}`} />
       <Outlet />
     </>
   );
