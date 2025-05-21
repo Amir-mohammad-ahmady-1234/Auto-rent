@@ -1,9 +1,10 @@
 import HeroText from './HeroText';
 import SearchOptions from './SearchOptions';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const HeroSection = () => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
 
   const handleOpenSearchModal = () => {
     setIsSearchModalOpen(true);
@@ -12,6 +13,25 @@ const HeroSection = () => {
   const handleCloseSearchModal = () => {
     setIsSearchModalOpen(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchBoxRef.current &&
+        !searchBoxRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchModalOpen(false);
+      }
+    };
+
+    if (isSearchModalOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSearchModalOpen]);
 
   return (
     <div className="relative flex min-h-[500px] w-full max-w-full flex-col items-center overflow-hidden md:min-h-[681px]">
@@ -47,9 +67,37 @@ const HeroSection = () => {
 
       {/* Search Modal for small screens */}
       {isSearchModalOpen && (
-        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
-          <div className="w-full max-w-sm rounded-lg bg-white p-4">
-            <SearchOptions isModal={true} onClose={handleCloseSearchModal} />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+          <div
+            ref={searchBoxRef}
+            className="mx-4 w-full max-w-md rounded-lg bg-white p-4 shadow-lg"
+          >
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-lg font-bold text-gray-900">جستجوی خودرو</h2>
+              <button
+                onClick={handleCloseSearchModal}
+                className="rounded-full p-1 text-gray-500 hover:bg-gray-100"
+              >
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <SearchOptions
+              isModal={true}
+              onClose={handleCloseSearchModal}
+              showCloseButton={false}
+            />
           </div>
         </div>
       )}

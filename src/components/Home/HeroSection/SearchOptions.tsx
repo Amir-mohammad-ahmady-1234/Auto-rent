@@ -5,16 +5,28 @@ import { FiCalendar, FiClock, FiChevronDown, FiX } from 'react-icons/fi';
 interface SearchOptionsProps {
   isModal?: boolean;
   onClose?: () => void;
+  showCloseButton?: boolean;
 }
 
-const SearchOptions: React.FC<SearchOptionsProps> = ({ isModal, onClose }) => {
+const SearchOptions: React.FC<SearchOptionsProps> = ({
+  isModal = false,
+  onClose,
+  showCloseButton = true,
+}) => {
   return (
     <div
-      className={`${isModal ? '' : 'relative z-10 mt-12 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mt-[47px] md:ml-0'}`}
+      className={
+        isModal
+          ? ''
+          : 'relative z-10 mt-12 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mt-[47px] md:ml-0'
+      }
     >
-      {isModal && (
-        <div className="flex justify-end">
-          <button onClick={onClose}>
+      {showCloseButton && onClose && (
+        <div className="mb-4 flex justify-end">
+          <button
+            onClick={onClose}
+            className="rounded-full p-1 text-gray-500 hover:bg-gray-100"
+          >
             <FiX size={24} className="text-[#0C0C0C]" />
           </button>
         </div>
