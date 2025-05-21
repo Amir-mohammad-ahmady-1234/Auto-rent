@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import getPageRouteName from '../../hooks/getPageRouteName';
+import getPageRouteName from '../../utils/getPageRouteName';
 import { Link } from 'react-router-dom';
 
 interface DesktopNavProps {
