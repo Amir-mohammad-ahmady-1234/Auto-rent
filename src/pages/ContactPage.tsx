@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { scrollToTop } from '../utils/ScrollToTop';
 import ContactInfo from '../components/Contact/ContactInfo';
-import ConcatForm from '../components/Contact/ConcatForm';
+import ContactForm from '../components/Contact/ContactForm';
 
 const ContactPage: React.FC = () => {
   useEffect(function () {
@@ -11,7 +11,7 @@ const ContactPage: React.FC = () => {
   return (
     <>
     <ContactInfo />
-    <ConcatForm />
+    <ContactForm />
     </>
   );
 };
