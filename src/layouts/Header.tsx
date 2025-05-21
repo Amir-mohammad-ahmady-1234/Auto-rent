@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 import AuthButton from '../components/HeaderNav/AuthButton';
 import Logo from '../components/HeaderNav/Logo';
@@ -6,7 +6,6 @@ import MobileMenu from '../components/HeaderNav/MobileMenu';
 import DesktopNav from '../components/HeaderNav/DesktopNav';
 import SearchLogo from '../assets/search-outline.png';
 import SearchSuggestions from '../components/HeaderNav/SearchSuggestions';
-import { FiSearch } from 'react-icons/fi';
 
 const Header: React.FC = () => {
   const links: string[] = [
@@ -18,6 +17,8 @@ const Header: React.FC = () => {
   ];
 
   const [showSearchSuggestions, setShowSearchSuggestions] = useState(false);
+  const searchBoxRef = useRef<HTMLDivElement>(null);
+  const searchIconRef = useRef<HTMLDivElement>(null);
 
   const handleSearchIconClick = () => {
     if (window.innerWidth >= 768) {
@@ -29,6 +30,27 @@ const Header: React.FC = () => {
     setShowSearchSuggestions(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchBoxRef.current &&
+        searchIconRef.current &&
+        !searchBoxRef.current.contains(event.target as Node) &&
+        !searchIconRef.current.contains(event.target as Node)
+      ) {
+        setShowSearchSuggestions(false);
+      }
+    };
+
+    if (showSearchSuggestions) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSearchSuggestions]);
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-4 py-3 md:py-4">
@@ -38,6 +60,7 @@ const Header: React.FC = () => {
           <div className="flex items-center gap-8">
             <DesktopNav links={links} />
             <div
+              ref={searchIconRef}
               className="flex cursor-pointer items-center"
               onClick={handleSearchIconClick}
             >
@@ -59,8 +82,13 @@ const Header: React.FC = () => {
         </div>
       </div>
       {showSearchSuggestions && (
-        <div className="absolute top-full right-0 left-0 z-50 mt-2 flex justify-center">
-          <SearchSuggestions onClose={handleCloseSearchSuggestions} />
+        <div
+          ref={searchBoxRef}
+          className="absolute top-full left-1/2 z-40 mt-2 -translate-x-1/2"
+        >
+          <div className="w-[600px]">
+            <SearchSuggestions onClose={handleCloseSearchSuggestions} />
+          </div>
         </div>
       )}
     </header>

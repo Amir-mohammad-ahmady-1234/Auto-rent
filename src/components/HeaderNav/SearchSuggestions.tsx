@@ -28,7 +28,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({ onClose }) => {
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-3 left-3 text-gray-500 hover:text-gray-700"
+        className="absolute top-3 left-3 cursor-pointer text-gray-500 hover:text-gray-700"
       >
         <FiX size={24} />
       </button>
@@ -45,9 +45,14 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({ onClose }) => {
 
       {/* Recent Searches */}
       <div className="mb-6">
-        <div className="mb-3 flex items-center text-gray-600">
-          <FiClock className="ml-2" />
-          <span>تاریخچه جستجوهای شما</span>
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center text-gray-600">
+            <FiClock className="ml-2" />
+            <span>تاریخچه جستجوهای شما</span>
+          </div>
+          <button className="flex items-center text-gray-500 hover:text-gray-700">
+            <FiTrash2 size={18} />
+          </button>
         </div>
         <div className="flex flex-wrap gap-2">
           {recentSearches.map((search, index) => (
