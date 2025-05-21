@@ -1,7 +1,7 @@
 import { FaInstagram, FaTwitter, FaYoutube, FaPhoneAlt } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import MainLogo from '../assets/Logo.png';
+import MainLogo from '../../assets/Logo.png';
 
 const Footer = () => {
   return (
@@ -44,7 +44,7 @@ const Footer = () => {
                   {['سوالات متداول', 'تماس با ما', 'درباره ما'].map((item) => (
                     <li key={item}>
                       <Link
-                        to={`${item === 'سوالات متداول' ? 'faq' : '#'}`}
+                        to={`${item === 'سوالات متداول' ? 'faq' : item === 'تماس با ما' ? 'concat' : ''}`}
                         className="opacity-80 transition-opacity hover:opacity-100"
                       >
                         {item}

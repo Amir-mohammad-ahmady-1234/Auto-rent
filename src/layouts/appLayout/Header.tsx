@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-import AuthButton from '../components/HeaderNav/AuthButton';
-import Logo from '../components/HeaderNav/Logo';
-import MobileMenu from '../components/HeaderNav/MobileMenu';
-import DesktopNav from '../components/HeaderNav/DesktopNav';
-import SearchLogo from '../assets/search-outline.png';
-import SearchSuggestions from '../components/HeaderNav/SearchSuggestions';
+import SearchLogo from '../../assets/search-outline.png';
+import Logo from '../../components/HeaderNav/Logo';
+import DesktopNav from '../../components/HeaderNav/DesktopNav';
+import AuthButton from '../../components/HeaderNav/AuthButton';
+import MobileMenu from '../../components/HeaderNav/MobileMenu';
+import SearchSuggestions from '../../components/HeaderNav/SearchSuggestions';
 
 const Header: React.FC = () => {
   const links: string[] = [

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface DesktopNavProps {
   links: string[];
@@ -7,14 +8,13 @@ interface DesktopNavProps {
 const DesktopNav: React.FC<DesktopNavProps> = ({ links }) => (
   <nav className="hidden items-center gap-8 md:flex">
     {links.map((link) => (
-      <motion.a
+      <motion.div
         key={link}
         whileHover={{ scale: 1.1 }}
         className="cursor-pointer font-medium text-gray-700"
-        href="#"
       >
-        {link}
-      </motion.a>
+        <Link to={`/${link.toLowerCase().replace(/\s+/g, '-')}`}>{link}</Link>
+      </motion.div>
     ))}
   </nav>
 );

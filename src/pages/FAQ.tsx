@@ -5,7 +5,7 @@ import { scrollToTop } from '../utils/ScrollToTop';
 
 const FAQ = () => {
   useEffect(function () {
-    scrollToTop()
+    scrollToTop();
   }, []);
 
   return (
