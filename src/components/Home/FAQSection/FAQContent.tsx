@@ -48,7 +48,7 @@ const FAQContent = () => {
           dir="rtl"
         >
           {questions.map((faq) => (
-            <FAQQuestion faq={faq} />
+            <FAQQuestion faq={faq} key={faq.id} />
           ))}
         </div>
       </div>

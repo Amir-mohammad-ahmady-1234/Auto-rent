@@ -31,20 +31,31 @@ const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="container mx-auto flex items-center justify-between px-4 py-3 md:py-4">
-        <Logo />
-        <div className="relative hidden items-center md:flex">
-          <div
-            className="flex cursor-pointer items-center"
-            onClick={handleSearchIconClick}
-          >
-            <img src={SearchLogo} alt="Search" className="h-6 w-6" />
+      <div className="container mx-auto px-4 py-3 md:py-4">
+        {/* Desktop Layout */}
+        <div className="hidden w-full items-center justify-between md:flex">
+          <Logo />
+          <div className="flex items-center gap-8">
+            <DesktopNav links={links} />
+            <div
+              className="flex cursor-pointer items-center"
+              onClick={handleSearchIconClick}
+            >
+              <img src={SearchLogo} alt="Search" className="h-6 w-6" />
+            </div>
           </div>
-        </div>
-        <DesktopNav links={links} />
-        <div className="flex items-center gap-4">
           <AuthButton />
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="flex w-full items-center justify-between gap-2 md:hidden">
           <MobileMenu links={links} includeSearch={true} />
+          <div className="flex flex-1 items-center justify-center">
+            <Logo />
+          </div>
+          <div className="min-w-[80px]">
+            <AuthButton />
+          </div>
         </div>
       </div>
       {showSearchSuggestions && (

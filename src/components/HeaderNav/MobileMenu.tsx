@@ -11,15 +11,24 @@ interface MobileMenuProps {
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ links, includeSearch }) => {
   const [open, setOpen] = useState<boolean>(false);
-  const toggleMenu = () => setOpen((prev) => !prev);
+
+  const toggleMenu = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent event bubbling
+    setOpen((prev) => !prev);
+  };
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent event bubbling
+    setOpen(false);
+  };
 
   return (
     <>
       <button
         onClick={toggleMenu}
-        className="cursor-pointer focus:outline-none md:hidden"
+        className="flex h-10 w-10 items-center justify-center focus:outline-none md:hidden"
       >
-        {open ? <FiX size={28} /> : <FiMenu size={28} />}
+        {open ? <FiX size={24} /> : <FiMenu size={24} />}
       </button>
       <AnimatePresence>
         {open && (
@@ -27,7 +36,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links, includeSearch }) => {
             {/* Overlay */}
             <motion.div
               className="bg-opacity-50 fixed inset-0 z-40 bg-black"
-              onClick={toggleMenu}
+              onClick={handleOverlayClick}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
@@ -38,13 +47,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links, includeSearch }) => {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 250 }}
-              className="fixed top-0 right-0 z-50 flex h-full w-2/3 flex-col bg-white p-6 shadow-lg"
+              className="fixed top-0 right-0 z-50 flex h-full w-[280px] flex-col bg-white p-4 shadow-lg"
+              onClick={(e) => e.stopPropagation()} // Prevent clicks inside menu from closing it
             >
               <button
                 onClick={toggleMenu}
                 className="mb-4 cursor-pointer self-end focus:outline-none"
               >
-                <FiX size={28} />
+                <FiX size={24} />
               </button>
               {/* Search Input for Mobile */}
               {includeSearch && (
@@ -57,7 +67,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links, includeSearch }) => {
                   <FiSearch className="absolute top-1/2 left-3 -translate-y-1/2 transform text-gray-400" />
                 </div>
               )}
-              <MobileNav links={links} />
+              <MobileNav links={links} onLinkClick={() => setOpen(false)} />
             </motion.div>
           </>
         )}
