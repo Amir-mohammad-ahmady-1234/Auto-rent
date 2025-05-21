@@ -10,17 +10,16 @@ const ContactBanner: React.FC<ContactBannerProps> = ({
   subtitle,
 }) => {
   return (
-    <div className="relative flex min-h-[400px] flex-col items-center justify-center px-20 py-40 text-center font-['Estedad-FD',_-apple-system,_Roboto,_Helvetica,_sans-serif] shadow-md md:px-20 md:py-40 lg:px-20 lg:py-[158px]">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8d2e8edb3ff95e16c1d0f1f74409a589e2281162?placeholderIfAbsent=true"
-        alt="Contact Banner Background"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
-      <div className="relative mt-16 flex flex-col items-center gap-3">
-        <h1 className="max-w-full text-5xl leading-[1.3] font-extrabold text-[#FDB713] md:text-6xl">
+    <div className="relative flex w-full flex-col items-center justify-center bg-cover bg-center text-center font-['Estedad-FD',_-apple-system,_Roboto,_Helvetica,_sans-serif] shadow-md"
+         style={{ backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets/TEMP/8d2e8edb3ff95e16c1d0f1f74409a589e2281162?placeholderIfAbsent=true')" }}>
+      {/* Overlay for better text contrast */}
+      <div className="absolute inset-0 bg-opacity-50" />
+
+      <div className="relative flex w-full max-w-4xl flex-col items-center gap-3 px-4 py-20 sm:py-24 md:py-32 lg:py-40">
+        <h1 className="w-full text-3xl font-extrabold text-[#FDB713] sm:text-4xl md:text-5xl lg:text-6xl">
           {title}
         </h1>
-        <p className="max-w-md text-lg font-medium text-white md:text-xl">
+        <p className="w-full text-base font-medium text-white sm:text-lg md:text-xl">
           {subtitle}
         </p>
       </div>
