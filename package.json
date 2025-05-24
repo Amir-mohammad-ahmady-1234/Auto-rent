@@ -14,14 +14,17 @@
     "@builder.io/react": "^8.2.0",
     "@tailwindcss/vite": "^4.1.7",
     "framer-motion": "^12.12.1",
+    "leaflet": "^1.9.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.6.0",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/leaflet": "^1.9.18",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@typescript-eslint/eslint-plugin": "^8.32.1",

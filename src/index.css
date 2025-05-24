@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Estedad:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import 'tailwindcss';
 
 /* Import Estedad font */
-@import url('https://fonts.googleapis.com/css2?family=Estedad:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 /* Custom colors */
 @layer base {
@@ -10,4 +10,18 @@
     --primary-yellow: #fdb713;
     --text-dark: #353535;
   }
+}
+
+
+/* react leaflet custome global styles */
+
+.leaflet-container {
+  border-radius: 0.75rem; /* rounded-xl */
+}
+
+.leaflet-popup-content {
+  font-family: 'Estedad', sans-serif;
+  font-size: 0.9rem;
+  direction: rtl;
+  text-align: right;
 }

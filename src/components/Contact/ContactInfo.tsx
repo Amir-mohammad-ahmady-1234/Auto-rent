@@ -1,4 +1,5 @@
 import React from 'react';
+import ContactMap from './ContactMap';
 
 const ContactInfo: React.FC = () => {
   return (
@@ -82,13 +83,7 @@ const ContactInfo: React.FC = () => {
         </div>
 
         {/* Map Section */}
-        <div className="h-[250px] w-full flex-shrink-0 sm:h-[200px] md:w-1/2 lg:h-[330px]">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/5cff15f32a1e9285ac40a748fc5a1759c4f47d9a"
-            alt="Location map"
-            className="h-full w-full rounded border border-[#CBCBCB] object-cover"
-          />
-        </div>
+        <ContactMap />
       </div>
     </div>
   );

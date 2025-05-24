@@ -52,7 +52,7 @@ const Header: React.FC = () => {
   }, [showSearchSuggestions]);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="sticky top-0 z-[9999] bg-white shadow-md">
       <div className="container mx-auto px-4 py-3 md:py-4">
         {/* Desktop Layout */}
         <div className="hidden w-full items-center justify-between md:flex">
