@@ -1,11 +1,15 @@
+import { Link } from 'react-router-dom';
+
 const CarsListHeader = () => {
   return (
     <div className="mx-auto mt-12 w-full max-w-[1200px] px-4 md:mt-10">
       <div className="flex flex-col items-center gap-5 md:flex-row md:items-stretch md:gap-0">
         <div className="mb-4 flex w-full flex-col items-stretch leading-normal md:mb-0 md:w-[18%]">
           <div className="flex min-h-12 flex-grow items-center justify-center gap-2 overflow-hidden rounded-lg px-4 py-2 text-center font-[Estedad-FD] text-base leading-8 font-semibold text-[#194BF0] capitalize">
-            <div className="my-auto flex h-5 w-5 flex-shrink-0"></div>
+              <div className="my-auto flex h-5 w-5 flex-shrink-0"></div>
+            <Link to="cars">
             <div className="my-auto text-[#194BF0]">مشاهده همه</div>
+            </Link>
           </div>
         </div>
         <div className="flex w-full flex-col items-stretch leading-normal md:ml-5 md:w-[82%]">
