@@ -12,6 +12,10 @@ const usePageLocation = () => {
       title: 'سوالات ما',
       subtitle: 'سؤالات متداول',
     },
+    about: {
+      title: 'درباره ما',
+      subtitle: 'درباره ما',
+    },
   };
 
   // Drived state

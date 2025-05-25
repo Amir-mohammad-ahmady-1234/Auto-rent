@@ -44,7 +44,7 @@ const Footer = () => {
                   {['سوالات متداول', 'تماس با ما', 'درباره ما'].map((item) => (
                     <li key={item}>
                       <Link
-                        to={`${item === 'سوالات متداول' ? 'faq' : item === 'تماس با ما' ? 'concat' : ''}`}
+                        to={`${item === 'سوالات متداول' ? 'faq' : item === 'تماس با ما' ? 'concat' : item === 'درباره ما' ? 'about' : ''}`}
                         className="opacity-80 transition-opacity hover:opacity-100"
                       >
                         {item}
