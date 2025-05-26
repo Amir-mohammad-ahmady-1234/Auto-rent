@@ -6,7 +6,7 @@ const ContactInfo: React.FC = () => {
     <div className="rtl flex flex-col gap-10 rounded-2xl border border-[#EDEDED] bg-white p-12 sm:p-6 md:p-8">
       {/* Header */}
       <div className="w-full border-b border-[#C2C2C2] pb-4">
-        <h2 className="text-right text-2xl font-normal text-[#494949] md:text-xl">
+        <h2 className="font-iranyekan text-right text-2xl font-normal text-[#494949] md:text-xl">
           ارتباط با دفتر مرکزی اتورنت
         </h2>
       </div>
@@ -17,7 +17,7 @@ const ContactInfo: React.FC = () => {
         <div className="flex w-full flex-col items-start gap-8 md:w-1/2">
           {/* Address */}
           <div className="flex flex-row-reverse items-center gap-2">
-            <div className="text-right font-['Estedad',sans-serif]">
+            <div className="font-iransans text-right">
               <span className="text-xl font-normal text-[#494949] md:text-lg">
                 آدرس:
               </span>
@@ -39,7 +39,7 @@ const ContactInfo: React.FC = () => {
 
           {/* Phone Number */}
           <div className="flex flex-row-reverse items-center gap-2">
-            <div className="text-right font-['Estedad',sans-serif]">
+            <div className="font-iransans text-right">
               <span className="text-xl font-normal text-[#494949] md:text-lg">
                 شماره تماس:
               </span>
@@ -61,7 +61,7 @@ const ContactInfo: React.FC = () => {
 
           {/* Email */}
           <div className="flex flex-row-reverse items-center gap-2">
-            <div className="text-right font-['Estedad',sans-serif]">
+            <div className="font-iransans text-right">
               <span className="text-xl font-normal text-[#494949] md:text-lg">
                 ایمیل:
               </span>

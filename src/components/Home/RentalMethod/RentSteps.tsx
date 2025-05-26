@@ -1,10 +1,13 @@
-import keyLogo from '../../../assets/stepsLogo/Frame 1430103011.png'
-import CartLogo from '../../../assets/stepsLogo/Frame 427320960.png'
-import MachinLogo from '../../../assets/stepsLogo/Frame 427320959.png'
+import keyLogo from '../../../assets/stepsLogo/Frame 1430103011.png';
+import CartLogo from '../../../assets/stepsLogo/Frame 427320960.png';
+import MachinLogo from '../../../assets/stepsLogo/Frame 427320959.png';
 
 const RentSteps = () => {
   return (
-    <div       dir="ltr" className="w-full max-w-[1256px] self-start px-4 md:max-w-full md:px-0">
+    <div
+      dir="ltr"
+      className="font-iranyekan w-full max-w-[1256px] self-start px-4 md:max-w-full md:px-0"
+    >
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:items-center md:gap-y-16">
         {/* Step 1 (Top Right on Desktop) */}
         <div className="flex flex-col items-center text-center md:col-start-3 md:items-end md:text-right">
@@ -21,12 +24,14 @@ const RentSteps = () => {
                 خودروی مورد نظر خود را، متناسب با درخواست خود انتخاب کنید.
               </div>
             </div>
-            <div className="my-auto flex h-20 w-20 flex-none flex-shrink-0 self-stretch rounded-2xl border border-[#D7D7D7] bg-white"><img src={MachinLogo} alt="MachineLogo" /></div>
+            <div className="my-auto flex h-20 w-20 flex-none flex-shrink-0 self-stretch rounded-2xl border border-[#D7D7D7] bg-white">
+              <img src={MachinLogo} alt="MachineLogo" />
+            </div>
           </div>
         </div>
 
         {/* Step 2 (Top Left on Desktop) */}
-        <div className="flex flex-col items-center text-center md:col-start-1 md:row-start-1 md:items-start md:text-left">
+        <div className="flex flex-col items-center text-center md:items-start md:text-right">
           <div className="-webkit-text-stroke-width-[1px] -webkit-text-stroke-color-[#0B2FA6] text-center text-[152px] leading-[1] font-bold md:text-[40px]">
             2
           </div>
@@ -80,7 +85,7 @@ const RentSteps = () => {
         </div>
 
         {/* Step 4 (Bottom Left on Desktop) */}
-        <div className="flex flex-col items-center text-center md:col-start-1 md:items-start md:text-left">
+        <div className="flex flex-col items-center text-center md:items-start md:text-right">
           <div className="-webkit-text-stroke-width-[1px] -webkit-text-stroke-color-[#0B2FA6] text-center text-[152px] leading-[1] font-bold md:text-[40px]">
             4
           </div>

@@ -4,7 +4,7 @@ export const AboutNetwork: React.FC = () => {
   return (
     <div className="mt-5 flex w-full max-w-[1220px] flex-col items-stretch justify-center rounded-2xl bg-white px-6 py-6 max-md:max-w-full max-md:px-5">
       <div className="flex w-full flex-col items-stretch justify-center max-md:max-w-full">
-        <div className="text-right font-['Estedad-FD_,_-apple-system,_Roboto,_Helvetica,_sans-serif'] text-2xl leading-[34px] font-bold text-[#353535] max-md:max-w-full">
+        <div className="font-iranyekan text-right text-2xl leading-[34px] font-bold text-[#353535] max-md:max-w-full">
           شبکه نمایندگان و شرکتهای اجاره خودروی همکار
         </div>
 
@@ -14,7 +14,7 @@ export const AboutNetwork: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-3 text-right font-['Estedad-FD_,_-apple-system,_Roboto,_Helvetica,_sans-serif'] text-sm leading-[25px] font-normal text-[#353535] capitalize max-md:max-w-full">
+      <div className="font-iransans mt-3 text-right text-sm leading-[25px] font-normal text-[#353535] max-md:max-w-full">
         اتورنت دارای شبکه ای شامل ایستگاه های داخل شهری و فرودگاهی می باشد که
         این ایستگاه ها توسط نمایندگان و شرکای تجاری نگهداری و مدیریت می‌گردند،
         افرادی که علاقمند به سرمایه‌گذاری و همکاری با ناواران می‌باشند می‌توانند

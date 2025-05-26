@@ -24,7 +24,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({ onClose }) => {
   ];
 
   return (
-    <div className="relative w-full max-w-lg rounded-lg bg-white p-6 shadow-lg">
+    <div className="font-iransans relative w-full max-w-lg rounded-lg bg-white p-6 shadow-lg">
       {/* Close Button */}
       <button
         onClick={onClose}
@@ -38,7 +38,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({ onClose }) => {
         <input
           type="text"
           placeholder="جستجو در اتورنت..."
-          className="w-full rounded-lg border border-gray-300 py-2 pr-10 pl-10 text-right focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="font-iransans w-full rounded-lg border border-gray-300 py-2 pr-10 pl-10 text-right focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
         <FiSearch className="absolute top-1/2 right-3 -translate-y-1/2 transform text-gray-400" />
       </div>
@@ -58,7 +58,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({ onClose }) => {
           {recentSearches.map((search, index) => (
             <span
               key={index}
-              className="cursor-pointer rounded-full bg-gray-200 px-3 py-1 text-sm"
+              className="font-iransans cursor-pointer rounded-full bg-gray-200 px-3 py-1 text-sm"
             >
               {search}
             </span>
@@ -76,7 +76,7 @@ const SearchSuggestions: React.FC<SearchSuggestionsProps> = ({ onClose }) => {
           {popularSearches.map((search, index) => (
             <span
               key={index}
-              className="cursor-pointer rounded-full bg-gray-200 px-3 py-1 text-sm"
+              className="font-iransans cursor-pointer rounded-full bg-gray-200 px-3 py-1 text-sm"
             >
               {search}
             </span>

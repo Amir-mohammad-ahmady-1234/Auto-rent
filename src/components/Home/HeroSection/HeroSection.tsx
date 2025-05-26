@@ -58,7 +58,7 @@ const HeroSection = () => {
         {/* Button to open search modal - Visible only on small screens */}
         {/* Positioned absolutely at the bottom - Adjusted bottom value */}
         <button
-          className="absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 transform items-center justify-center rounded-full bg-white px-6 py-3 font-bold text-[#0C0C0C] shadow-lg md:hidden"
+          className="font-iranyekan absolute bottom-10 left-1/2 z-20 flex -translate-x-1/2 transform items-center justify-center rounded-full bg-white px-6 py-3 font-bold text-[#0C0C0C] shadow-lg md:hidden"
           onClick={handleOpenSearchModal}
         >
           جستجوی خودرو
@@ -70,10 +70,12 @@ const HeroSection = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
           <div
             ref={searchBoxRef}
-            className="mx-4 w-full max-w-md rounded-lg bg-white p-4 shadow-lg"
+            className="font-iransans mx-4 w-full max-w-md rounded-lg bg-white p-4 shadow-lg"
           >
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-bold text-gray-900">جستجوی خودرو</h2>
+              <h2 className="font-iranyekan text-lg font-bold text-gray-900">
+                جستجوی خودرو
+              </h2>
               <button
                 onClick={handleCloseSearchModal}
                 className="rounded-full p-1 text-gray-500 hover:bg-gray-100"

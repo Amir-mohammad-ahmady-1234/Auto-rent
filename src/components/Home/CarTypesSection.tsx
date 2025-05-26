@@ -1,6 +1,6 @@
 const CarTypesSection = () => {
   return (
-    <div className="mt-12 flex flex-wrap items-center justify-center gap-4 px-4 text-center font-[Estedad-FD] text-xl leading-[1.4] font-bold text-[#353535] sm:text-lg md:mt-10 md:max-w-full">
+    <div className="font-iranyekan mt-12 flex flex-wrap items-center justify-center gap-4 px-4 text-center text-xl leading-[1.4] font-bold text-[#353535] sm:text-lg md:mt-10 md:max-w-full">
       <div className="flex w-full flex-1 flex-shrink flex-col items-stretch self-stretch overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white pt-2 pr-[6px] whitespace-nowrap sm:w-auto md:whitespace-normal">
         <div className="self-center text-[#353535]">اسپرت</div>
         <img
@@ -27,7 +27,7 @@ const CarTypesSection = () => {
           alt="Convertible car"
         />
       </div>
-      <div className="flex w-full flex-1 flex-shrink flex-col items-stretch self-stretch overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white pt-2 pr-[7px] whitespace-nowrap sm:w-auto md:whitespace-normal">
+      <div className="flex w-full flex-1 flex-shrink flex-col items-stretch self-stretch overflow-hidden rounded-2xl border border-[#D7D7D7] bg-white pt-2 pr-[6px] whitespace-nowrap sm:w-auto md:whitespace-normal">
         <div className="self-center text-[#353535]">سدان</div>
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/929c6818451bb7d3e27f4601c975e7357a67b058?placeholderIfAbsent=true"

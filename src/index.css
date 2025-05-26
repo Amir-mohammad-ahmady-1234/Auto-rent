@@ -1,26 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Estedad:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSansWeb.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/IRANSansWeb_Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('/fonts/IRANYekanWeb.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'IRANYekan';
+  src: url('/fonts/IRANYekanWeb_Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
 @import 'tailwindcss';
 
-/* Import Estedad font */
-
-/* Custom colors */
+/* Base typography settings */
 @layer base {
   :root {
     --primary-blue: #194bf0;
     --primary-yellow: #fdb713;
     --text-dark: #353535;
   }
+
+  html {
+    font-family: 'IRANSans', 'Vazirmatn', 'IRANYekan', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    direction: rtl;
+    text-align: right;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'IRANYekan', 'IRANSans', 'Vazirmatn', system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.6;
+  }
 }
 
+/* Typography utility classes */
+@layer utilities {
+  .font-thin {
+    font-weight: 100;
+  }
+  .font-extralight {
+    font-weight: 200;
+  }
+  .font-light {
+    font-weight: 300;
+  }
+  .font-normal {
+    font-weight: 400;
+  }
+  .font-medium {
+    font-weight: 500;
+  }
+  .font-semibold {
+    font-weight: 600;
+  }
+  .font-bold {
+    font-weight: 700;
+  }
+  .font-extrabold {
+    font-weight: 800;
+  }
+  .font-black {
+    font-weight: 900;
+  }
 
-/* react leaflet custome global styles */
+  /* Font family utility classes */
+  .font-iransans {
+    font-family: 'IRANSans', system-ui, sans-serif;
+  }
+  .font-iranyekan {
+    font-family: 'IRANYekan', system-ui, sans-serif;
+  }
+  .font-vazir {
+    font-family: 'Vazirmatn', system-ui, sans-serif;
+  }
+}
 
+/* react leaflet custom global styles */
 .leaflet-container {
   border-radius: 0.75rem; /* rounded-xl */
 }
 
 .leaflet-popup-content {
-  font-family: 'Estedad', sans-serif;
+  font-family: 'IRANSans', 'Vazirmatn', 'IRANYekan', sans-serif;
   font-size: 0.9rem;
   direction: rtl;
   text-align: right;

@@ -43,7 +43,7 @@ const CustomerReviews = () => {
   return (
     <>
       <ReviewHeader />
-      <div className="mt-6 flex w-full max-w-[1225px] flex-col items-center justify-start px-4 font-[Estedad-FD] md:max-w-full">
+      <div className="font-iransans mt-6 flex w-full max-w-[1225px] flex-col items-center justify-start px-4 md:max-w-full">
         <MainReview
           name={reviewsData.mainReview.name}
           avatar={reviewsData.mainReview.avatar}

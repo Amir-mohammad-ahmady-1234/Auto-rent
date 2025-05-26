@@ -33,7 +33,7 @@ const FAQContent = () => {
   return (
     <div
       dir="ltr"
-      className="mt-14 flex w-full max-w-full flex-col items-center px-4 font-[Estedad-FD] md:mt-10"
+      className="font-iransans mt-14 flex w-full max-w-full flex-col items-center px-4 md:mt-10"
     >
       <div className="mt-6 flex w-full flex-wrap items-start justify-center gap-6">
         <div className="my-auto w-full min-w-[240px] self-stretch overflow-hidden rounded-2xl md:w-[392px]">
@@ -44,7 +44,7 @@ const FAQContent = () => {
           />
         </div>
         <div
-          className="my-auto w-full min-w-[240px] self-stretch font-[Estedad-FD] md:flex-1"
+          className="font-iransans my-auto w-full min-w-[240px] self-stretch md:flex-1"
           dir="rtl"
         >
           {questions.map((faq) => (

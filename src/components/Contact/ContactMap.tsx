@@ -40,7 +40,9 @@ const ContactMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position}>
-          <Popup>دفتر ما اینجاست 😎 بیا یه قهوه بزنیم!</Popup>
+          <Popup className="font-iransans">
+            دفتر ما اینجاست 😎 بیا یه قهوه بزنیم!
+          </Popup>
         </Marker>
       </MapContainer>
     </motion.div>

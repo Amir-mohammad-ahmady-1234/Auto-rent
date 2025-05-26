@@ -13,14 +13,14 @@ const ReviewCard = ({
 }: ReviewCardProps) => {
   return (
     <div
-      className={`flex flex-col items-stretch justify-center self-stretch rounded-2xl border border-[#D7D7D7] ${isHighlighted ? 'bg-[#FDB713]' : 'bg-white'} p-4 text-center`}
+      className={`flex flex-col items-stretch justify-center self-stretch rounded-2xl border border-[#D7D7D7] ${isHighlighted ? 'bg-[#FDB713]' : 'bg-white'} font-iransans p-4 text-center`}
     >
       <div className="flex w-full items-center justify-center gap-4">
         <div className="my-auto flex flex-col items-stretch justify-start self-stretch">
           <div className="self-end text-base font-medium text-[#212121] sm:text-sm">
             {name}
           </div>
-          <div className="mt-2 text-sm leading-[25px] font-normal text-[#494949] capitalize sm:text-xs">
+          <div className="mt-2 text-sm leading-[25px] font-normal text-[#494949] sm:text-xs">
             {date}
           </div>
         </div>

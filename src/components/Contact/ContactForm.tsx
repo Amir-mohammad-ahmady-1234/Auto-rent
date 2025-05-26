@@ -28,9 +28,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   return (
-    <div className="bg-white px-4 py-8 text-right font-['Inter'] sm:px-6 lg:px-8">
+    <div className="font-iransans bg-white px-4 py-8 text-right sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        <h2 className="mb-6 text-2xl font-medium text-gray-900">
+        <h2 className="font-iranyekan mb-6 text-2xl font-medium text-gray-900">
           ارسال پیام شما به مجموعه اتورنت
         </h2>
         <form
@@ -43,14 +43,14 @@ const ContactForm: React.FC<ContactFormProps> = ({
               value={message}
               onChange={handleMessageChange}
               placeholder="متن پیام شما..."
-              className="h-48 w-full resize-none rounded-xl border border-gray-200 p-4 text-right placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none"
+              className="font-iransans h-48 w-full resize-none rounded-xl border border-gray-200 p-4 text-right placeholder-gray-400 shadow-sm focus:border-blue-500 focus:outline-none"
             />
-            <div className="mt-2 text-left text-sm text-gray-500">
+            <div className="font-iransans mt-2 text-left text-sm text-gray-500">
               {message.length} / {maxMessageLength}
             </div>
             <button
               type="submit"
-              className="mt-4 w-full rounded-xl bg-blue-600 py-3 text-white shadow-md transition-shadow hover:bg-blue-700"
+              className="font-iranyekan mt-4 w-full rounded-xl bg-blue-600 py-3 text-white shadow-md transition-shadow hover:bg-blue-700"
             >
               ارسال
             </button>
@@ -66,11 +66,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="نام شما"
-                className="h-14 w-full rounded-xl border border-gray-200 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:outline-none"
+                className="font-iransans h-14 w-full rounded-xl border border-gray-200 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:outline-none"
               />
               <label
                 htmlFor="fullName"
-                className="absolute top-2 right-4 text-sm text-gray-400"
+                className="font-iransans absolute top-2 right-4 text-sm text-gray-400"
               >
                 نام و نام خانوادگی
               </label>
@@ -88,11 +88,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 id="email"
                 type="email"
                 placeholder={userEmail}
-                className="h-14 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm"
+                className="font-iransans h-14 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm"
               />
               <label
                 htmlFor="email"
-                className="absolute top-2 right-4 text-sm text-gray-400"
+                className="font-iransans absolute top-2 right-4 text-sm text-gray-400"
               >
                 پست الکترونیکی
               </label>
@@ -107,11 +107,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 placeholder="شماره شما"
-                className="h-14 w-full rounded-xl border border-gray-200 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:outline-none"
+                className="font-iransans h-14 w-full rounded-xl border border-gray-200 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:outline-none"
               />
               <label
                 htmlFor="phone"
-                className="absolute top-2 right-4 text-sm text-gray-400"
+                className="font-iransans absolute top-2 right-4 text-sm text-gray-400"
               >
                 شماره تماس
               </label>

@@ -8,7 +8,7 @@ const Car = ({ carDetails }: Prop) => {
     carDetails;
   return (
     <div
-      className="w-full rounded-2xl border border-[#D7D7D7] bg-white p-4"
+      className="font-iransans w-full rounded-2xl border border-[#D7D7D7] bg-white p-4"
       key={id}
     >
       <div className="flex w-full flex-col items-stretch justify-center border-b border-[#D7D7D7] pb-3">

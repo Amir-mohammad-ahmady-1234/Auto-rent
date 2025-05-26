@@ -7,8 +7,8 @@ const Logo: React.FC = () => (
     <Link to="/">
       <img src={MainLogo} alt="Auto-Rent-Logo" />
     </Link>
-    {/* <div className="text-2xl font-black text-yellow-500">رنت</div>
-    <div className="text-2xl font-black text-blue-600">اتو</div> */}
+    {/* <div className="text-2xl font-black text-yellow-500 font-iranyekan">رنت</div>
+    <div className="text-2xl font-black text-blue-600 font-iranyekan">اتو</div> */}
   </div>
 );
 

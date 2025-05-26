@@ -16,7 +16,7 @@ const DesktopNav: React.FC<DesktopNavProps> = ({ links }) => {
           <motion.div
             key={link}
             whileHover={{ scale: 1.1 }}
-            className="cursor-pointer font-medium text-gray-700"
+            className="font-iranyekan cursor-pointer font-medium text-gray-700"
           >
             <Link to={`/${page?.route}`}>{link}</Link>
           </motion.div>

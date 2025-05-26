@@ -16,7 +16,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ onLinkClick, links }) => (
           key={link}
           to={`/${page?.route}`}
           onClick={onLinkClick}
-          className="text-lg font-medium text-gray-800"
+          className="font-iranyekan text-lg font-medium text-gray-800"
         >
           {link}
         </Link>
