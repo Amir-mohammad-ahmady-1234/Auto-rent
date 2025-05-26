@@ -7,8 +7,11 @@ const getPageRouteName = (irLoc: string) => {
       route: 'concat',
     },
     'درباره ما': {
-      route: 'about'
-    }
+      route: 'about',
+    },
+    'رزرو خودرو': {
+      route: 'cars',
+    },
   };
 
   return pageRoute[irLoc];
