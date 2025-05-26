@@ -8,7 +8,7 @@ import BannerLayout from '../layouts/pagesBannerLayout/BannerLayout';
 import AboutUs from '../pages/AboutUs';
 import BrowseCarsPage from '../pages/BrowseCarsPage';
 import { ScrollToToPage } from '../utils/ScrollToTopPage';
-import CarProvider from '../context/CarProvider';
+import CarProvider from '../context/cars/CarsProvider';
 
 const AppRoutes = () => {
   return (

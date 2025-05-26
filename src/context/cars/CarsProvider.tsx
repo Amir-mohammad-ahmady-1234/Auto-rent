@@ -1,15 +1,6 @@
-import { createContext, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
-
-interface Car {
-  id: number;
-  image: string;
-  title: string;
-  model: string;
-  dailyPrice: string;
-  monthlyPrice: string;
-  deposit: string;
-}
+import { CarsContext, type Car } from './CarsContext';
 
 const carsData: Car[] = [
   {
@@ -74,30 +65,15 @@ const carsData: Car[] = [
   },
 ];
 
-interface CarsContextType {
-  cars: Car[];
-  setCars: React.Dispatch<React.SetStateAction<Car[]>>;
-}
-
-const defaultValues: CarsContextType = {
-  cars: [],
-  setCars: () => {},
-};
-
-
-// context
-export const CarContext = createContext(defaultValues);
-
-
 // provider
-const CarProvider = ({ children }: { children: React.ReactNode }) => {
+const CarsProvider = ({ children }: { children: React.ReactNode }) => {
   const [cars, setCars] = useState<Car[]>(carsData);
 
   return (
-    <CarContext.Provider value={{ cars, setCars }}>
+    <CarsContext.Provider value={{ cars, setCars }}>
       {children}
-    </CarContext.Provider>
+    </CarsContext.Provider>
   );
 };
 
-export default CarProvider;
+export default CarsProvider;

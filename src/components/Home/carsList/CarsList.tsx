@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import CarCard from './CarCard';
 import CarsListHeader from './CarsListHeader';
-import { CarContext } from '../../../context/CarProvider';
+import { CarsContext } from '../../../context/cars/CarsContext';
 
 const CarsList = () => {
-  const { cars } = useContext(CarContext);
+  const { cars } = useContext(CarsContext);
 
   return (
     <>
