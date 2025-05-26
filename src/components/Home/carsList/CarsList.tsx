@@ -12,7 +12,7 @@ const CarsList = () => {
       <div className="mt-6 px-4 sm:px-2 md:max-w-full">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {cars.map((car) => (
-            <Car carDetails={car} />
+            <Car carDetails={car} key={car.id} />
           ))}
         </div>
       </div>
