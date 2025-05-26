@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import React from 'react';
-import { CarsContext, type Car } from './CarsContext';
+import { CarsContext } from './CarsContext';
+import type { TCar } from '../../types/CarType';
 
-const carsData: Car[] = [
+const carsData: TCar[] = [
   {
     id: 1,
     image:
@@ -67,7 +68,7 @@ const carsData: Car[] = [
 
 // provider
 const CarsProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cars, setCars] = useState<Car[]>(carsData);
+  const [cars, setCars] = useState<TCar[]>(carsData);
 
   return (
     <CarsContext.Provider value={{ cars, setCars }}>

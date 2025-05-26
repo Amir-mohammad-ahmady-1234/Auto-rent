@@ -1,19 +1,6 @@
 import { createContext } from 'react';
+import type { CarsContextType } from '../../types/CarsContextType';
 
-interface Car {
-  id: number;
-  image: string;
-  title: string;
-  model: string;
-  dailyPrice: string;
-  monthlyPrice: string;
-  deposit: string;
-}
-
-interface CarsContextType {
-  cars: Car[];
-  setCars: React.Dispatch<React.SetStateAction<Car[]>>;
-}
 
 const defaultValues: CarsContextType = {
   cars: [],
@@ -21,4 +8,3 @@ const defaultValues: CarsContextType = {
 };
 
 export const CarsContext = createContext<CarsContextType>(defaultValues);
-export type { Car, CarsContextType };
