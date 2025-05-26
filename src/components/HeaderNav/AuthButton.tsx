@@ -8,6 +8,6 @@ const AuthButton: React.FC = () => (
   >
     ورود / ثبت‌نام
   </motion.button>
-);
+); 
 
 export default AuthButton

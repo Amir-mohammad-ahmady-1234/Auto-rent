@@ -16,6 +16,10 @@ const usePageLocation = () => {
       title: 'درباره ما',
       subtitle: 'درباره ما',
     },
+    cars: {
+      title: 'اجاره خودرو',
+      subtitle: 'لیست خودرو های اجاره ای',
+    },
   };
 
   // Drived state
