@@ -26,8 +26,17 @@ const filterCars = createSlice({
         );
       }
     },
+    filterCarType: (state, action: PayloadAction<string>) => {
+      if (action.payload.length < 1) {
+        state.filteredCars = carsData;
+      } else {
+        state.filteredCars = carsData.filter((car) =>
+          action.payload.includes(car.type)
+        );
+      }
+    },
   },
 });
 
 export default filterCars.reducer;
-export const { changePrice, filterBrand } = filterCars.actions;
+export const { changePrice, filterBrand, filterCarType } = filterCars.actions;

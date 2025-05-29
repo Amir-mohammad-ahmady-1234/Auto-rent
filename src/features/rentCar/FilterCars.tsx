@@ -1,11 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changePrice, filterBrand } from '../cars/filterCarsSlice';
+import {
+  changePrice,
+  filterBrand,
+  filterCarType,
+} from '../cars/filterCarsSlice';
 import { formatNumber } from '../../utils/formatNumber.1';
 
 function FilterCars() {
   const [inputValue, setInputValue] = useState<string>('0');
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedCarType, setSelectedCarType] = useState<string>('');
 
   const dispatch = useDispatch();
 
@@ -21,9 +26,17 @@ function FilterCars() {
     );
   };
 
+  const handleRadioTypeChange = (type: string) => {
+    setSelectedCarType(type);
+  };
+
   useEffect(() => {
     dispatch(filterBrand(selectedBrands));
   }, [selectedBrands, dispatch]);
+
+  useEffect(() => {
+    dispatch(filterCarType(selectedCarType));
+  }, [selectedCarType, dispatch]);
 
   return (
     <>
@@ -71,21 +84,23 @@ function FilterCars() {
         <h3 className="mb-2 text-sm font-bold">اجاره خودرو بر اساس نیاز شما</h3>
         <ul className="space-y-2 text-sm">
           {[
-            'اجاره خودرو با راننده',
-            'اجاره خودرو بدون راننده',
-            'اجاره خودرو ایرانی',
-            'اجاره خودرو لوکس',
-            'اجاره خودرو تشریفات',
-            'اجاره ماشین عروس',
-          ].map((option, i) => (
+            'با راننده',
+            'بدون راننده',
+            'ایرانی',
+            'لوکس',
+            'تشریفات',
+            'ماشین عروس',
+          ].map((type, i) => (
             <li key={i} className="flex items-center gap-2">
               <input
                 type="radio"
                 name="rentType"
                 id={`rent-${i}`}
                 className="accent-blue-500"
+                checked={selectedCarType.includes(type)}
+                onChange={() => handleRadioTypeChange(type)}
               />
-              <label htmlFor={`rent-${i}`}>{option}</label>
+              <label htmlFor={`rent-${i}`}>اجاره خودور {type}</label>
             </li>
           ))}
         </ul>
