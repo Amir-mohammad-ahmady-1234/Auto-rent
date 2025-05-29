@@ -1,10 +1,10 @@
 import type { TCar } from '../../types/CarType';
+import { formatNumber } from '../../utils/formatNumber.1';
 import { toPersianNumbers } from '../../utils/toPersianNumbers';
 
 interface Prop {
   carDetails: TCar;
 }
-
 
 const Car = ({ carDetails }: Prop) => {
   const { dailyPrice, deposit, id, image, model, monthlyPrice, title } =
@@ -34,7 +34,9 @@ const Car = ({ carDetails }: Prop) => {
           </h3>
           <div className="mt-2 flex items-center text-sm text-[#494949]">
             <span className="font-iransans">مدل: </span>
-            <span className="font-iransans ml-2">{toPersianNumbers(model)}</span>
+            <span className="font-iransans ml-2">
+              {toPersianNumbers(model)}
+            </span>
           </div>
         </div>
 
@@ -51,7 +53,7 @@ const Car = ({ carDetails }: Prop) => {
               </span>
             </div>
             <span className="font-iranyekan text-sm font-extrabold text-[#194BF0] sm:text-base">
-              {toPersianNumbers(dailyPrice)}
+              {formatNumber(dailyPrice)}
             </span>
           </div>
 
@@ -66,7 +68,7 @@ const Car = ({ carDetails }: Prop) => {
               </span>
             </div>
             <span className="font-iranyekan text-sm font-extrabold text-[#194BF0] sm:text-base">
-              {toPersianNumbers(monthlyPrice)}
+              {formatNumber(monthlyPrice)}
             </span>
           </div>
         </div>

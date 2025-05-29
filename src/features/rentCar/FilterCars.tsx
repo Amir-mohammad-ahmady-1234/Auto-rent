@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { changePrice } from '../cars/filterCarsSlice';
 
 function FilterCars() {
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('0');
   const dispatch = useDispatch();
 
   function handleFilteredCars(e: React.ChangeEvent<HTMLInputElement>) {
@@ -18,9 +18,8 @@ function FilterCars() {
       <div>
         <h3 className="mb-2 text-sm font-bold">قیمت اجاره خودرو</h3>
         <div className="mb-2 flex items-center justify-between text-xs text-gray-600">
-          <span>۶۰٬۰۰۰٬۰۰۰ تومان</span>
-          <span>از</span>
-          <span>{inputValue} تومان</span>
+          <span>از {inputValue} تومان</span>
+          <span>تا ۶۰٬۰۰۰٬۰۰۰ تومان</span>
         </div>
         <input
           type="range"
