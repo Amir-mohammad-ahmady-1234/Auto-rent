@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import Car from "../../features/rentCar/Car";
-import { CarsContext } from "../../context/cars/CarsContext";
+import Car from '../../features/rentCar/Car';
+import { useAppSelector } from '../../hooks/reduxHooks';
 
 const AllCarsList = () => {
-  const { cars } = useContext(CarsContext);
+  const { filteredCars: cars } = useAppSelector((state) => state.filterCars);
 
   return (
     <section className="overflow-y-auto">
