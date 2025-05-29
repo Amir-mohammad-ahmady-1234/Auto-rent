@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { changePrice } from '../cars/filterCarsSlice';
+import { formatNumber } from '../../utils/formatNumber.1';
 
 function FilterCars() {
   const [inputValue, setInputValue] = useState<string>('0');
@@ -9,7 +10,7 @@ function FilterCars() {
   function handleFilteredCars(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
 
-    dispatch(changePrice(inputValue));
+    dispatch(changePrice(e.target.value));
   }
 
   return (
@@ -18,13 +19,14 @@ function FilterCars() {
       <div>
         <h3 className="mb-2 text-sm font-bold">قیمت اجاره خودرو</h3>
         <div className="mb-2 flex items-center justify-between text-xs text-gray-600">
-          <span>از {inputValue} تومان</span>
+          <span>از {formatNumber(inputValue)} تومان</span>
           <span>تا ۶۰٬۰۰۰٬۰۰۰ تومان</span>
         </div>
         <input
           type="range"
           min="0"
           max="60000000"
+          step={100_000}
           className="w-full accent-blue-500"
           value={inputValue}
           onChange={handleFilteredCars}
