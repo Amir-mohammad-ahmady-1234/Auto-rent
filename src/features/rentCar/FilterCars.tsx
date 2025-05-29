@@ -5,6 +5,8 @@ import { formatNumber } from '../../utils/formatNumber.1';
 
 function FilterCars() {
   const [inputValue, setInputValue] = useState<string>('0');
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+
   const dispatch = useDispatch();
 
   function handleFilteredCars(e: React.ChangeEvent<HTMLInputElement>) {
@@ -12,6 +14,12 @@ function FilterCars() {
 
     dispatch(changePrice(e.target.value));
   }
+
+  const handleCheckboxChange = (brand: string) => {
+    setSelectedBrands((prev) =>
+      prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
+    );
+  };
 
   return (
     <>
@@ -50,6 +58,8 @@ function FilterCars() {
                 type="checkbox"
                 id={`brand-${i}`}
                 className="accent-blue-500"
+                checked={selectedBrands.includes(brand)}
+                onChange={() => handleCheckboxChange(brand)}
               />
               <label htmlFor={`brand-${i}`}>{brand}</label>
             </li>
