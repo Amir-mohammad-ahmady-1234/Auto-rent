@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changePrice } from '../cars/filterCarsSlice';
+import { changePrice, filterBrand } from '../cars/filterCarsSlice';
 import { formatNumber } from '../../utils/formatNumber.1';
 
 function FilterCars() {
@@ -20,6 +20,10 @@ function FilterCars() {
       prev.includes(brand) ? prev.filter((b) => b !== brand) : [...prev, brand]
     );
   };
+
+  useEffect(() => {
+    dispatch(filterBrand(selectedBrands));
+  }, [selectedBrands, dispatch]);
 
   return (
     <>
@@ -45,25 +49,20 @@ function FilterCars() {
       <div>
         <h3 className="mb-2 text-sm font-bold">برند خودرو</h3>
         <ul className="space-y-1 text-sm">
-          {[
-            'اجاره بنز',
-            'اجاره بی ام و',
-            'اجاره پژو',
-            'اجاره پورشه',
-            'اجاره کیا',
-            'اجاره هیوندای',
-          ].map((brand, i) => (
-            <li key={i} className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                id={`brand-${i}`}
-                className="accent-blue-500"
-                checked={selectedBrands.includes(brand)}
-                onChange={() => handleCheckboxChange(brand)}
-              />
-              <label htmlFor={`brand-${i}`}>{brand}</label>
-            </li>
-          ))}
+          {['بنز', 'بی ام و', 'پژو', 'پورشه', 'کیا', 'هیوندای'].map(
+            (brand, i) => (
+              <li key={i} className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  id={`brand-${i}`}
+                  className="accent-blue-500"
+                  checked={selectedBrands.includes(brand)}
+                  onChange={() => handleCheckboxChange(brand)}
+                />
+                <label htmlFor={`brand-${i}`}>اجاره {brand}</label>
+              </li>
+            )
+          )}
         </ul>
       </div>
 
