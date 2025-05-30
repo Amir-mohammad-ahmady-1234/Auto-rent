@@ -4,7 +4,8 @@ import { CarsContext } from '../../../context/cars/CarsContext';
 import Car from '../../../features/rentCar/Car';
 
 const CarsList = () => {
-  const { cars } = useContext(CarsContext);
+  const { cars: allCars } = useContext(CarsContext);
+  const cars = allCars.filter((car) => car.id <= 6);
 
   return (
     <>
