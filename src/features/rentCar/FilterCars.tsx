@@ -27,7 +27,11 @@ function FilterCars() {
   };
 
   const handleRadioTypeChange = (type: string) => {
-    setSelectedCarType(type);
+    if (selectedCarType === type) {
+      setSelectedCarType('');
+    } else {
+      setSelectedCarType(type);
+    }
   };
 
   useEffect(() => {
@@ -71,6 +75,7 @@ function FilterCars() {
                   className="accent-blue-500"
                   checked={selectedBrands.includes(brand)}
                   onChange={() => handleCheckboxChange(brand)}
+                  readOnly
                 />
                 <label htmlFor={`brand-${i}`}>اجاره {brand}</label>
               </li>
@@ -97,8 +102,8 @@ function FilterCars() {
                 name="rentType"
                 id={`rent-${i}`}
                 className="accent-blue-500"
-                checked={selectedCarType.includes(type)}
-                onChange={() => handleRadioTypeChange(type)}
+                checked={selectedCarType === type}
+                onClick={() => handleRadioTypeChange(type)}
               />
               <label htmlFor={`rent-${i}`}>اجاره خودور {type}</label>
             </li>
@@ -107,7 +112,7 @@ function FilterCars() {
       </div>
 
       {/* بیمه */}
-      <div>
+      {/* <div>
         <h3 className="mb-2 text-sm font-bold">بیمه</h3>
         <div className="flex items-center gap-4 text-sm">
           <label className="flex items-center gap-2">
@@ -119,7 +124,7 @@ function FilterCars() {
             بیمه کامل
           </label>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
