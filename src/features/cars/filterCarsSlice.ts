@@ -2,41 +2,35 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { carsData } from '../../data/carsData';
 import type { TCar } from '../../types/CarType';
 
-interface carsState {
+interface CarsState {
   filteredCars: TCar[];
 }
 
-const initialState: carsState = { filteredCars: carsData };
+interface IPayload {
+  price: string;
+  brand: string[];
+  type: string;
+}
+
+const initialState: CarsState = { filteredCars: carsData };
 
 const filterCars = createSlice({
   name: 'filterCars',
   initialState,
   reducers: {
-    changePrice: (state, action: PayloadAction<string>) => {
-      state.filteredCars = carsData.filter(
-        (car) => +car.dailyPrice >= +action.payload
-      );
-    },
-    filterBrand: (state, action: PayloadAction<string[]>) => {
-      if (action.payload.length < 1) {
-        state.filteredCars = carsData;
-      } else {
-        state.filteredCars = carsData.filter((car) =>
-          action.payload.includes(car.brand)
+    // payload types : price: string,brand: array, type: string
+    allFilters: (state, action: PayloadAction<IPayload>) => {
+      state.filteredCars = carsData.filter((car) => {
+        return (
+          +car.dailyPrice >= +action.payload.price &&
+          (action.payload.brand.includes(car.brand) ||
+            action.payload.brand.length < 1) &&
+          (action.payload.type.includes(car.type) || action.payload.type === '')
         );
-      }
-    },
-    filterCarType: (state, action: PayloadAction<string>) => {
-      if (action.payload.length < 1) {
-        state.filteredCars = carsData;
-      } else {
-        state.filteredCars = carsData.filter((car) =>
-          action.payload.includes(car.type)
-        );
-      }
+      });
     },
   },
 });
 
 export default filterCars.reducer;
-export const { changePrice, filterBrand, filterCarType } = filterCars.actions;
+export const { allFilters } = filterCars.actions;

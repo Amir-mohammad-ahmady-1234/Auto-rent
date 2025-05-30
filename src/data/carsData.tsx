@@ -73,16 +73,4 @@ export const carsData: TCar[] = [
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
   },
-  {
-    id: 7,
-    image:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
-    title: 'اجاره بی ام و 528',
-    type: 'ماشین عروس',
-    brand: 'بی ام و',
-    model: '2016',
-    dailyPrice: '8500000',
-    monthlyPrice: '8500000',
-    deposit: '80 میلیون تومان',
-  },
 ];

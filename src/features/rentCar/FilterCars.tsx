@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  changePrice,
-  filterBrand,
-  filterCarType,
+  allFilters,
 } from '../cars/filterCarsSlice';
 import { formatNumber } from '../../utils/formatNumber.1';
 
@@ -16,8 +14,6 @@ function FilterCars() {
 
   function handleFilteredCars(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
-
-    dispatch(changePrice(e.target.value));
   }
 
   const handleCheckboxChange = (brand: string) => {
@@ -35,12 +31,14 @@ function FilterCars() {
   };
 
   useEffect(() => {
-    dispatch(filterBrand(selectedBrands));
-  }, [selectedBrands, dispatch]);
-
-  useEffect(() => {
-    dispatch(filterCarType(selectedCarType));
-  }, [selectedCarType, dispatch]);
+    dispatch(
+      allFilters({
+        price: inputValue,
+        brand: selectedBrands,
+        type: selectedCarType,
+      })
+    );
+  }, [dispatch, inputValue, selectedBrands, selectedCarType]);
 
   return (
     <>
@@ -104,6 +102,7 @@ function FilterCars() {
                 className="accent-blue-500"
                 checked={selectedCarType === type}
                 onClick={() => handleRadioTypeChange(type)}
+                readOnly
               />
               <label htmlFor={`rent-${i}`}>اجاره خودور {type}</label>
             </li>
