@@ -40,6 +40,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
           {/* متن پیام */}
           <div className="order-2 flex-1 lg:order-1">
             <textarea
+              required
               value={message}
               onChange={handleMessageChange}
               placeholder="متن پیام شما..."
@@ -67,6 +68,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="نام شما"
                 className="font-iransans h-14 w-full rounded-xl border border-gray-200 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:outline-none"
+                required
               />
               <label
                 htmlFor="fullName"
@@ -89,6 +91,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 type="email"
                 placeholder={userEmail}
                 className="font-iransans h-14 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm"
+                required
               />
               <label
                 htmlFor="email"
@@ -108,6 +111,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 placeholder="شماره شما"
                 className="font-iransans h-14 w-full rounded-xl border border-gray-200 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm focus:border-blue-500 focus:outline-none"
+                required
               />
               <label
                 htmlFor="phone"
