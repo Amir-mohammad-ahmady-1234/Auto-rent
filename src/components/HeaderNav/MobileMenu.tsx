@@ -35,7 +35,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ links, includeSearch }) => {
           <>
             {/* Overlay */}
             <motion.div
-              className="bg-opacity-50 fixed inset-0 z-40 bg-black"
+              className="bg-opacity-50 fixed inset-0 z-[20] bg-black"
               onClick={handleOverlayClick}
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
