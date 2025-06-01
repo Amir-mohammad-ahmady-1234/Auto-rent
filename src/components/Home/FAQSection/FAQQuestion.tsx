@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import PlusLogo from '../../../assets/+-Logo/add-square.png';
 import MinusLogo from '../../../assets/+-Logo/minus-square.png';
 
@@ -8,7 +9,7 @@ interface FAQ {
   content: string;
 }
 
-const FAQQuestin = ({ faq: { title, content } }: { faq: FAQ }) => {
+const FAQQuestion = ({ faq: { title, content } }: { faq: FAQ }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -22,11 +23,23 @@ const FAQQuestin = ({ faq: { title, content } }: { faq: FAQ }) => {
         />
         <div className="flex-1">{title}</div>
       </div>
-      <div className="w-full text-right text-sm leading-[25px] font-normal text-[#727272]">
-        {isOpen && content}
-      </div>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="w-full text-right text-sm leading-[25px] font-normal text-[#727272] overflow-hidden"
+          >
+            {content}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-export default FAQQuestin;
+export default FAQQuestion;
