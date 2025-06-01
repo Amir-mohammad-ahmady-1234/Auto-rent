@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  allFilters,
-} from '../cars/filterCarsSlice';
+import { allFilters } from '../rentCar/filterCarsSlice';
 import { formatNumber } from '../../utils/formatNumber.1';
 
 function FilterCars() {

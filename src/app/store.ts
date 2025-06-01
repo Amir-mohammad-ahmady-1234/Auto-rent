@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filterCars from '../features/cars/filterCarsSlice';
+import filterCars from '../features/rentCar/filterCarsSlice';
 
 export const store = configureStore({
   reducer: { filterCars: filterCars },
