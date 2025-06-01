@@ -44,9 +44,9 @@ const BrowseCarsPage = () => {
         <AllCarsList />
 
         {/* فیلترهای پایین در موبایل */}
-        <div className="flex flex-wrap gap-4 lg:hidden">
+        {/* <div className="flex flex-wrap gap-4 lg:hidden">
           <FiltersWrapper />
-        </div>
+        </div> */}
       </div>
 
       {/* سایدبار دسکتاپ */}
