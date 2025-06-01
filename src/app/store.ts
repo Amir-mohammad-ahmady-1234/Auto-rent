@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filterCars from '../features/rentCar/filterCarsSlice';
+import filterCars from '../features/rentCarFilters/filterCarsSlice';
+import filterPrice from '../features/rentCarFilters/headerCarsFilterSlice';
 
 export const store = configureStore({
-  reducer: { filterCars: filterCars },
+  reducer: { filterCars: filterCars, filterPrice: filterPrice },
 });
 
 // These are for TypeScript inference

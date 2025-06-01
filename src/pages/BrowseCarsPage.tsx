@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import FiltersWrapper from '../components/cars/HeaderCarsFilter';
-import FilterCars from '../features/rentCar/FilterCars';
+import FilterCars from '../features/rentCarFilters/FilterCars';
 import AllCarsList from '../components/cars/AllCarsList';
 import { AnimatePresence, motion } from 'framer-motion';
 

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import CarsListHeader from './CarsListHeader';
 import { CarsContext } from '../../../context/cars/CarsContext';
-import Car from '../../../features/rentCar/Car';
+import Car from '../../cars/Car';
 
 const CarsList = () => {
   const { cars: allCars } = useContext(CarsContext);

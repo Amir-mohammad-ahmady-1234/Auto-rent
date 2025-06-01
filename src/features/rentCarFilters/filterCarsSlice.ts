@@ -1,10 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { carsData } from '../../data/carsData';
-import type { TCar } from '../../types/CarType';
-
-interface CarsState {
-  filteredCars: TCar[];
-}
+import type { CarsState } from '../../types/filterCarType';
 
 interface IPayload {
   price: string;

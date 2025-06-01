@@ -1,8 +1,9 @@
-import Car from '../../features/rentCar/Car';
+import { selectFullyFilteredCars } from '../../features/rentCarFilters/combinedSelector';
 import { useAppSelector } from '../../hooks/reduxHooks';
+import Car from './Car';
 
 const AllCarsList = () => {
-  const { filteredCars: cars } = useAppSelector((state) => state.filterCars);
+  const cars = useAppSelector(selectFullyFilteredCars);
 
   return (
     <section className="overflow-y-auto">

@@ -1,6 +1,8 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { filterByPrice } from '../../features/rentCarFilters/headerCarsFilterSlice';
 
 // تقویم قیمتی
 
@@ -9,17 +11,26 @@ export function HeaderPriceFilter() {
   const [selectedRange, setSelectedRange] = useState('تقویم قیمتی');
   const priceRanges = [
     'تقویم قیمتی',
-    'کمتر از ۵,۰۰۰,۰۰۰',
-    '۵,۰۰۰,۰۰۰ تا ۱۰,۰۰۰,۰۰۰',
-    '۱۰,۰۰۰,۰۰۰ تا ۱۵,۰۰۰,۰۰۰',
-    'بیشتر از ۱۵,۰۰۰,۰۰۰',
+    '5000000',
+    '5000000,10000000',
+    '10000000,15000000',
+    '15000000',
   ];
+
+  const dispatch = useAppDispatch();
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
   const handleSelect = (range: string) => {
     setSelectedRange(range);
     setIsOpen(false);
   };
+
+  useEffect(
+    function () {
+      dispatch(filterByPrice(selectedRange));
+    },
+    [selectedRange, dispatch]
+  );
 
   return (
     <div className="relative w-full max-w-[260px]">
