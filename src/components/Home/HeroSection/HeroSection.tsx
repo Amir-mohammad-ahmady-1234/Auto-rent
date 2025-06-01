@@ -67,7 +67,7 @@ const HeroSection = () => {
 
       {/* Search Modal for small screens */}
       {isSearchModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+        <div className="fixed inset-0 z-10000 flex items-center justify-center bg-black/30 backdrop-blur-sm">
           <div
             ref={searchBoxRef}
             className="font-iransans mx-4 w-full max-w-md rounded-lg bg-white p-4 shadow-lg"
