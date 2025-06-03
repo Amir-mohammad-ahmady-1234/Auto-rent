@@ -2,7 +2,10 @@ import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import { useAppDispatch } from '../../hooks/reduxHooks';
-import { sortByHighPrice } from '../../features/rentCarFilters/sortByFilterSlice';
+import {
+  sortByHighPrice,
+  sortByLowPrice,
+} from '../../features/rentCarFilters/sortByFilterSlice';
 
 // مرتب‌سازی بر اساس
 
@@ -28,6 +31,7 @@ export function HeaderCarsFilter() {
   useEffect(
     function () {
       if (selectedOption === 'گران‌ترین') dispatch(sortByHighPrice());
+      if (selectedOption === 'ارزان‌ترین') dispatch(sortByLowPrice());
     },
     [dispatch, selectedOption]
   );

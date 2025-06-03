@@ -15,11 +15,18 @@ const sortByFiler = createSlice({
         .sort((a, b) => {
           return +b.dailyPrice - +a.dailyPrice;
         })
-        .slice(0, 2).reverse();
+        .slice(0, 3)
+    },
+    sortByLowPrice: (state) => {
+      state.filteredCars = [...carsData]
+        .sort((a, b) => {
+          return +a.dailyPrice - +b.dailyPrice;
+        })
+        .slice(0, 3)
     },
     sortByYear: (state, action: PayloadAction<string>) => {},
   },
 });
 
 export default sortByFiler.reducer;
-export const { sortByHighPrice } = sortByFiler.actions;
+export const { sortByHighPrice, sortByLowPrice,sortByYear } = sortByFiler.actions;
