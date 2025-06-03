@@ -1,6 +1,8 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { sortByHighPrice } from '../../features/rentCarFilters/sortByFilterSlice';
 
 // مرتب‌سازی بر اساس
 
@@ -15,11 +17,20 @@ export function HeaderCarsFilter() {
     'قدیمی‌ترین',
   ];
 
+  const dispatch = useAppDispatch();
+
   const toggleDropdown = () => setIsOpen((prev) => !prev);
   const handleSelect = (option: string) => {
     setSelectedOption(option);
     setIsOpen(false);
   };
+
+  useEffect(
+    function () {
+      if (selectedOption === 'گران‌ترین') dispatch(sortByHighPrice());
+    },
+    [dispatch, selectedOption]
+  );
 
   return (
     <div className="relative w-full max-w-[180px]">

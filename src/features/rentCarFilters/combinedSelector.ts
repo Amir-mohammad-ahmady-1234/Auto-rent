@@ -1,10 +1,21 @@
-import type { RootState } from "../../app/store";
+import { createSelector } from 'reselect';
+import type { RootState } from '../../app/store';
 
-export const selectFullyFilteredCars = (state: RootState) => {
-  const categoryFiltered = state.filterCars.filteredCars;
-  const priceFiltered = state.filterPrice.filteredCars;
+const selectCategoryFilteredCars = (state: RootState) =>
+  state.filterCars.filteredCars;
+const selectPriceFilteredCars = (state: RootState) =>
+  state.filterPrice.filteredCars;
+const selectSortedFilteredCars = (state: RootState) => state.filterBySort.filteredCars;
 
-  return categoryFiltered.filter((car) =>
-    priceFiltered.some((c) => c.id === car.id)
-  );
-};
+export const selectFullyFilteredCars = createSelector(
+  [
+    selectCategoryFilteredCars,
+    selectPriceFilteredCars,
+    selectSortedFilteredCars,
+  ],
+  (categoryFiltered, priceFiltered, sortedFiltered) => {
+    return categoryFiltered
+      .filter((car) => priceFiltered.some((c) => c.id === car.id))
+      .filter((car) => sortedFiltered.some((c) => c.id === car.id));
+  }
+);
