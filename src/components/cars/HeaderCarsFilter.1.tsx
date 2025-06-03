@@ -5,6 +5,8 @@ import { useAppDispatch } from '../../hooks/reduxHooks';
 import {
   sortByHighPrice,
   sortByLowPrice,
+  sortByNewYear,
+  sortByOldYear,
 } from '../../features/rentCarFilters/sortByFilterSlice';
 
 // مرتب‌سازی بر اساس
@@ -32,6 +34,8 @@ export function HeaderCarsFilter() {
     function () {
       if (selectedOption === 'گران‌ترین') dispatch(sortByHighPrice());
       if (selectedOption === 'ارزان‌ترین') dispatch(sortByLowPrice());
+      if (selectedOption === 'جدیدترین') dispatch(sortByNewYear());
+      if (selectedOption === 'قدیمی‌ترین') dispatch(sortByOldYear());
     },
     [dispatch, selectedOption]
   );

@@ -15,18 +15,32 @@ const sortByFiler = createSlice({
         .sort((a, b) => {
           return +b.dailyPrice - +a.dailyPrice;
         })
-        .slice(0, 3)
+        .slice(0, 3);
     },
     sortByLowPrice: (state) => {
       state.filteredCars = [...carsData]
         .sort((a, b) => {
           return +a.dailyPrice - +b.dailyPrice;
         })
-        .slice(0, 3)
+        .slice(0, 3);
     },
-    sortByYear: (state, action: PayloadAction<string>) => {},
+    sortByNewYear: (state) => {
+      state.filteredCars = [...carsData]
+        .sort((a, b) => {
+          return +b.model - +a.model;
+        })
+        .slice(0, 3);
+    },
+    sortByOldYear: (state) => {
+      state.filteredCars = [...carsData]
+        .sort((a, b) => {
+          return +a.model - +b.model;
+        })
+        .slice(0, 3);
+    },
   },
 });
 
 export default sortByFiler.reducer;
-export const { sortByHighPrice, sortByLowPrice,sortByYear } = sortByFiler.actions;
+export const { sortByHighPrice, sortByLowPrice, sortByNewYear, sortByOldYear } =
+  sortByFiler.actions;
