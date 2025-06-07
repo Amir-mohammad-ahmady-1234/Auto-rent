@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import FiltersWrapper from '../features/rentCarFilters/HeaderCarsFilter';
 import FilterCars from '../features/rentCarFilters/FilterCars';
-import { AnimatePresence, motion } from 'framer-motion';
 import AllCarsList from '../ui/AllCarsList';
+import MobileFilterSideBar from '../components/mobileFilterSideBar/MobileFilterSideBar';
 
 const BrowseCarsPage = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
-  // 🔒 قفل کردن اسکرول وقتی فیلتر بازه
+  // 🔒 lock scroll when filter modal is open
   useEffect(() => {
     if (showFilters) {
       document.body.style.overflow = 'hidden';
@@ -20,7 +20,7 @@ const BrowseCarsPage = () => {
     };
   }, [showFilters]);
 
-  // 🔐 بستن با دکمه Escape
+  // close filter modal with Escape
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setShowFilters(false);
@@ -34,27 +34,26 @@ const BrowseCarsPage = () => {
       dir="ltr"
       className="relative grid grid-cols-1 gap-6 lg:grid-cols-[3fr_1fr]"
     >
-      {/* navbar یا فیلترهای بالا */}
+      {/* top cars filter (sort, price filters) */}
       <div className="sticky top-0 z-30 w-full bg-white px-4 py-3 shadow-md lg:col-span-2">
         <FiltersWrapper />
       </div>
 
-      {/* محتوای اصلی */}
+      {/* main section (render cars) */}
       <div className="grid grid-rows-[auto_1fr] gap-4">
         <AllCarsList />
 
-        {/* فیلترهای پایین در موبایل */}
         {/* <div className="flex flex-wrap gap-4 lg:hidden">
           <FiltersWrapper />
         </div> */}
       </div>
 
-      {/* سایدبار دسکتاپ */}
+      {/* desktop sideBar*/}
       <aside className="hidden w-full max-w-md space-y-6 bg-white p-4 text-right font-[Estedad-FD] shadow-md lg:block">
         <FilterCars />
       </aside>
 
-      {/* دکمه باز کردن drawer فیلتر موبایل */}
+      {/* open filter sideBar button, in the mobile */}
       <button
         onClick={() => setShowFilters(true)}
         className="fixed bottom-4 left-4 z-50 rounded-full bg-blue-600 px-5 py-3 text-white shadow-lg lg:hidden"
@@ -62,48 +61,11 @@ const BrowseCarsPage = () => {
         فیلترها
       </button>
 
-      {/* سایدبار موبایل با overlay */}
-      <AnimatePresence>
-        {showFilters && (
-          <>
-            {/* 🔹 overlay تارکننده */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setShowFilters(false)}
-              className="fixed inset-0 z-[998] bg-black/30 backdrop-blur-sm lg:hidden"
-            />
-
-            {/* 🔹 drawer اصلی */}
-            <motion.div
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 250 }}
-              className="fixed inset-0 z-[10000] flex justify-end lg:hidden"
-              onClick={() => setShowFilters(false)}
-            >
-              <div
-                className="h-full w-3/4 max-w-md space-y-6 overflow-y-auto bg-white p-6 font-[Estedad-FD] shadow-xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="mb-4 flex items-center justify-between">
-                  <h2 className="text-xl font-bold">فیلترها</h2>
-                  <button
-                    onClick={() => setShowFilters(false)}
-                    className="text-2xl"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <FilterCars />
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {/* mobile filters sideBar*/}
+      <MobileFilterSideBar
+        showFilters={showFilters}
+        setShowFilters={setShowFilters}
+      />
     </div>
   );
 };
