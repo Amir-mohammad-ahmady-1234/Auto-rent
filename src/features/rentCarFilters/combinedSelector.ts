@@ -16,6 +16,6 @@ export const selectFullyFilteredCars = createSelector(
   (categoryFiltered, priceFiltered, sortedFiltered) => {
     return categoryFiltered
       .filter((car) => priceFiltered.some((c) => c.id === car.id))
-      .filter((car) => sortedFiltered.some((c) => c.id === car.id));
+      .filter((car) => sortedFiltered.some((c) => c.id === car.id)).reverse();
   }
 );

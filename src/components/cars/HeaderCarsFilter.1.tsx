@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import {
+  resetSort,
   sortByHighPrice,
   sortByLowPrice,
   sortByNewYear,
@@ -36,6 +37,7 @@ export function HeaderCarsFilter() {
       if (selectedOption === 'ارزان‌ترین') dispatch(sortByLowPrice());
       if (selectedOption === 'جدیدترین') dispatch(sortByNewYear());
       if (selectedOption === 'قدیمی‌ترین') dispatch(sortByOldYear());
+      if (selectedOption === 'مرتب‌سازی بر اساس') dispatch(resetSort())
     },
     [dispatch, selectedOption]
   );

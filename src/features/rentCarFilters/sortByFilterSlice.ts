@@ -38,9 +38,12 @@ const sortByFiler = createSlice({
         })
         .slice(0, 3);
     },
+    resetSort: (state) => {
+      state.filteredCars = carsData;
+    },
   },
 });
 
 export default sortByFiler.reducer;
-export const { sortByHighPrice, sortByLowPrice, sortByNewYear, sortByOldYear } =
+export const { sortByHighPrice, sortByLowPrice, sortByNewYear, sortByOldYear, resetSort } =
   sortByFiler.actions;
