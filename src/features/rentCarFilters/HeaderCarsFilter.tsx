@@ -1,6 +1,6 @@
 // HeaderCarsFilter.tsx
-import { HeaderPriceFilter } from './HeaderPriceFilter';
-import { HeaderCarsFilter } from './HeaderCarsFilter.1';
+import { HeaderPriceFilter } from '../../components/cars/header cars filter/HeaderPriceFilter';
+import { HeaderCarsFilter } from '../../components/cars/header cars filter/HeaderCarsFilter.1';
 
 export default function FiltersWrapper() {
   return (

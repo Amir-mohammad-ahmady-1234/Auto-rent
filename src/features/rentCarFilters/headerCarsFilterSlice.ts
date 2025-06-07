@@ -16,9 +16,11 @@ const filterPrice = createSlice({
 
       state.filteredCars = carsData.filter((car) => {
         return (
-          (+car.dailyPrice >= min &&
-            (isRange ? +car.dailyPrice <= max : true)) ||
-          !min
+          (isRange
+            ? +car.dailyPrice <= max && +car.dailyPrice >= min
+            : min <= 5000000
+              ? +car.dailyPrice <= min
+              : +car.dailyPrice >= min) || !min
         );
       });
     },

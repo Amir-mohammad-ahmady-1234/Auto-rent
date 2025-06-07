@@ -1,14 +1,14 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
-import { useAppDispatch } from '../../hooks/reduxHooks';
+import { useAppDispatch } from '../../../hooks/reduxHooks';
 import {
   resetSort,
   sortByHighPrice,
   sortByLowPrice,
   sortByNewYear,
   sortByOldYear,
-} from '../../features/rentCarFilters/sortByFilterSlice';
+} from '../../../features/rentCarFilters/sortByFilterSlice';
 
 // مرتب‌سازی بر اساس
 

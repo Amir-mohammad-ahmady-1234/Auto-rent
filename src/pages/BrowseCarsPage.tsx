@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import FiltersWrapper from '../components/cars/HeaderCarsFilter';
+import FiltersWrapper from '../features/rentCarFilters/HeaderCarsFilter';
 import FilterCars from '../features/rentCarFilters/FilterCars';
-import AllCarsList from '../components/cars/AllCarsList';
 import { AnimatePresence, motion } from 'framer-motion';
+import AllCarsList from '../ui/AllCarsList';
 
 const BrowseCarsPage = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);

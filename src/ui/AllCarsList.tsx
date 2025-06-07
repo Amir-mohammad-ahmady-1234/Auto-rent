@@ -1,5 +1,5 @@
-import { selectFullyFilteredCars } from '../../features/rentCarFilters/combinedSelector';
-import { useAppSelector } from '../../hooks/reduxHooks';
+import { selectFullyFilteredCars } from '../features/rentCarFilters/combinedSelector';
+import { useAppSelector } from '../hooks/reduxHooks';
 import Car from './Car';
 
 const AllCarsList = () => {

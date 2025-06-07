@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { filterByPrice } from '../../features/rentCarFilters/headerCarsFilterSlice';
+import { useAppDispatch } from '../../../hooks/reduxHooks';
+import { filterByPrice } from '../../../features/rentCarFilters/headerCarsFilterSlice';
 
 // تقویم قیمتی
 

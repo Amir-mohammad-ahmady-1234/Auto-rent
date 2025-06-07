@@ -69,7 +69,7 @@ export const carsData: TCar[] = [
     type: 'ماشین عروس',
     brand: 'بی ام و',
     model: '2002',
-    dailyPrice: '8500000',
+    dailyPrice: '4000000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
   },

@@ -1,6 +1,6 @@
-import type { TCar } from '../../types/CarType';
-import { formatNumber } from '../../utils/formatNumber.1';
-import { toPersianNumbers } from '../../utils/toPersianNumbers';
+import type { TCar } from "../types/CarType";
+import { formatNumber } from "../utils/formatNumber.1";
+import { toPersianNumbers } from "../utils/toPersianNumbers";
 
 interface Prop {
   carDetails: TCar;
