@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { carsData } from '../../data/carsData';
 import type { CarsState } from '../../types/filterCarType';
 
