@@ -66,7 +66,7 @@ function FilterCars() {
         onCheckboxChange={handleCheckboxChange}
         selectedBrands={selectedBrands}
       />
-'
+
       <FilterByType
         onRadioTypeChange={handleRadioTypeChange}
         selectedCarType={selectedCarType}

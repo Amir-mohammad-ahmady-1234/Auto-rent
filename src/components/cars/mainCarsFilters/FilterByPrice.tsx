@@ -12,9 +12,8 @@ const FilterByPrice = ({
   onRangeChange: (range: [number, number]) => void;
 }) => {
   const handleSliderChange = (value: number | number[]) => {
-    if (Array.isArray(value) && value.length === 2) {
-      onRangeChange([value[0], value[1]]);
-    }
+    if (!Array.isArray(value) || value.length !== 2) return;
+    onRangeChange([value[0], value[1]]);
   };
 
   return (
