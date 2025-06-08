@@ -10,7 +10,7 @@ const getPageRouteName = (irLoc: string) => {
       route: 'about',
     },
     'رزرو خودرو': {
-      route: 'cars',
+      route: 'rent/cars',
     },
   };
 

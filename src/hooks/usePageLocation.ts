@@ -16,7 +16,7 @@ const usePageLocation = () => {
       title: 'درباره ما',
       subtitle: 'درباره ما',
     },
-    cars: {
+    rent: {
       title: 'اجاره خودرو',
       subtitle: 'لیست خودرو های اجاره ای',
     },

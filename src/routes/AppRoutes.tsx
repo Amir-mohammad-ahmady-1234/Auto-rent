@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import NotFoundPage from '../pages/NotFoundPage';
 import FAQ from '../pages/FAQ';
@@ -10,6 +10,7 @@ import BrowseCarsPage from '../pages/BrowseCarsPage';
 import { ScrollToToPage } from '../utils/ScrollToTopPage';
 import CarsProvider from '../context/cars/CarsProvider';
 import FilterInputProvider from '../context/filtersInputContext/FilterInputProvider';
+import SelectCarInfo from '../pages/SelectCarInfo';
 
 const AppRoutes = () => {
   return (
@@ -27,7 +28,11 @@ const AppRoutes = () => {
                 <Route path="concat" element={<ContactPage />} />
                 <Route path="about" element={<AboutUs />} />
                 {/* Dynamic Page */}
-                <Route path="cars" element={<BrowseCarsPage />} />
+                <Route path="rent">
+                  <Route index element={<Navigate to="cars" replace />} />
+                  <Route index path="cars" element={<BrowseCarsPage />} />
+                  <Route path="chose_car_info" element={<SelectCarInfo />} />
+                </Route>
               </Route>
             </Route>
             <Route path="*" element={<NotFoundPage />} />

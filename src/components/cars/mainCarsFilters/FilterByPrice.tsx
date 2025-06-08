@@ -16,7 +16,7 @@ const FilterByPrice = ({
     onRangeChange([value[0], value[1]]);
   };
 
-  return (
+return (
     <div>
       <h3 className="mb-2 text-sm font-bold">قیمت اجاره خودرو</h3>
       <div className="mb-2 flex items-center justify-between text-xs text-gray-600">
