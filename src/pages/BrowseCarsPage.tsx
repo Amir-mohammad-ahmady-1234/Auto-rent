@@ -56,7 +56,7 @@ const BrowseCarsPage = () => {
       {/* open filter sideBar button, in the mobile */}
       <button
         onClick={() => setShowFilters(true)}
-        className="fixed bottom-4 left-4 z-50 rounded-full bg-blue-600 px-5 py-3 text-white shadow-lg lg:hidden"
+        className="fixed bottom-4 left-4 z-50 cursor-pointer rounded-full bg-blue-600 px-5 py-3 text-white shadow-lg lg:hidden"
       >
         فیلترها
       </button>

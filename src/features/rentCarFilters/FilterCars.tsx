@@ -5,12 +5,15 @@ import FilterByPrice from '../../components/cars/mainCarsFilters/FilterByPrice';
 import FilterByBrand from '../../components/cars/mainCarsFilters/FilterByBrand';
 import FilterByType from '../../components/cars/mainCarsFilters/FilterByType';
 import { FilterInputContext } from '../../context/filtersInputContext/filterInputContext';
+import CancelFilters from '../../components/cars/mainCarsFilters/CancelFilters';
 
 function FilterCars() {
+  // local states
   // const [inputValue, setInputValue] = useState<string>('0');
   // const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   // const [selectedCarType, setSelectedCarType] = useState<string>('');
 
+  // get sttaes from context for save states after sideBar opened and closed in mobile size.
   const {
     inputValue,
     setInputValue,
@@ -62,6 +65,8 @@ function FilterCars() {
         onRadioTypeChange={handleRadioTypeChange}
         selectedCarType={selectedCarType}
       />
+
+      <CancelFilters />
     </>
   );
 }
