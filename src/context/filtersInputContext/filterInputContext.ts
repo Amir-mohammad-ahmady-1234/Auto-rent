@@ -4,6 +4,8 @@ import type { IdefaultValue } from '../../types/filterInputContextType';
 const defaultValue: IdefaultValue = {
   inputValue: '0',
   setInputValue: () => {},
+  maxPrice: '60000000',
+  setMaxPrice: () => {},
   selectedBrands: [],
   setSelectedBrands: () => {},
   selectedCarType: '',

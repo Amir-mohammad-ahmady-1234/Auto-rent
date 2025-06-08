@@ -17,6 +17,8 @@ function FilterCars() {
   const {
     inputValue,
     setInputValue,
+    maxPrice,
+    setMaxPrice,
     selectedBrands,
     setSelectedBrands,
     selectedCarType,
@@ -25,8 +27,12 @@ function FilterCars() {
 
   const dispatch = useDispatch();
 
-  function handleFilteredCars(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleMinPriceChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
+  }
+
+  function handleMaxPriceChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setMaxPrice(e.target.value);
   }
 
   const handleCheckboxChange = (brand: string) => {
@@ -43,17 +49,20 @@ function FilterCars() {
     dispatch(
       allFilters({
         price: inputValue,
+        maxPrice: maxPrice,
         brand: selectedBrands,
         type: selectedCarType,
       })
     );
-  }, [dispatch, inputValue, selectedBrands, selectedCarType]);
+  }, [dispatch, inputValue, maxPrice, selectedBrands, selectedCarType]);
 
   return (
     <>
       <FilterByPrice
         inputValue={inputValue}
-        onFilteredCars={handleFilteredCars}
+        maxPrice={maxPrice}
+        onMinPriceChange={handleMinPriceChange}
+        onMaxPriceChange={handleMaxPriceChange}
       />
 
       <FilterByBrand

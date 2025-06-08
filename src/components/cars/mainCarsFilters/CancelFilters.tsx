@@ -2,11 +2,12 @@ import { useContext } from 'react';
 import { FilterInputContext } from '../../../context/filtersInputContext/filterInputContext';
 
 const CancelFilters = () => {
-  const { setInputValue, setSelectedBrands, setSelectedCarType } =
+  const { setInputValue, setMaxPrice, setSelectedBrands, setSelectedCarType } =
     useContext(FilterInputContext);
 
   function handleCancelFilters() {
     setInputValue('0');
+    setMaxPrice('60000000');
     setSelectedBrands([]);
     setSelectedCarType('');
   }

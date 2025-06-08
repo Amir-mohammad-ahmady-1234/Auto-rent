@@ -4,6 +4,7 @@ import type { CarsState } from '../../types/filterCarType';
 
 interface IPayload {
   price: string;
+  maxPrice: string;
   brand: string[];
   type: string;
 }
@@ -19,6 +20,7 @@ const filterCars = createSlice({
       state.filteredCars = carsData.filter((car) => {
         return (
           +car.dailyPrice >= +action.payload.price &&
+          +car.dailyPrice <= +action.payload.maxPrice &&
           (action.payload.brand.includes(car.brand) ||
             action.payload.brand.length < 1) &&
           (action.payload.type.includes(car.type) || action.payload.type === '')
