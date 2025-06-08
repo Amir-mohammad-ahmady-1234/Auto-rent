@@ -3,29 +3,18 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 const FilterByPrice = ({
-  inputValue,
-  maxPrice,
-  onMinPriceChange,
-  onMaxPriceChange,
+  min,
+  max,
+  onRangeChange,
 }: {
-  inputValue: string;
-  maxPrice: string;
-  onMinPriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onMaxPriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  min: number;
+  max: number;
+  onRangeChange: (range: [number, number]) => void;
 }) => {
-  // Convert to numbers for RangeSlider
-  const min = Number(inputValue);
-  const max = Number(maxPrice);
-
-  // Handler for RangeSlider
-  const handleChange = ([newMin, newMax]: [number, number]) => {
-    // Simulate input event for compatibility
-    onMinPriceChange({
-      target: { value: String(newMin) },
-    } as React.ChangeEvent<HTMLInputElement>);
-    onMaxPriceChange({
-      target: { value: String(newMax) },
-    } as React.ChangeEvent<HTMLInputElement>);
+  const handleSliderChange = (value: number | number[]) => {
+    if (Array.isArray(value) && value.length === 2) {
+      onRangeChange([value[0], value[1]]);
+    }
   };
 
   return (
@@ -42,7 +31,7 @@ const FilterByPrice = ({
           max={60000000}
           step={100000}
           value={[min, max]}
-          onChange={handleChange}
+          onChange={handleSliderChange}
           trackStyle={{ backgroundColor: '#2563eb', height: 8 }}
           handleStyle={[
             {

@@ -27,12 +27,10 @@ function FilterCars() {
 
   const dispatch = useDispatch();
 
-  function handleMinPriceChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
-  }
-
-  function handleMaxPriceChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setMaxPrice(e.target.value);
+  // New handler for rc-slider
+  function handleRangeChange([min, max]: [number, number]) {
+    setInputValue(String(min));
+    setMaxPrice(String(max));
   }
 
   const handleCheckboxChange = (brand: string) => {
@@ -59,17 +57,16 @@ function FilterCars() {
   return (
     <>
       <FilterByPrice
-        inputValue={inputValue}
-        maxPrice={maxPrice}
-        onMinPriceChange={handleMinPriceChange}
-        onMaxPriceChange={handleMaxPriceChange}
+        min={Number(inputValue)}
+        max={Number(maxPrice)}
+        onRangeChange={handleRangeChange}
       />
 
       <FilterByBrand
         onCheckboxChange={handleCheckboxChange}
         selectedBrands={selectedBrands}
       />
-
+'
       <FilterByType
         onRadioTypeChange={handleRadioTypeChange}
         selectedCarType={selectedCarType}
