@@ -1,14 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { allFilters } from './filterCarsSlice';
 import FilterByPrice from '../../components/cars/mainCarsFilters/FilterByPrice';
 import FilterByBrand from '../../components/cars/mainCarsFilters/FilterByBrand';
 import FilterByType from '../../components/cars/mainCarsFilters/FilterByType';
+import { FilterInputContext } from '../../context/filtersInputContext/filterInputContext';
 
 function FilterCars() {
-  const [inputValue, setInputValue] = useState<string>('0');
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
-  const [selectedCarType, setSelectedCarType] = useState<string>('');
+  // const [inputValue, setInputValue] = useState<string>('0');
+  // const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  // const [selectedCarType, setSelectedCarType] = useState<string>('');
+
+  const {
+    inputValue,
+    setInputValue,
+    selectedBrands,
+    setSelectedBrands,
+    selectedCarType,
+    setSelectedCarType,
+  } = useContext(FilterInputContext);
 
   const dispatch = useDispatch();
 
