@@ -15,7 +15,7 @@ const SelectCarInfo = () => {
     <div className="flex w-full flex-col items-start gap-8 lg:flex-row">
       <div className="flex-1"></div>
       <div className="w-full max-w-lg">
-        <CarReservationBox />
+        <CarReservationBox carInfo={mainCar} />
       </div>
     </div>
   );
