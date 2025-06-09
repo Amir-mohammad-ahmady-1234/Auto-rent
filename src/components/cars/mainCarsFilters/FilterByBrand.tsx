@@ -18,7 +18,6 @@ const FilterByBrand = ({
                 className="accent-blue-500"
                 checked={selectedBrands.includes(brand)}
                 onChange={() => onCheckboxChange(brand)}
-                readOnly
               />
               <label htmlFor={`brand-${i}`}>اجاره {brand}</label>
             </li>

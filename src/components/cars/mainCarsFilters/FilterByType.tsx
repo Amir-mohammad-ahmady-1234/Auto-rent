@@ -24,7 +24,7 @@ const FilterByType = ({
               id={`rent-${i}`}
               className="accent-blue-500"
               checked={selectedCarType === type}
-              onClick={() => onRadioTypeChange(type)}
+              onChange={() => onRadioTypeChange(type)}
             />
             <label htmlFor={`rent-${i}`} className="cursor-pointer">
               اجاره خودور {type}
