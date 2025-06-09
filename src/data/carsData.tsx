@@ -12,6 +12,10 @@ export const carsData: TCar[] = [
     dailyPrice: '9000000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
+    maxPassenger: 4,
+    minDriverAge: 25,
+    maxBag: 2,
+    rate: 4.5
   },
   {
     id: 2,
@@ -24,6 +28,10 @@ export const carsData: TCar[] = [
     dailyPrice: '8500000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
+    maxPassenger: 4,
+    minDriverAge: 25,
+    maxBag: 2,
+    rate: 4.5
   },
   {
     id: 3,
@@ -36,6 +44,10 @@ export const carsData: TCar[] = [
     dailyPrice: '12000000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
+    maxPassenger: 4,
+    minDriverAge: 25,
+    maxBag: 2,
+    rate: 4.5
   },
   {
     id: 4,
@@ -48,6 +60,10 @@ export const carsData: TCar[] = [
     dailyPrice: '15000000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
+    maxPassenger: 4,
+    minDriverAge: 25,
+    maxBag: 2,
+    rate: 4.5
   },
   {
     id: 5,
@@ -60,6 +76,10 @@ export const carsData: TCar[] = [
     dailyPrice: '8500000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
+    maxPassenger: 4,
+    minDriverAge: 25,
+    maxBag: 2,
+    rate: 4.5
   },
   {
     id: 6,
@@ -72,5 +92,9 @@ export const carsData: TCar[] = [
     dailyPrice: '4000000',
     monthlyPrice: '8500000',
     deposit: '80 میلیون تومان',
+    maxPassenger: 4,
+    minDriverAge: 25,
+    maxBag: 2,
+    rate: 4.5
   },
 ];
