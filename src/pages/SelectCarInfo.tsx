@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CarsContext } from '../context/cars/CarsContext';
-import Car from '../ui/Car';
-import { CarRentalBookingForm } from '../components/CarRental/CarRentalBookingForm';
+import CarReservationBox from '../components/CarRental/CarReservationBox';
 
 const SelectCarInfo = () => {
   const { id } = useParams();
@@ -16,7 +15,7 @@ const SelectCarInfo = () => {
     <div className="flex w-full flex-col items-start gap-8 lg:flex-row">
       <div className="flex-1"></div>
       <div className="w-full max-w-lg">
-        <CarRentalBookingForm />
+        <CarReservationBox />
       </div>
     </div>
   );
