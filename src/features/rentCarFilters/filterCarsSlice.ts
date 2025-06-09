@@ -23,7 +23,7 @@ const filterCars = createSlice({
           +car.dailyPrice <= +action.payload.maxPrice &&
           (action.payload.brand.includes(car.brand) ||
             action.payload.brand.length < 1) &&
-          (action.payload.type.includes(car.type) || action.payload.type === '')
+          (car.type.includes(action.payload.type) || action.payload.type === '')
         );
       });
     },

@@ -25,9 +25,10 @@ const FilterByType = ({
               className="accent-blue-500"
               checked={selectedCarType === type}
               onClick={() => onRadioTypeChange(type)}
-              readOnly
             />
-            <label htmlFor={`rent-${i}`}>اجاره خودور {type}</label>
+            <label htmlFor={`rent-${i}`} className="cursor-pointer">
+              اجاره خودور {type}
+            </label>
           </li>
         ))}
       </ul>

@@ -3,7 +3,7 @@ export interface TCar {
   image: string;
   title: string;
   brand: string;
-  type: string;
+  type: string[];
   model: string;
   dailyPrice: string;
   monthlyPrice: string;

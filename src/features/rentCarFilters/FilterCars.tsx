@@ -40,7 +40,11 @@ function FilterCars() {
   };
 
   const handleRadioTypeChange = (type: string) => {
-    setSelectedCarType((prev) => (prev === type ? '' : type));
+    if (selectedCarType === type) {
+      setSelectedCarType('');
+    } else {
+      setSelectedCarType(type);
+    }
   };
 
   useEffect(() => {
