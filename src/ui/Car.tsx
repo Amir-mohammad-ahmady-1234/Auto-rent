@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import type { TCar } from '../types/CarType';
 import { formatNumber } from '../utils/formatNumber.1';
 import { toPersianNumbers } from '../utils/toPersianNumbers';
@@ -10,12 +10,6 @@ interface Prop {
 const Car = ({ carDetails }: Prop) => {
   const { dailyPrice, deposit, id, image, model, monthlyPrice, title } =
     carDetails;
-
-  const navigate = useNavigate();
-
-  function handleSelectCar() {
-    navigate('/rent/chose_car_info');
-  }
 
   return (
     <div
@@ -81,12 +75,11 @@ const Car = ({ carDetails }: Prop) => {
           </span>
         </div>
 
-        <button
-          onClick={handleSelectCar}
-          className="font-iranyekan mt-4 w-full cursor-pointer rounded-lg bg-[#194BF0] py-2.5 text-center text-sm font-extrabold text-white transition-colors hover:bg-[#1539C0] sm:py-3"
-        >
-          درخواست رزرو
-        </button>
+        <Link to={`/rent/chose_car_info/:${id}`}>
+          <button className="font-iranyekan mt-4 w-full cursor-pointer rounded-lg bg-[#194BF0] py-2.5 text-center text-sm font-extrabold text-white transition-colors hover:bg-[#1539C0] sm:py-3">
+            درخواست رزرو
+          </button>
+        </Link>
       </div>
     </div>
   );
