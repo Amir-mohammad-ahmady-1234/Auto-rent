@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { CarsContext } from '../context/cars/CarsContext';
 import CarReservationBox from '../components/CarRental/CarReservationBox';
 import CarInfoBox from '../components/CarRental/CarInfoBox';
+import HeroSlider from '../components/CarRental/HeroSlider';
 
 const SelectCarInfo = () => {
   const { id } = useParams();
@@ -16,6 +17,7 @@ const SelectCarInfo = () => {
     <div className="flex min-h-screen w-full flex-col gap-8 lg:flex-row mt-16">
       <div className="w-full lg:w-2/3">
         <CarInfoBox carInfo={mainCar} />
+        <HeroSlider carInfo={mainCar} />
       </div>
 
       <div className="flex w-full items-center justify-center lg:w-1/3">

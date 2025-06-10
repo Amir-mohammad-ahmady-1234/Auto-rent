@@ -28,6 +28,7 @@
     "react-router-dom": "^7.6.0",
     "react-time-picker": "^7.0.0",
     "reselect": "^5.1.1",
+    "swiper": "^11.2.8",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {

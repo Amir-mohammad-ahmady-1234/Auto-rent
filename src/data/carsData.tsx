@@ -15,7 +15,11 @@ export const carsData: TCar[] = [
     maxPassenger: 4,
     minDriverAge: 25,
     maxBag: 2,
-    rate: 4.5
+    rate: 4.5,
+    images: [
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/f1037e973ebe648dc07b71753ab7369b8f69641e?placeholderIfAbsent=true',
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/6cae8afd917916381bfeaaa1dda381a68fba179a?placeholderIfAbsent=true',
+    ],
   },
   {
     id: 2,
@@ -31,7 +35,11 @@ export const carsData: TCar[] = [
     maxPassenger: 4,
     minDriverAge: 25,
     maxBag: 2,
-    rate: 4.5
+    rate: 4.5,
+    images: [
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/6cae8afd917916381bfeaaa1dda381a68fba179a?placeholderIfAbsent=true',
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/731eb47892c68cbe0f98db2a99f3e70dbce3c849?placeholderIfAbsent=true',
+    ],
   },
   {
     id: 3,
@@ -47,7 +55,11 @@ export const carsData: TCar[] = [
     maxPassenger: 4,
     minDriverAge: 25,
     maxBag: 2,
-    rate: 4.5
+    rate: 4.5,
+    images: [
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/731eb47892c68cbe0f98db2a99f3e70dbce3c849?placeholderIfAbsent=true',
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/ffba8986276e49fc0ae371097249c9e82bfb81d4?placeholderIfAbsent=true',
+    ],
   },
   {
     id: 4,
@@ -63,7 +75,11 @@ export const carsData: TCar[] = [
     maxPassenger: 4,
     minDriverAge: 25,
     maxBag: 2,
-    rate: 4.5
+    rate: 4.5,
+    images: [
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/ffba8986276e49fc0ae371097249c9e82bfb81d4?placeholderIfAbsent=true',
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/8cc4239ad44c5478d4813729c8021c52b6820cc9?placeholderIfAbsent=true',
+    ],
   },
   {
     id: 5,
@@ -79,7 +95,11 @@ export const carsData: TCar[] = [
     maxPassenger: 4,
     minDriverAge: 25,
     maxBag: 2,
-    rate: 4.5
+    rate: 4.5,
+    images: [
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/8cc4239ad44c5478d4813729c8021c52b6820cc9?placeholderIfAbsent=true',
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
+    ],
   },
   {
     id: 6,
@@ -95,6 +115,10 @@ export const carsData: TCar[] = [
     maxPassenger: 4,
     minDriverAge: 25,
     maxBag: 2,
-    rate: 4.5
+    rate: 4.5,
+    images: [
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
+      'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
+    ],
   },
 ];

@@ -11,5 +11,6 @@ export interface TCar {
   maxPassenger: number;
   minDriverAge: number;
   maxBag: number;
-  rate: number
+  rate: number,
+  images: string[]
 }
