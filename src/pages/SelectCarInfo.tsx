@@ -14,10 +14,12 @@ const SelectCarInfo = () => {
   const mainCar = cars.filter((car) => car.id === itemNumberID)[0];
 
   return (
-    <div className="flex min-h-screen w-full flex-col gap-8 lg:flex-row mt-16">
-      <div className="w-full lg:w-2/3">
+    <div className="mt-16 flex min-h-screen w-full flex-col gap-8 lg:flex-row">
+      <div className="w-full lg:w-2/3 space-y-10">
         <CarInfoBox carInfo={mainCar} />
-        <HeroSlider carInfo={mainCar} />
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 rounded-xl bg-white p-3 shadow sm:gap-4 sm:p-4">
+          <HeroSlider carInfo={mainCar} />
+        </div>
       </div>
 
       <div className="flex w-full items-center justify-center lg:w-1/3">

@@ -26,8 +26,11 @@ const CarInfoBox = ({ carInfo }: CarInfoBoxProps) => {
           ))}
           {carInfo.rate - Math.floor(carInfo.rate) >= 0.5 && <FaStarHalfAlt />}
         </div>
-        <h2 className="text-base font-bold text-gray-800 sm:text-xl lg:text-2xl">
-          {carInfo.brand + ' ' + carInfo.model}
+        <h2
+          dir="rtl"
+          className="font-iranyekan text-base font-bold text-gray-800 sm:text-xl lg:text-2xl"
+        >
+          {carInfo.title}
         </h2>
       </div>
 

@@ -37,7 +37,7 @@ const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-5xl py-8">
+    <div className="relative mx-auto w-full max-w-5xl py-8 ">
       <div
         className={isModalOpen ? 'pointer-events-none blur-sm select-none' : ''}
       >
@@ -63,7 +63,7 @@ const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40">
                   <h2 className="text-2xl font-bold text-white md:text-4xl">
-                    {title}
+                    {/* {title} */}
                   </h2>
                 </div>
               </div>
