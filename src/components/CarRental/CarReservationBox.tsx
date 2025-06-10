@@ -17,7 +17,6 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
   const [returnDate, setReturnDate] = useState<Date | null>(new Date());
   const [deliveryTime, setDeliveryTime] = useState<string | null>('10:00');
   const [returnTime, setReturnTime] = useState<string | null>('07:00');
-  const [insurance, setInsurance] = useState<'basic' | 'full'>('basic');
 
   const { dailyPrice, monthlyPrice } = carInfo;
 
@@ -58,7 +57,7 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
         setReturnTime={handleReturnTimeChange}
       />
 
-      <InsuranceSelector insurance={insurance} setInsurance={setInsurance} />
+      <InsuranceSelector />
 
       <button className="w-full rounded-xl bg-blue-600 py-3 text-sm font-bold text-white transition hover:bg-blue-700">
         ثبت درخواست
