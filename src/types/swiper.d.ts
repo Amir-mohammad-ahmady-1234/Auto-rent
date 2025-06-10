@@ -35,6 +35,7 @@ declare module 'swiper/react' {
     slidesPerView?: number;
     spaceBetween?: number;
     watchSlidesProgress?: boolean;
+    initialSlide?: number;
   }
 
   export interface SwiperSlideProps {

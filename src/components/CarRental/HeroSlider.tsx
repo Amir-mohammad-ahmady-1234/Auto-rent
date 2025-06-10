@@ -30,11 +30,17 @@ const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
     document.body.style.overflow = '';
   };
 
+  const onModalBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
   return (
-    <div className="mx-auto w-full max-w-5xl py-8 relative">
-      {/* تار کردن پس‌زمینه موقع باز بودن مودال */}
-      <div className={isModalOpen ? 'blur-sm pointer-events-none' : ''}>
-        {/* اسلایدر اصلی */}
+    <div className="relative mx-auto w-full max-w-5xl py-8">
+      <div
+        className={isModalOpen ? 'pointer-events-none blur-sm select-none' : ''}
+      >
         <Swiper
           modules={[Navigation, Pagination, Autoplay, Thumbs]}
           navigation
@@ -45,7 +51,7 @@ const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
           onSwiper={(swiper: SwiperType) => {
             if (swiper.thumbs) swiper.thumbs.swiper = thumbsSwiperRef.current!;
           }}
-          className="overflow-hidden rounded-xl"
+          className="overflow-hidden rounded-xl shadow-lg"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
@@ -65,55 +71,62 @@ const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
           ))}
         </Swiper>
 
-        {/* thumbnail زیر اسلایدر */}
         <Swiper
           onSwiper={(swiper: SwiperType) => (thumbsSwiperRef.current = swiper)}
           modules={[Thumbs]}
           slidesPerView={4}
           spaceBetween={10}
           watchSlidesProgress
-          className="mt-4 cursor-pointer"
+          className="mt-4"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>
-              <img
-                src={img}
-                alt={`Thumbnail ${index + 1}`}
-                className="h-20 w-full rounded-lg border border-gray-300 object-cover transition hover:border-black"
-                onClick={() => openModal(index)}
-              />
+              <div className="cursor-pointer" onClick={() => openModal(index)}>
+                <img
+                  src={img}
+                  alt={`Thumbnail ${index + 1}`}
+                  className="h-20 w-full rounded-lg border border-gray-300 object-cover transition hover:scale-105 hover:border-black"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* مودال فول‌اسکرین برای عکس بزرگ */}
+      {/* Modal with blur effect */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
-          <button
-            onClick={closeModal}
-            className="absolute top-4 right-4 z-50 text-white text-3xl"
-          >
-            ✕
-          </button>
+        <div
+          onClick={onModalBackdropClick}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 pt-16 backdrop-blur-md"
+        >
+          <div className="relative h-[80vh] w-full max-w-4xl overflow-hidden rounded-xl bg-white shadow-2xl">
+            {/* Close button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 z-[101] flex h-10 w-10 items-center justify-center rounded-full bg-black/70 text-3xl text-white transition-all hover:scale-110 hover:bg-black"
+              aria-label="Close modal"
+            >
+              ×
+            </button>
 
-          <Swiper
-            modules={[Navigation, Pagination]}
-            navigation
-            pagination={{ clickable: true }}
-            initialSlide={initialSlideIndex}
-            className="w-full max-w-4xl h-[80vh] rounded-xl overflow-hidden"
-          >
-            {images.map((img, index) => (
-              <SwiperSlide key={index}>
-                <img
-                  src={img}
-                  alt={`Fullscreen ${index + 1}`}
-                  className="h-full w-full object-contain"
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              navigation
+              pagination={{ clickable: true }}
+              initialSlide={initialSlideIndex}
+              className="h-full w-full"
+            >
+              {images.map((img, index) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={img}
+                    alt={`Fullscreen ${index + 1}`}
+                    className="h-full w-full object-contain"
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
       )}
     </div>
