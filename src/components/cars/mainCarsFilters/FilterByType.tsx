@@ -8,7 +8,7 @@ const FilterByType = ({
   return (
     <div>
       <h3 className="mb-2 text-sm font-bold">اجاره خودرو بر اساس نیاز شما</h3>
-      <ul className="space-y-2 text-sm">
+      <ul className="space-y-2 text-sm ">
         {[
           'با راننده',
           'بدون راننده',

@@ -4,6 +4,7 @@ import { CarsContext } from '../context/cars/CarsContext';
 import CarReservationBox from '../components/CarRental/CarReservationBox';
 import CarInfoBox from '../components/CarRental/CarInfoBox';
 import HeroSlider from '../components/CarRental/HeroSlider';
+import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 
 const SelectCarInfo = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const SelectCarInfo = () => {
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 rounded-xl bg-white p-3 shadow sm:gap-4 sm:p-4">
           <HeroSlider carInfo={mainCar} />
         </div>
+        <CarCoversDetails />
       </div>
 
       <div className="flex w-full items-center justify-center lg:w-1/3">
