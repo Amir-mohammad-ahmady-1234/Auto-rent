@@ -16,19 +16,40 @@ const FilterByType = ({
           'لوکس',
           'تشریفات',
           'ماشین عروس',
-        ].map((type, i) => (
-          <li key={i} className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="rentType"
-              id={`rent-${i}`}
-              className="accent-blue-500"
-              checked={selectedCarType === type}
-              onChange={() => onRadioTypeChange(type)}
-            />
-            <label htmlFor={`rent-${i}`} className="cursor-pointer">
-              اجاره خودور {type}
-            </label>
+        ].map((type) => (
+          <li
+            key={type}
+            onClick={() => onRadioTypeChange(type)}
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                onRadioTypeChange(type);
+              }
+            }}
+            role="radio"
+            aria-checked={selectedCarType === type}
+            className={`flex cursor-pointer items-center gap-3 rounded border px-3 py-2 select-none ${
+              selectedCarType === type
+                ? 'border-blue-700 bg-blue-500 text-white'
+                : 'border-gray-300 bg-white hover:bg-gray-100'
+            }`}
+          >
+            {/* دایره رادیو */}
+            <div
+              className={`flex h-5 w-5 items-center justify-center rounded-full border-2 ${
+                selectedCarType === type
+                  ? 'border-blue-700 bg-blue-500'
+                  : 'border-gray-400 bg-white'
+              }`}
+            >
+              {/* دایره داخلی که وقتی انتخاب شده سفیده */}
+              {selectedCarType === type && (
+                <div className="h-2.5 w-2.5 rounded-full bg-white" />
+              )}
+            </div>
+
+            <span>اجاره خودرو {type}</span>
           </li>
         ))}
       </ul>

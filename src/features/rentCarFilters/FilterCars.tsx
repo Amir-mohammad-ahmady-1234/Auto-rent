@@ -40,10 +40,10 @@ function FilterCars() {
   };
 
   const handleRadioTypeChange = (type: string) => {
-    if (selectedCarType === type) {
-      setSelectedCarType('');
-    } else {
+    if (selectedCarType === '' || selectedCarType !== type) {
       setSelectedCarType(type);
+    } else {
+      setSelectedCarType('');
     }
   };
 

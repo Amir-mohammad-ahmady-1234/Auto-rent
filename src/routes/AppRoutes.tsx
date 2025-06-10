@@ -31,7 +31,10 @@ const AppRoutes = () => {
                 <Route path="rent">
                   <Route index element={<Navigate to="cars" replace />} />
                   <Route index path="cars" element={<BrowseCarsPage />} />
-                  <Route path="chose_car_info/:id" element={<SelectCarInfo />} />
+                  <Route
+                    path="chose_car_info/:id"
+                    element={<SelectCarInfo />}
+                  />
                 </Route>
               </Route>
             </Route>
