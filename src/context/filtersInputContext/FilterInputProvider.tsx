@@ -6,7 +6,13 @@ const FilterInputProvider = ({ children }: { children: React.ReactNode }) => {
   const [maxPrice, setMaxPrice] = useState<string>('60000000');
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedCarType, setSelectedCarType] = useState<string>('');
+  const [selectedInsurance, setSelectedInsurance] = useState<'basic' | 'full'>(
+    'basic'
+  );
 
+  function handleToggleRadio() {
+    setSelectedInsurance((prev) => (prev === 'basic' ? 'full' : 'basic'));
+  }
   return (
     <FilterInputContext.Provider
       value={{
@@ -18,6 +24,9 @@ const FilterInputProvider = ({ children }: { children: React.ReactNode }) => {
         setSelectedBrands,
         selectedCarType,
         setSelectedCarType,
+        selectedInsurance,
+        setSelectedInsurance,
+        handleToggleRadio,
       }}
     >
       {children}

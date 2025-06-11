@@ -1,13 +1,9 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { FilterInputContext } from '../../context/filtersInputContext/filterInputContext';
 
 const InsuranceRadio = () => {
-  const [selectedInsurance, setSelectedInsurance] = useState<'basic' | 'full'>(
-    'basic'
-  );
-
-  function handleToggleRadio() {
-    setSelectedInsurance((prev) => (prev === 'basic' ? 'full' : 'basic'));
-  }
+  const { handleToggleRadio, selectedInsurance } =
+    useContext(FilterInputContext);
 
   return (
     <>

@@ -7,4 +7,7 @@ export interface IdefaultValue {
   setSelectedBrands: React.Dispatch<React.SetStateAction<string[]>>;
   selectedCarType: string;
   setSelectedCarType: React.Dispatch<React.SetStateAction<string>>;
+  selectedInsurance: 'basic' | 'full';
+  setSelectedInsurance: React.Dispatch<React.SetStateAction<'basic' | 'full'>>;
+  handleToggleRadio: () => void;
 }

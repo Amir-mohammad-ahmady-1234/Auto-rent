@@ -10,6 +10,9 @@ const defaultValue: IdefaultValue = {
   setSelectedBrands: () => {},
   selectedCarType: '',
   setSelectedCarType: () => {},
+  selectedInsurance: 'basic',
+  setSelectedInsurance: () => {},
+  handleToggleRadio: () => {},
 };
 
 export const FilterInputContext = createContext(defaultValue);
