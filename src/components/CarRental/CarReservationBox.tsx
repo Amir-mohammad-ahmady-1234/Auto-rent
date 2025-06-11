@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { TCar } from '../../types/CarType';
 
 import PriceBox from './PriceBox';
@@ -7,39 +6,60 @@ import LocationSelector from './LocationSelector';
 import DateTimePicker from './DateTimePicker';
 import InsuranceSelector from './InsuranceSelector';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
+import { schema, type SchemaFormValues } from '../../zodSchema/rentSchema';
+
 type CarReservationBoxProps = {
   carInfo: TCar;
 };
 
 const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
-  const [rentalType, setRentalType] = useState<string>('اجاره خودرو با راننده');
-  const [deliveryDate, setDeliveryDate] = useState<Date | null>(new Date());
-  const [returnDate, setReturnDate] = useState<Date | null>(new Date());
-  const [deliveryTime, setDeliveryTime] = useState<string | null>('10:00');
-  const [returnTime, setReturnTime] = useState<string | null>('07:00');
-
   const { dailyPrice, monthlyPrice } = carInfo;
 
-  const isValidTime = (value: string | null) => {
-    if (!value) return false;
-    // Only allow 00:00 to 23:59
-    return /^([01]\d|2[0-3]):([0-5]\d)$/.test(value);
-  };
+  const {
+    handleSubmit,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<SchemaFormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      rentalType: 'اجاره خودرو با راننده',
+      deliveryTime: '10:00',
+      returnTime: '07:00',
+      deliveryDate: new Date(),
+      returnDate: new Date(),
+      deliveryLocation: 'انتخاب کنید',
+      returnLocation: 'انتخاب کنید',
+    },
+    mode: 'onSubmit',
+  });
 
-  const handleDeliveryTimeChange = (value: string | null) => {
-    if (isValidTime(value)) {
-      setDeliveryTime(value);
-    }
-  };
+  const onSubmit = async (data: SchemaFormValues) => {
+    try {
+      // Validate the data using schema
+      const validatedData = schema.parse(data);
 
-  const handleReturnTimeChange = (value: string | null) => {
-    if (isValidTime(value)) {
-      setReturnTime(value);
+      // Log the validated form data
+      console.log('Form Data:', {
+        ...validatedData,
+        deliveryDate: validatedData.deliveryDate?.toISOString(),
+        returnDate: validatedData.returnDate?.toISOString(),
+      });
+
+      // Here you can add your API call or other logic
+      // const response = await submitReservation(validatedData);
+      // console.log('API Response:', response);
+    } catch (error) {
+      console.error('Validation Error:', error);
     }
   };
 
   return (
-    <div className="card font-vazir w-full max-w-[496px] space-y-6">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="card font-vazir w-full max-w-[496px] space-y-6"
+    >
       <div className="border-b border-gray-100 pb-4">
         <h3 className="text-xl font-bold text-gray-900">رزرو خودرو</h3>
         <p className="mt-1 text-sm text-gray-500">
@@ -50,26 +70,36 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
       <PriceBox dailyPrice={dailyPrice} monthlyPrice={monthlyPrice} />
 
       <div className="space-y-4">
-        <RentalTypeSelector rentalType={rentalType} onSelect={setRentalType} />
-        <LocationSelector />
+        <Controller
+          name="rentalType"
+          control={control}
+          render={({ field }) => (
+            <div>
+              <RentalTypeSelector {...field} />
+              {errors.rentalType && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.rentalType.message}
+                </p>
+              )}
+            </div>
+          )}
+        />
+        <LocationSelector<SchemaFormValues> control={control} errors={errors} />
       </div>
 
       <div className="rounded-lg bg-gray-50 p-4">
-        <DateTimePicker
-          deliveryDate={deliveryDate}
-          returnDate={returnDate}
-          setDeliveryDate={setDeliveryDate}
-          setReturnDate={setReturnDate}
-          deliveryTime={deliveryTime}
-          returnTime={returnTime}
-          setDeliveryTime={handleDeliveryTimeChange}
-          setReturnTime={handleReturnTimeChange}
-        />
+        <DateTimePicker control={control} errors={errors} />
       </div>
 
       <InsuranceSelector />
 
-      <button className="btn btn-primary w-full text-base">ثبت درخواست</button>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="btn btn-primary w-full text-base disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {isSubmitting ? 'در حال ثبت...' : 'ثبت درخواست'}
+      </button>
 
       <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-700">
         <p className="flex items-center gap-2">
@@ -89,7 +119,7 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
           پس از ثبت درخواست، کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت
         </p>
       </div>
-    </div>
+    </form>
   );
 };
 

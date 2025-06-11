@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@builder.io/react": "^8.2.0",
+    "@hookform/resolvers": "^5.1.1",
     "@reduxjs/toolkit": "^2.8.2",
     "@tailwindcss/vite": "^4.1.7",
     "clsx": "^2.1.1",
@@ -30,7 +31,8 @@
     "react-time-picker": "^7.0.0",
     "reselect": "^5.1.1",
     "swiper": "^11.2.8",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "zod": "^3.25.61"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
