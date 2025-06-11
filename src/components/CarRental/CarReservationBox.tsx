@@ -39,29 +39,56 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
   };
 
   return (
-    <div className="font-vazir w-full max-w-[496px] space-y-6 rounded-2xl border border-gray-200 bg-white p-6 text-right shadow-xl">
+    <div className="card font-vazir w-full max-w-[496px] space-y-6">
+      <div className="border-b border-gray-100 pb-4">
+        <h3 className="text-xl font-bold text-gray-900">رزرو خودرو</h3>
+        <p className="mt-1 text-sm text-gray-500">
+          اطلاعات رزرو خودرو را وارد کنید
+        </p>
+      </div>
+
       <PriceBox dailyPrice={dailyPrice} monthlyPrice={monthlyPrice} />
 
-      <RentalTypeSelector rentalType={rentalType} onSelect={setRentalType} />
+      <div className="space-y-4">
+        <RentalTypeSelector rentalType={rentalType} onSelect={setRentalType} />
+        <LocationSelector />
+      </div>
 
-      <LocationSelector />
-
-      <DateTimePicker
-        deliveryDate={deliveryDate}
-        returnDate={returnDate}
-        setDeliveryDate={setDeliveryDate}
-        setReturnDate={setReturnDate}
-        deliveryTime={deliveryTime}
-        returnTime={returnTime}
-        setDeliveryTime={handleDeliveryTimeChange}
-        setReturnTime={handleReturnTimeChange}
-      />
+      <div className="rounded-lg bg-gray-50 p-4">
+        <DateTimePicker
+          deliveryDate={deliveryDate}
+          returnDate={returnDate}
+          setDeliveryDate={setDeliveryDate}
+          setReturnDate={setReturnDate}
+          deliveryTime={deliveryTime}
+          returnTime={returnTime}
+          setDeliveryTime={handleDeliveryTimeChange}
+          setReturnTime={handleReturnTimeChange}
+        />
+      </div>
 
       <InsuranceSelector />
 
-      <button className="w-full rounded-xl bg-blue-600 py-3 text-sm font-bold text-white transition hover:bg-blue-700">
-        ثبت درخواست
-      </button>
+      <button className="btn btn-primary w-full text-base">ثبت درخواست</button>
+
+      <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-700">
+        <p className="flex items-center gap-2">
+          <svg
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          پس از ثبت درخواست، کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت
+        </p>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @font-face {
   font-family: 'IRANSans';
   src: url('/fonts/IRANSansWeb.woff2') format('woff2');
@@ -29,39 +31,179 @@
 }
 @import 'tailwindcss';
 
-/* Base typography settings */
+/* Enhanced design system */
 @layer base {
   :root {
+    /* Primary colors */
     --primary-blue: #194bf0;
+    --primary-blue-hover: #1539c0;
     --primary-yellow: #fdb713;
-    --text-dark: #353535;
+    --primary-yellow-hover: #e5a50f;
+
+    /* Neutral colors */
+    --text-dark: #1a1a1a;
+    --text-gray: #4a5568;
+    --text-light: #718096;
+    --bg-light: #f7fafc;
+    --bg-white: #ffffff;
+
+    /* Semantic colors */
+    --success: #48bb78;
+    --error: #e53e3e;
+    --warning: #ed8936;
+    --info: #4299e1;
+
+    /* Spacing scale */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Border radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 
   html {
-    font-family: 'IRANSans', 'Vazirmatn', 'IRANYekan', system-ui, sans-serif;
+    font-family:
+      'IRANSans', 'Vazirmatn', 'Noto Kufi Arabic', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-dark);
   }
 
   body {
     direction: rtl;
     text-align: right;
+    background-color: var(--bg-light);
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin-bottom: var(--spacing-md);
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-md);
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-sm);
+  }
+
   h5,
   h6 {
-    font-family: 'IRANYekan', 'IRANSans', 'Vazirmatn', system-ui, sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-sm);
   }
 
   p {
+    margin-bottom: var(--spacing-md);
     line-height: 1.6;
+  }
+
+  /* Enhanced button styles */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--primary-blue-hover);
+  }
+
+  .btn-secondary {
+    background-color: var(--primary-yellow);
+    color: var(--text-dark);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--primary-yellow-hover);
+  }
+
+  /* Enhanced card styles */
+  .card {
+    background-color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+    transition:
+      transform 0.2s ease-in-out,
+      box-shadow 0.2s ease-in-out;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Enhanced form styles */
+  .form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    background-color: var(--bg-white);
+    transition: border-color 0.2s ease-in-out;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(25, 75, 240, 0.1);
+  }
+
+  /* Responsive typography */
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
   }
 }
 
@@ -95,7 +237,6 @@
     font-weight: 900;
   }
 
-  /* Font family utility classes */
   .font-iransans {
     font-family: 'IRANSans', system-ui, sans-serif;
   }
@@ -105,15 +246,18 @@
   .font-vazir {
     font-family: 'Vazirmatn', system-ui, sans-serif;
   }
+  .font-noto {
+    font-family: 'Noto Kufi Arabic', system-ui, sans-serif;
+  }
 }
 
 /* react leaflet custom global styles */
 .leaflet-container {
-  border-radius: 0.75rem; /* rounded-xl */
+  border-radius: var(--radius-lg);
 }
 
 .leaflet-popup-content {
-  font-family: 'IRANSans', 'Vazirmatn', 'IRANYekan', sans-serif;
+  font-family: 'IRANSans', 'Vazirmatn', 'Noto Kufi Arabic', sans-serif;
   font-size: 0.9rem;
   direction: rtl;
   text-align: right;

@@ -1,6 +1,4 @@
 import React from 'react';
-import { FaUtensilSpoon } from 'react-icons/fa';
-import { IoEllipsisHorizontalCircleSharp } from 'react-icons/io5';
 
 const FeaturesCarComponent: React.FC = () => {
   return (
