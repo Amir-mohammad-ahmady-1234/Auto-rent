@@ -11,26 +11,31 @@ const InsuranceRadio = () => {
 
   return (
     <>
-      <label className="flex items-center gap-1">
+      <div className="flex items-center justify-center gap-2">
         <input
           type="checkbox"
-          name="insuranceStatus"
+          id="basic"
+          name="insurance"
           value="basic"
           checked={selectedInsurance === 'basic'}
           onChange={handleToggleRadio}
+          className="accent-[#194BF0]"
         />
-        بیمه پایه
-      </label>
-      <label className="flex items-center gap-1">
+        <label htmlFor="basic">بیمه پایه</label>
+      </div>
+
+      <div className="flex items-center justify-center gap-2">
         <input
           type="checkbox"
-          name="insuranceStatus"
+          id="full"
+          name="insurance"
           value="full"
           checked={selectedInsurance === 'full'}
           onChange={handleToggleRadio}
+          className="accent-[#194BF0]"
         />
-        بیمه کامل
-      </label>
+        <label htmlFor="full">بیمه کامل</label>
+      </div>
     </>
   );
 };
