@@ -5,6 +5,10 @@ import CarReservationBox from '../components/CarRental/CarReservationBox';
 import CarInfoBox from '../components/CarRental/CarInfoBox';
 import HeroSlider from '../components/CarRental/HeroSlider';
 import CarCoversDetails from '../components/CarRental/CarCoversDetails';
+import FeaturesCarComponent from '../components/CarRental/FeaturesCarComponent';
+import AboutCarComponent from '../components/CarRental/AboutCarComponent';
+import MoreCarDetails from '../components/CarRental/MoreCarDetails';
+import CommentForSelectedCar from '../components/CarRental/CommentForSelectedCar';
 
 const SelectCarInfo = () => {
   const { id } = useParams();
@@ -16,16 +20,20 @@ const SelectCarInfo = () => {
 
   return (
     <div className="mt-16 flex min-h-screen w-full flex-col gap-8 lg:flex-row">
-      <div className="w-full lg:w-2/3 space-y-10">
+      <div className="order-1 flex w-full items-center justify-center lg:order-2 lg:w-1/3">
+        <CarReservationBox carInfo={mainCar} />
+      </div>
+
+      <div className="order-2 w-full space-y-10 lg:order-1 lg:w-2/3">
         <CarInfoBox carInfo={mainCar} />
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 rounded-xl bg-white p-3 shadow sm:gap-4 sm:p-4">
           <HeroSlider carInfo={mainCar} />
         </div>
         <CarCoversDetails />
-      </div>
-
-      <div className="flex w-full items-center justify-center lg:w-1/3">
-        <CarReservationBox carInfo={mainCar} />
+        <MoreCarDetails />
+        <FeaturesCarComponent />
+        <AboutCarComponent />
+        <CommentForSelectedCar />
       </div>
     </div>
   );
