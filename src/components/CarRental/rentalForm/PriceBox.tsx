@@ -1,4 +1,4 @@
-import { formatNumber } from '../../utils/formatNumber.1';
+import { formatNumber } from '../../../utils/formatNumber.1';
 
 type PriceBoxProps = {
   dailyPrice: string;

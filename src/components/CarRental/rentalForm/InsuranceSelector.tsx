@@ -1,4 +1,4 @@
-import InsuranceRadio from './InsuranceRadio';
+import InsuranceRadio from '../InsuranceRadio';
 
 const InsuranceSelector = () => {
   return (

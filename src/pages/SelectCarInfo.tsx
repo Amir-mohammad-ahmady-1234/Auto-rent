@@ -1,14 +1,14 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CarsContext } from '../context/cars/CarsContext';
-import CarReservationBox from '../components/CarRental/CarReservationBox';
+import CarReservationBox from '../components/CarRental/rentalForm/CarReservationBox';
 import CarInfoBox from '../components/CarRental/CarInfoBox';
 import HeroSlider from '../components/CarRental/HeroSlider';
-import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 import FeaturesCarComponent from '../components/CarRental/FeaturesCarComponent';
 import AboutCarComponent from '../components/CarRental/AboutCarComponent';
 import MoreCarDetails from '../components/CarRental/MoreCarDetails';
 import CommentForSelectedCar from '../components/CarRental/CommentForSelectedCar';
+import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 
 const SelectCarInfo = () => {
   const { id } = useParams();

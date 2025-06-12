@@ -1,16 +1,22 @@
-import type { TCar } from '../../types/CarType';
+import type { TCar } from '../../../types/CarType';
 
 import PriceBox from './PriceBox';
 import RentalTypeSelector from './RentalTypeSelector';
 import LocationSelector from './LocationSelector';
-import DateTimePicker from './DateTimePicker';
+import DateTimePicker from './dateAndTimepicker/DateTimePicker';
 import InsuranceSelector from './InsuranceSelector';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
-import { schema, type SchemaFormValues } from '../../zodSchema/rentSchema';
+import {
+  defaultValues,
+  schema,
+  type SchemaFormValues,
+} from '../../../zodSchema/rentSchema';
 import { useContext } from 'react';
-import { FilterInputContext } from '../../context/filtersInputContext/filterInputContext';
+import { FilterInputContext } from '../../../context/filtersInputContext/filterInputContext';
+import TitleForm from './TitleForm';
+import FormFooter from './FormFooter';
 
 type CarReservationBoxProps = {
   carInfo: TCar;
@@ -27,15 +33,7 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
     formState: { errors, isSubmitting },
   } = useForm<SchemaFormValues>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      rentalType: 'اجاره خودرو با راننده',
-      deliveryTime: '10:00',
-      returnTime: '07:00',
-      deliveryDate: new Date(),
-      returnDate: new Date(),
-      pickupLocation: 'انتخاب کنید',
-      returnLocation: 'انتخاب کنید',
-    },
+    defaultValues: defaultValues,
     mode: 'onSubmit',
   });
 
@@ -55,12 +53,7 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
       onSubmit={handleSubmit(onSubmit)}
       className="card font-vazir w-full max-w-[496px] space-y-6"
     >
-      <div className="border-b border-gray-100 pb-4">
-        <h3 className="text-xl font-bold text-gray-900">رزرو خودرو</h3>
-        <p className="mt-1 text-sm text-gray-500">
-          اطلاعات رزرو خودرو را وارد کنید
-        </p>
-      </div>
+      <TitleForm />
 
       <PriceBox dailyPrice={dailyPrice} monthlyPrice={monthlyPrice} />
 
@@ -96,24 +89,7 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
         {isSubmitting ? 'در حال ثبت...' : 'ثبت درخواست'}
       </button>
 
-      <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-700">
-        <p className="flex items-center gap-2">
-          <svg
-            className="h-5 w-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          پس از ثبت درخواست، کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت
-        </p>
-      </div>
+      <FormFooter />
     </form>
   );
 };
