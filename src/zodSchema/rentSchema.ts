@@ -8,7 +8,7 @@ export const schema = z.object({
   returnDate: z.date({ required_error: 'انتخاب تاریخ پایان رزرو الزامی است' }),
   deliveryTime: z.string().min(1, 'انتخاب ساعت شروع رزرو الزامی است'),
   returnTime: z.string().min(1, 'انتخاب ساعت پایان رزرو الزامی است'),
-  deliveryLocation: z
+  pickupLocation: z
     .string()
     .min(1, 'انتخاب محل تحویل خودرو الزامی است')
     .refine((val) => val !== 'انتخاب کنید', {

@@ -9,12 +9,16 @@ import InsuranceSelector from './InsuranceSelector';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { schema, type SchemaFormValues } from '../../zodSchema/rentSchema';
+import { useContext } from 'react';
+import { FilterInputContext } from '../../context/filtersInputContext/filterInputContext';
 
 type CarReservationBoxProps = {
   carInfo: TCar;
 };
 
 const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
+  const { selectedInsurance } = useContext(FilterInputContext);
+
   const { dailyPrice, monthlyPrice } = carInfo;
 
   const {
@@ -29,30 +33,21 @@ const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
       returnTime: '07:00',
       deliveryDate: new Date(),
       returnDate: new Date(),
-      deliveryLocation: 'انتخاب کنید',
+      pickupLocation: 'انتخاب کنید',
       returnLocation: 'انتخاب کنید',
     },
     mode: 'onSubmit',
   });
 
-  const onSubmit = async (data: SchemaFormValues) => {
-    try {
-      // Validate the data using schema
-      const validatedData = schema.parse(data);
+  const onSubmit = (data: SchemaFormValues) => {
+    const finalData = {
+      ...data,
+      insurance: selectedInsurance,
+      dailyPrice,
+      monthlyPrice,
+    };
 
-      // Log the validated form data
-      console.log('Form Data:', {
-        ...validatedData,
-        deliveryDate: validatedData.deliveryDate?.toISOString(),
-        returnDate: validatedData.returnDate?.toISOString(),
-      });
-
-      // Here you can add your API call or other logic
-      // const response = await submitReservation(validatedData);
-      // console.log('API Response:', response);
-    } catch (error) {
-      console.error('Validation Error:', error);
-    }
+    console.log(finalData);
   };
 
   return (
