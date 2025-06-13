@@ -17,7 +17,7 @@ const LoginPhoneInput = ({
         name: 'phone',
         required: true,
         autoFocus: false,
-        placeholder: '912******',
+        placeholder: '+98 9********',
       }}
       containerClass="!w-full"
       inputClass="!w-full !h-[48px] !text-sm !rounded-md !border-gray-300"

@@ -1,34 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from '../HeaderNav/Logo';
 
 import 'react-phone-input-2/lib/style.css';
 import LogInImage from './LogInImage';
 import LoginHeaderContent from './LoginHeaderContent';
 import LoginPhoneInput from './LoginPhoneInput';
+import { validatePhone } from './loginLogics';
 
 const LoginLevelOne = () => {
   const [phone, setPhone] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isAcceptRules, setIsAcceptRules] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  function validatePhone(value: string): boolean {
-    const digitsOnly = value.replace(/\D/g, '');
-
-    if (
-      value.startsWith('+98') ||
-      value.startsWith('98') ||
-      value.startsWith('09')
-    ) {
-      const normalized = value.startsWith('0')
-        ? '98' + digitsOnly.slice(1)
-        : digitsOnly.startsWith('98')
-          ? digitsOnly
-          : digitsOnly;
-
-      return /^98[9]\d{9}$/.test(normalized);
-    }
-
-    return /^\+?[1-9]\d{7,14}$/.test(value);
+  function handleChangeRulesStatus() {
+    setIsAcceptRules((prev) => !prev);
   }
 
   function handleChangePhone(rawValue: string) {
@@ -46,9 +32,16 @@ const LoginLevelOne = () => {
     setIsValid(validatePhone(cleaned));
   }
 
-  function handleChangeRulesStatus() {
-    setIsAcceptRules((prev) => !prev);
-  }
+  useEffect(
+    function () {
+      if (!isValid && phone.length > 11) {
+        setErrorMessage('شماره تلفن وارد شده معتبر نمیباشد.');
+      } else {
+        setErrorMessage('');
+      }
+    },
+    [isValid, phone.length]
+  );
 
   return (
     <div
@@ -75,6 +68,9 @@ const LoginLevelOne = () => {
                 onChangePhone={handleChangePhone}
               />
               <label className="flex items-center justify-end gap-2 text-right text-sm">
+                {errorMessage && (
+                  <span className="text-red-600">{errorMessage}</span>
+                )}
                 <span>
                   با ورود و ثبت‌نام در سایت، با{' '}
                   <span className="text-blue-500">قوانین اتورنت</span> موافقت
