@@ -1,9 +1,41 @@
+import { useState } from 'react';
 import Logo from '../HeaderNav/Logo';
 
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 const LoginLevelOne = () => {
+  const [phone, setPhone] = useState<string>('');
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const [isAcceptRules, setIsAcceptRules] = useState<boolean>(false);
+
+  function validatePhone(value: string) {
+    const iranRegex = /^(?:\+98|98|0)?9\d{9}$/;
+    const internationalRegex = /^\+?[1-9]\d{7,14}$/;
+
+    const digitsOnly = value.replace(/\D/g, '');
+
+    if (
+      (value.startsWith('+98') ||
+        value.startsWith('98') ||
+        value.startsWith('09')) &&
+      digitsOnly.length === 12 // 98 + 9XXXXXXXXX
+    ) {
+      return iranRegex.test(value);
+    }
+
+    return internationalRegex.test(value);
+  }
+
+  function handleChangePhone(value: string) {
+    setPhone(value);
+    setIsValid(validatePhone(value));
+  }
+
+  function handleChangeRulesStatus() {
+    setIsAcceptRules((prev) => !prev);
+  }
+
   return (
     <div
       dir="ltr"
@@ -37,12 +69,15 @@ const LoginLevelOne = () => {
 
             <div className="flex flex-col gap-3">
               <PhoneInput
+                value={phone}
+                onChange={handleChangePhone}
                 country={'ir'}
                 enableAreaCodes={true}
                 inputProps={{
                   name: 'phone',
                   required: true,
                   autoFocus: false,
+                  placeholder: '912******',
                 }}
                 containerClass="!w-full"
                 inputClass="!w-full !h-[48px] !text-sm !rounded-md !border-gray-300"
@@ -56,10 +91,22 @@ const LoginLevelOne = () => {
                   <span className="text-blue-500">قوانین اتورنت</span> موافقت
                   می‌کنم
                 </span>
-                <input type="checkbox" className="accent-blue-500" />
+                <input
+                  type="checkbox"
+                  className="accent-blue-500"
+                  checked={isAcceptRules}
+                  onChange={handleChangeRulesStatus}
+                />
               </label>
 
-              <button className="rounded-md bg-blue-600 py-2 text-sm text-white transition hover:bg-blue-700 md:text-base">
+              <button
+                disabled={!isValid && !isAcceptRules}
+                className={`rounded-md py-2 text-sm transition md:text-base ${
+                  isValid && isAcceptRules
+                    ? 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
+                    : 'cursor-not-allowed bg-gray-300 text-gray-500'
+                } `}
+              >
                 تأیید و ادامه
               </button>
             </div>
