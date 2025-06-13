@@ -26,6 +26,7 @@
     "react-hook-form": "^7.57.0",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
+    "react-phone-input-2": "^2.15.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.0",
     "react-time-picker": "^7.0.0",

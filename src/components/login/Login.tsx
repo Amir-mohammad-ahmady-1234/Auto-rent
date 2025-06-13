@@ -1,5 +1,8 @@
 import Logo from '../HeaderNav/Logo';
 
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+
 const LoginLevelOne = () => {
   return (
     <div
@@ -33,11 +36,18 @@ const LoginLevelOne = () => {
             </p>
 
             <div className="flex flex-col gap-3">
-              <input
-                id="phone"
-                type="tel"
-                placeholder="شماره موبایل"
-                className="rounded-md border border-gray-300 p-3 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none md:text-base"
+              <PhoneInput
+                country={'ir'}
+                enableAreaCodes={true}
+                inputProps={{
+                  name: 'phone',
+                  required: true,
+                  autoFocus: false,
+                }}
+                containerClass="!w-full"
+                inputClass="!w-full !h-[48px] !text-sm !rounded-md !border-gray-300"
+                buttonClass="!border-gray-300"
+                dropdownClass="!text-sm"
               />
 
               <label className="flex items-center justify-end gap-2 text-right text-sm">
