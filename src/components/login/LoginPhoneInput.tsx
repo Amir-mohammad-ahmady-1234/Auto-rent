@@ -3,9 +3,11 @@ import PhoneInput from 'react-phone-input-2';
 const LoginPhoneInput = ({
   phone,
   onChangePhone,
+  isValid,
 }: {
   phone: string;
   onChangePhone: (value: string) => void;
+  isValid: boolean;
 }) => {
   return (
     <PhoneInput
@@ -20,7 +22,7 @@ const LoginPhoneInput = ({
         placeholder: '+98 9********',
       }}
       containerClass="!w-full"
-      inputClass="!w-full !h-[48px] !text-sm !rounded-md !border-gray-300"
+      inputClass={`!w-full !h-[48px] !text-sm !rounded-md !border-gray-300 ${!isValid && phone.length > 0 && '!border-red-500'}`}
       buttonClass="!border-gray-300"
       dropdownClass="!text-sm"
     />

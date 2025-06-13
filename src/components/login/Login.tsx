@@ -35,7 +35,7 @@ const LoginLevelOne = () => {
   useEffect(
     function () {
       if (!isValid && phone.length > 11) {
-        setErrorMessage('شماره تلفن وارد شده معتبر نمیباشد.');
+        setErrorMessage('.شماره تلفن وارد شده معتبر نمیباشد');
       } else {
         setErrorMessage('');
       }
@@ -66,11 +66,13 @@ const LoginLevelOne = () => {
               <LoginPhoneInput
                 phone={phone}
                 onChangePhone={handleChangePhone}
+                isValid={isValid}
               />
-              <label className="flex items-center justify-end gap-2 text-right text-sm">
+              <label className="flex items-end flex-col justify-end gap-2 text-right text-sm">
                 {errorMessage && (
                   <span className="text-red-600">{errorMessage}</span>
                 )}
+                <div className='flex gap-2'>
                 <span>
                   با ورود و ثبت‌نام در سایت، با{' '}
                   <span className="text-blue-500">قوانین اتورنت</span> موافقت
@@ -81,7 +83,8 @@ const LoginLevelOne = () => {
                   className="accent-blue-500"
                   checked={isAcceptRules}
                   onChange={handleChangeRulesStatus}
-                />
+                  />
+                  </div>
               </label>
 
               <button
