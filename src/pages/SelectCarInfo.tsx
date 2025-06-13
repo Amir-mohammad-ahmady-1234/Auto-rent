@@ -9,6 +9,7 @@ import AboutCarComponent from '../components/CarRental/AboutCarComponent';
 import MoreCarDetails from '../components/CarRental/MoreCarDetails';
 import CommentForSelectedCar from '../components/CarRental/CommentForSelectedCar';
 import CarCoversDetails from '../components/CarRental/CarCoversDetails';
+import InviteCars from '../components/CarRental/InviteCars';
 
 const SelectCarInfo = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const SelectCarInfo = () => {
 
   return (
     <div className="mt-16 flex min-h-screen w-full flex-col gap-8 lg:flex-row">
-      <div className="order-1 flex w-full items-center justify-center lg:order-2 lg:w-1/3">
+      <div className="order-1 h-full flex w-full justify-center lg:order-2 lg:w-1/3">
         <CarReservationBox carInfo={mainCar} />
       </div>
 
@@ -33,6 +34,7 @@ const SelectCarInfo = () => {
         <FeaturesCarComponent carInfo={mainCar} />
         <AboutCarComponent carInfo={mainCar} />
         <CommentForSelectedCar />
+        <InviteCars />
       </div>
     </div>
   );

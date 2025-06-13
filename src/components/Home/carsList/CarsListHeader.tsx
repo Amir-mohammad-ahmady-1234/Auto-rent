@@ -7,7 +7,7 @@ const CarsListHeader = () => {
         <div className="mb-4 flex w-full flex-col items-stretch leading-normal md:mb-0 md:w-[18%]">
           <div className="font-iranyekan flex min-h-12 flex-grow items-center justify-center gap-2 overflow-hidden rounded-lg px-4 py-2 text-center text-base leading-8 font-semibold text-[#194BF0]">
             <div className="my-auto flex h-5 w-5 flex-shrink-0"></div>
-            <Link to="rent/cars">
+            <Link to="/rent/cars">
               <div className="my-auto text-[#194BF0]">مشاهده همه</div>
             </Link>
           </div>
