@@ -22,4 +22,5 @@ export interface TCar {
     title: string;
     icon: string;
   }[];
+  about: string;
 }

@@ -31,7 +31,7 @@ const SelectCarInfo = () => {
         <CarCoversDetails />
         <MoreCarDetails carInfo={mainCar} />
         <FeaturesCarComponent carInfo={mainCar} />
-        <AboutCarComponent />
+        <AboutCarComponent carInfo={mainCar} />
         <CommentForSelectedCar />
       </div>
     </div>
