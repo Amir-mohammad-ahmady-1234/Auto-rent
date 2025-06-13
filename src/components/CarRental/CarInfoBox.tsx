@@ -6,13 +6,9 @@ import {
   FaSuitcase,
   FaBirthdayCake,
 } from 'react-icons/fa';
-import type { TCar } from '../../types/CarType';
+import type { MainCarType } from '../../types/MainCarType';
 
-type CarInfoBoxProps = {
-  carInfo: TCar;
-};
-
-const CarInfoBox = ({ carInfo }: CarInfoBoxProps) => {
+const CarInfoBox = ({ carInfo }: MainCarType) => {
   return (
     <div
       dir="ltr"

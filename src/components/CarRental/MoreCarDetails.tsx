@@ -1,34 +1,23 @@
-import React from 'react';
+import type { MainCarType } from '../../types/MainCarType';
 
-const MoreCarDetails: React.FC = () => {
+const MoreCarDetails = ({ carInfo }: MainCarType) => {
+  const { details } = carInfo;
+
   return (
-    <div className="mx-auto w-full max-w-md rounded-lg bg-white p-6 shadow-md">
-      <h3 className="mb-4 text-xl font-semibold text-yellow-600">مشخصات</h3>
-      <div className="grid grid-cols-2 gap-4 text-gray-700">
-        <div className="flex items-center">
-          <span className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200">
-            <span className="text-xs">⛽</span>
-          </span>
-          <span>مصرف سوخت</span>
-        </div>
-        <div className="flex items-center">
-          <span className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200">
-            <span className="text-xs">🚗</span>
-          </span>
-          <span>نوع بدنه</span>
-        </div>
-        <div className="flex items-center">
-          <span className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200">
-            <span className="text-xs">⚙️</span>
-          </span>
-          <span>گیربکس</span>
-        </div>
-        <div className="flex items-center">
-          <span className="mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200">
-            <span className="text-xs">📞</span>
-          </span>
-          <span>پشتیبانی</span>
-        </div>
+    <div className="mx-auto w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+      <h3 className="mb-6 text-2xl font-bold text-yellow-600">مشخصات خودرو</h3>
+      <div className="grid grid-cols-2 gap-6 text-gray-800">
+        {details.map(({ title, icon, descriptionWithIcon }) => (
+          <div key={title} className="flex flex-col items-start space-y-1">
+            <div className="flex items-center space-x-2 rtl:space-x-reverse">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-100 text-lg text-yellow-600">
+                {icon}
+              </div>
+              <span className="text-base font-semibold">{title}</span>
+            </div>
+            <p className="pr-10 text-sm text-gray-500">{descriptionWithIcon}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const DatePickerForm = ({ control, errors }: DateTimePickerProps) => {
-  console.log(errors.deliveryDate?.message);
   return (
     <>
       <Controller

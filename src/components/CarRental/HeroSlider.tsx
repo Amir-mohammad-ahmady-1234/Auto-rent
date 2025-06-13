@@ -6,13 +6,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
-import type { TCar } from '../../types/CarType';
+import type { MainCarType } from '../../types/MainCarType';
 
-interface IHeroSliderPropsType {
-  carInfo: TCar;
-}
-
-const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
+const HeroSlider = ({ carInfo }: MainCarType) => {
   const { images, title } = carInfo;
   const thumbsSwiperRef = useRef<SwiperType | null>(null);
 
@@ -37,7 +33,7 @@ const HeroSlider = ({ carInfo }: IHeroSliderPropsType) => {
   };
 
   return (
-    <div className="relative mx-auto w-full max-w-5xl py-8 ">
+    <div className="relative mx-auto w-full max-w-5xl py-8">
       <div
         className={isModalOpen ? 'pointer-events-none blur-sm select-none' : ''}
       >

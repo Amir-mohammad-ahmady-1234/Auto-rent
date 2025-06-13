@@ -1,4 +1,4 @@
-import type { TCar } from '../types/CarType';
+import type { TCar } from "../types/CarType";
 
 export const carsData: TCar[] = [
   {
@@ -20,6 +20,18 @@ export const carsData: TCar[] = [
       'https://cdn.builder.io/api/v1/image/assets/TEMP/f1037e973ebe648dc07b71753ab7369b8f69641e?placeholderIfAbsent=true',
       'https://cdn.builder.io/api/v1/image/assets/TEMP/6cae8afd917916381bfeaaa1dda381a68fba179a?placeholderIfAbsent=true',
     ],
+    details: [
+      { title: 'مصرف سوخت', icon: '⛽️', descriptionWithIcon: '12 لیتر در 100 کیلومتر ⛽️' },
+      { title: 'نوع بدنه', icon: '🚗', descriptionWithIcon: 'کوپه 🚗' },
+      { title: 'گیربکس', icon: '⚙️', descriptionWithIcon: 'اتوماتیک ⚙️' },
+      { title: 'پشتیبانی', icon: '📞', descriptionWithIcon: '24/7 ☎️' },
+    ],
+    features: [
+      { title: 'گرم‌کن صندلی', icon: '🔥' },
+      { title: 'استارت بدون کلید', icon: '🔑' },
+      { title: 'تعلیق الکترونیکی', icon: '🛞' },
+      { title: 'هوش مصنوعی رانندگی', icon: '🤖' },
+    ],
   },
   {
     id: 2,
@@ -39,6 +51,18 @@ export const carsData: TCar[] = [
     images: [
       'https://cdn.builder.io/api/v1/image/assets/TEMP/6cae8afd917916381bfeaaa1dda381a68fba179a?placeholderIfAbsent=true',
       'https://cdn.builder.io/api/v1/image/assets/TEMP/731eb47892c68cbe0f98db2a99f3e70dbce3c849?placeholderIfAbsent=true',
+    ],
+    details: [
+      { title: 'مصرف سوخت', icon: '⛽️', descriptionWithIcon: '15 لیتر در 100 کیلومتر ⛽️' },
+      { title: 'نوع بدنه', icon: '🚙', descriptionWithIcon: 'شاسی‌بلند 🚙' },
+      { title: 'گیربکس', icon: '🕹️', descriptionWithIcon: 'دستی 🕹️' },
+      { title: 'پشتیبانی', icon: '📞', descriptionWithIcon: '8 صبح تا 8 شب ☎️' },
+    ],
+    features: [
+      { title: 'سقف پانوراما', icon: '🌌' },
+      { title: 'صندلی برقی', icon: '💺' },
+      { title: 'هشدار نقطه کور', icon: '🚨' },
+      { title: 'کروز کنترل تطبیقی', icon: '🧭' },
     ],
   },
   {
@@ -60,6 +84,18 @@ export const carsData: TCar[] = [
       'https://cdn.builder.io/api/v1/image/assets/TEMP/731eb47892c68cbe0f98db2a99f3e70dbce3c849?placeholderIfAbsent=true',
       'https://cdn.builder.io/api/v1/image/assets/TEMP/ffba8986276e49fc0ae371097249c9e82bfb81d4?placeholderIfAbsent=true',
     ],
+    details: [
+      { title: 'مصرف سوخت', icon: '⛽️', descriptionWithIcon: '10 لیتر در 100 کیلومتر ⛽️' },
+      { title: 'نوع بدنه', icon: '🚗', descriptionWithIcon: 'سدان 🚗' },
+      { title: 'گیربکس', icon: '⚙️', descriptionWithIcon: 'اتوماتیک ⚙️' },
+      { title: 'پشتیبانی', icon: '📞', descriptionWithIcon: '24/7 ☎️' },
+    ],
+    features: [
+      { title: 'پارک خودکار', icon: '🅿️' },
+      { title: 'نمایشگر لمسی', icon: '🖥️' },
+      { title: 'سیستم صوتی حرفه‌ای', icon: '🎵' },
+      { title: 'نورپردازی کابین', icon: '💡' },
+    ],
   },
   {
     id: 4,
@@ -79,6 +115,18 @@ export const carsData: TCar[] = [
     images: [
       'https://cdn.builder.io/api/v1/image/assets/TEMP/ffba8986276e49fc0ae371097249c9e82bfb81d4?placeholderIfAbsent=true',
       'https://cdn.builder.io/api/v1/image/assets/TEMP/8cc4239ad44c5478d4813729c8021c52b6820cc9?placeholderIfAbsent=true',
+    ],
+    details: [
+      { title: 'مصرف سوخت', icon: '⛽️', descriptionWithIcon: '11 لیتر در 100 کیلومتر ⛽️' },
+      { title: 'نوع بدنه', icon: '🏎️', descriptionWithIcon: 'کروک 🏎️' },
+      { title: 'گیربکس', icon: '⚙️', descriptionWithIcon: 'اتوماتیک ⚙️' },
+      { title: 'پشتیبانی', icon: '📞', descriptionWithIcon: '24 ساعته ☎️' },
+    ],
+    features: [
+      { title: 'سقف جمع‌شو برقی', icon: '🧰' },
+      { title: 'سیستم تهویه خودکار', icon: '❄️' },
+      { title: 'دوربین 360 درجه', icon: '📸' },
+      { title: 'ردیاب ماهواره‌ای', icon: '🛰️' },
     ],
   },
   {
@@ -100,6 +148,18 @@ export const carsData: TCar[] = [
       'https://cdn.builder.io/api/v1/image/assets/TEMP/8cc4239ad44c5478d4813729c8021c52b6820cc9?placeholderIfAbsent=true',
       'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
     ],
+    details: [
+      { title: 'مصرف سوخت', icon: '⛽️', descriptionWithIcon: '13 لیتر در 100 کیلومتر ⛽️' },
+      { title: 'نوع بدنه', icon: '🚙', descriptionWithIcon: 'شاسی‌بلند 🚙' },
+      { title: 'گیربکس', icon: '🕹️', descriptionWithIcon: 'دستی 🕹️' },
+      { title: 'پشتیبانی', icon: '📞', descriptionWithIcon: '9 صبح تا 9 شب ☎️' },
+    ],
+    features: [
+      { title: 'سنسور باران', icon: '🌧️' },
+      { title: 'تشخیص خواب‌آلودگی', icon: '😴' },
+      { title: 'یخ‌زدایی شیشه', icon: '❄️' },
+      { title: 'صندلی کودک', icon: '👶' },
+    ],
   },
   {
     id: 6,
@@ -119,6 +179,18 @@ export const carsData: TCar[] = [
     images: [
       'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
       'https://cdn.builder.io/api/v1/image/assets/TEMP/3c56450bb8c48444d02b6ce9e8b7913720447eb9?placeholderIfAbsent=true',
+    ],
+    details: [
+      { title: 'مصرف سوخت', icon: '⛽️', descriptionWithIcon: '14 لیتر در 100 کیلومتر ⛽️' },
+      { title: 'نوع بدنه', icon: '🚗', descriptionWithIcon: 'سدان 🚗' },
+      { title: 'گیربکس', icon: '⚙️', descriptionWithIcon: 'اتوماتیک ⚙️' },
+      { title: 'پشتیبانی', icon: '📞', descriptionWithIcon: '24 ساعته ☎️' },
+    ],
+    features: [
+      { title: 'نور بالا خودکار', icon: '🔦' },
+      { title: 'تشخیص علائم راه', icon: '🚧' },
+      { title: 'کروز کنترل', icon: '🧭' },
+      { title: 'پشتی صندلی ماساژور', icon: '💆‍♂️' },
     ],
   },
 ];

@@ -13,8 +13,7 @@ import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 const SelectCarInfo = () => {
   const { id } = useParams();
   const { cars } = useContext(CarsContext);
-
-  const itemNumberID = Number(id?.split(':')[1]);
+  const itemNumberID = Number(id);
 
   const mainCar = cars.filter((car) => car.id === itemNumberID)[0];
 
@@ -30,8 +29,8 @@ const SelectCarInfo = () => {
           <HeroSlider carInfo={mainCar} />
         </div>
         <CarCoversDetails />
-        <MoreCarDetails />
-        <FeaturesCarComponent />
+        <MoreCarDetails carInfo={mainCar} />
+        <FeaturesCarComponent carInfo={mainCar} />
         <AboutCarComponent />
         <CommentForSelectedCar />
       </div>

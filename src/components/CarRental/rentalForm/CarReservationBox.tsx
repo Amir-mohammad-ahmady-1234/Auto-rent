@@ -1,5 +1,3 @@
-import type { TCar } from '../../../types/CarType';
-
 import PriceBox from './PriceBox';
 import RentalTypeSelector from './RentalTypeSelector';
 import LocationSelector from './LocationSelector';
@@ -17,12 +15,10 @@ import { useContext } from 'react';
 import { FilterInputContext } from '../../../context/filtersInputContext/filterInputContext';
 import TitleForm from './TitleForm';
 import FormFooter from './FormFooter';
+import type { MainCarType } from '../../../types/MainCarType';
 
-type CarReservationBoxProps = {
-  carInfo: TCar;
-};
 
-const CarReservationBox = ({ carInfo }: CarReservationBoxProps) => {
+const CarReservationBox = ({ carInfo }: MainCarType) => {
   const { selectedInsurance } = useContext(FilterInputContext);
 
   const { dailyPrice, monthlyPrice } = carInfo;
