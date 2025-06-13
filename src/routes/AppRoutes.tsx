@@ -11,6 +11,7 @@ import { ScrollToToPage } from '../utils/ScrollToTopPage';
 import CarsProvider from '../context/cars/CarsProvider';
 import FilterInputProvider from '../context/filtersInputContext/FilterInputProvider';
 import SelectCarInfo from '../pages/SelectCarInfo';
+import LoginPage from '../pages/LoginPage';
 
 const AppRoutes = () => {
   return (
@@ -21,12 +22,12 @@ const AppRoutes = () => {
           <Routes>
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Home />} />
-
               <Route element={<BannerLayout />}>
                 {/* Non-functional Page  */}
                 <Route path="faq" element={<FAQ />} />
                 <Route path="concat" element={<ContactPage />} />
                 <Route path="about" element={<AboutUs />} />
+
                 {/* Dynamic Page */}
                 <Route path="rent">
                   <Route index element={<Navigate to="cars" replace />} />
@@ -38,6 +39,7 @@ const AppRoutes = () => {
                 </Route>
               </Route>
             </Route>
+            <Route path="login" element={<LoginPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </FilterInputProvider>
