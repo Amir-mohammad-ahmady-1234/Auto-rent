@@ -6,12 +6,17 @@ import LogInImage from './LogInImage';
 import LoginHeaderContent from './LoginHeaderContent';
 import LoginPhoneInput from './LoginPhoneInput';
 import { validatePhone } from './loginLogics';
+import SendMessage from './SendMessage';
+import { useNavigate } from 'react-router-dom';
 
 const LoginLevelOne = () => {
+  const navigate = useNavigate();
+
   const [phone, setPhone] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isAcceptRules, setIsAcceptRules] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [step, setStep] = useState<number>(1);
 
   function handleChangeRulesStatus() {
     setIsAcceptRules((prev) => !prev);
@@ -30,6 +35,13 @@ const LoginLevelOne = () => {
 
     setPhone(cleaned);
     setIsValid(validatePhone(cleaned));
+  }
+  function handleStep() {
+    if (step === 1) {
+      setStep((step) => step + 1);
+    } else if (step === 2) {
+      navigate(-1);
+    }
   }
 
   useEffect(
@@ -63,31 +75,21 @@ const LoginLevelOne = () => {
             <LoginHeaderContent />
 
             <div className="flex flex-col gap-3">
-              <LoginPhoneInput
-                phone={phone}
-                onChangePhone={handleChangePhone}
-                isValid={isValid}
-              />
-              <label className="flex items-end flex-col justify-end gap-2 text-right text-sm">
-                {errorMessage && (
-                  <span className="text-red-600">{errorMessage}</span>
-                )}
-                <div className='flex gap-2'>
-                <span>
-                  با ورود و ثبت‌نام در سایت، با{' '}
-                  <span className="text-blue-500">قوانین اتورنت</span> موافقت
-                  می‌کنم
-                </span>
-                <input
-                  type="checkbox"
-                  className="accent-blue-500"
-                  checked={isAcceptRules}
-                  onChange={handleChangeRulesStatus}
-                  />
-                  </div>
-              </label>
+              {step === 1 && (
+                <LoginPhoneInput
+                  phone={phone}
+                  onChangePhone={handleChangePhone}
+                  isValid={isValid}
+                  errorMessage={errorMessage}
+                  onChangeRulesStatus={handleChangeRulesStatus}
+                  isAcceptRules={isAcceptRules}
+                />
+              )}
+
+              {step === 2 && <SendMessage />}
 
               <button
+                onClick={handleStep}
                 disabled={!isValid && !isAcceptRules}
                 className={`rounded-md py-2 text-sm transition md:text-base ${
                   isValid && isAcceptRules
