@@ -6,7 +6,7 @@ import LogInImage from './LogInImage';
 import LoginHeaderContent from './LoginHeaderContent';
 import LoginPhoneInput from './LoginPhoneInput';
 import { validatePhone } from './loginLogics';
-import SendMessage from './SendMessage';
+import SendMessage from './OtpForm';
 import { useNavigate } from 'react-router-dom';
 
 const LoginLevelOne = () => {
@@ -39,6 +39,7 @@ const LoginLevelOne = () => {
   function handleStep() {
     if (step === 1) {
       setStep((step) => step + 1);
+      setIsValid(false)
     } else if (step === 2) {
       navigate(-1);
     }
