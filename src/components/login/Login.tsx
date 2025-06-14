@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from '../HeaderNav/Logo';
-
-import 'react-phone-input-2/lib/style.css';
 import LogInImage from './LogInImage';
 import LoginHeaderContent from './LoginHeaderContent';
 import LoginPhoneInput from './LoginPhoneInput';
-import { validatePhone } from './loginLogics';
 import SendMessage from './OtpForm';
-import { useNavigate } from 'react-router-dom';
+import { validatePhone } from './loginLogics';
 
-const LoginLevelOne = () => {
+import 'react-phone-input-2/lib/style.css';
+
+const Login = () => {
   const navigate = useNavigate();
 
+  const [otp, setOtp] = useState('');
   const [phone, setPhone] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(false);
   const [isAcceptRules, setIsAcceptRules] = useState<boolean>(false);
@@ -36,25 +37,30 @@ const LoginLevelOne = () => {
     setPhone(cleaned);
     setIsValid(validatePhone(cleaned));
   }
+
   function handleStep() {
     if (step === 1) {
-      setStep((step) => step + 1);
-      setIsValid(false)
+      setOtp('');
+      setStep(2);
+      setIsValid(false);
+      setIsAcceptRules(false)
     } else if (step === 2) {
-      navigate(-1);
+      if (otp.length === 6) {
+        navigate(-1);
+      }
+      setIsAcceptRules(true);
+      setErrorMessage('');
+      setIsValid(true);
     }
   }
 
-  useEffect(
-    function () {
-      if (!isValid && phone.length > 11) {
-        setErrorMessage('.شماره تلفن وارد شده معتبر نمیباشد');
-      } else {
-        setErrorMessage('');
-      }
-    },
-    [isValid, phone.length]
-  );
+  useEffect(() => {
+    if (!isValid && phone.length > 11) {
+      setErrorMessage('.شماره تلفن وارد شده معتبر نمیباشد');
+    } else {
+      setErrorMessage('');
+    }
+  }, [isValid, phone.length]);
 
   return (
     <div
@@ -64,16 +70,16 @@ const LoginLevelOne = () => {
       <div className="m-auto flex h-full w-full max-w-screen-lg flex-col overflow-hidden rounded-2xl bg-white shadow-lg md:h-6/7 md:w-4/5 md:flex-row">
         <LogInImage />
 
-        {/* Form section */}
+        {/* فرم ورود */}
         <div className="relative flex flex-1 flex-col justify-start px-6 py-6 sm:px-10">
-          {/* Logo */}
+          {/* لوگو */}
           <div className="mt-2 mb-6 self-center">
             <Logo />
           </div>
 
-          {/* Content */}
+          {/* محتوای فرم */}
           <div className="flex h-full flex-col justify-center gap-6">
-            <LoginHeaderContent />
+            {step === 1 && <LoginHeaderContent />}
 
             <div className="flex flex-col gap-3">
               {step === 1 && (
@@ -87,16 +93,26 @@ const LoginLevelOne = () => {
                 />
               )}
 
-              {step === 2 && <SendMessage />}
+              {step === 2 && (
+                <SendMessage
+                  otp={otp}
+                  setOtp={setOtp}
+                  setStep={setStep}
+                  setPhone={setPhone}
+                  setIsValid={setIsValid}
+                  setErrorMessage={setErrorMessage}
+                  setIsAcceptRules={setIsAcceptRules}
+                />
+              )}
 
               <button
+                disabled={!isValid && !isAcceptRules && otp.length !== 6}
                 onClick={handleStep}
-                disabled={!isValid && !isAcceptRules}
                 className={`rounded-md py-2 text-sm transition md:text-base ${
-                  isValid && isAcceptRules
+                  isValid && isAcceptRules && (otp ? otp.length === 6 : true)
                     ? 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
                     : 'cursor-not-allowed bg-gray-300 text-gray-500'
-                } `}
+                }`}
               >
                 تأیید و ادامه
               </button>
@@ -108,4 +124,4 @@ const LoginLevelOne = () => {
   );
 };
 
-export default LoginLevelOne;
+export default Login;
