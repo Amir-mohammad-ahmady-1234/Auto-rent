@@ -19,6 +19,10 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [step, setStep] = useState<number>(1);
 
+  const isButtonDisabled =
+    (step === 1 && (!isValid || !isAcceptRules)) ||
+    (step === 2 && otp.length !== 6);
+
   function handleChangeRulesStatus() {
     setIsAcceptRules((prev) => !prev);
   }
@@ -39,11 +43,11 @@ const Login = () => {
   }
 
   function handleStep() {
-    if (step === 1) {
+    if (step === 1 && isValid && isAcceptRules) {
       setOtp('');
       setStep(2);
       setIsValid(false);
-      setIsAcceptRules(false)
+      setIsAcceptRules(false);
     } else if (step === 2) {
       if (otp.length === 6) {
         navigate(-1);
@@ -106,12 +110,12 @@ const Login = () => {
               )}
 
               <button
-                disabled={!isValid && !isAcceptRules && otp.length !== 6}
+                disabled={isButtonDisabled}
                 onClick={handleStep}
                 className={`rounded-md py-2 text-sm transition md:text-base ${
-                  isValid && isAcceptRules && (otp ? otp.length === 6 : true)
-                    ? 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
-                    : 'cursor-not-allowed bg-gray-300 text-gray-500'
+                  isButtonDisabled
+                    ? 'cursor-not-allowed bg-gray-300 text-gray-500'
+                    : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
                 }`}
               >
                 تأیید و ادامه
