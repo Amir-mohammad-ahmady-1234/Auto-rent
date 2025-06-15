@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { validatePhone } from './loginUtils';
+import { validatePhone } from '../components/login/loginUtils';
 
 const useLogin = () => {
   const navigate = useNavigate();
@@ -45,9 +45,9 @@ const useLogin = () => {
       if (otp.length === 6) {
         navigate(-1);
       }
-    //   setIsAcceptRules(true);
+      //   setIsAcceptRules(true);
       setErrorMessage('');
-    //   setIsValid(true);
+      //   setIsValid(true);
     }
   }
 

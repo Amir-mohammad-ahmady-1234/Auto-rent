@@ -1,11 +1,11 @@
 import Logo from '../HeaderNav/Logo';
-import SendMessage from './OtpForm';
 
 import 'react-phone-input-2/lib/style.css';
-import useLogin from './useLogin';
+import useLogin from '../../hooks/useLogin';
 import PhoneInputBox from './PhoneInputBox';
 import LogInImage from './LogInImage';
 import HeaderContent from './HeaderContent';
+import OtpForm from './OtpForm';
 
 const Login = () => {
   const {
@@ -58,10 +58,11 @@ const Login = () => {
               )}
 
               {step === 2 && (
-                <SendMessage
+                <OtpForm
                   otp={otp}
                   setOtp={setOtp}
                   setStep={setStep}
+                  phone={phone}
                   setPhone={setPhone}
                   setIsValid={setIsValid}
                   setErrorMessage={setErrorMessage}

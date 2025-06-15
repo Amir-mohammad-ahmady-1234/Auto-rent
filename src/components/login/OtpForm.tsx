@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
 import type { IOtpFormProps } from '../../types/OtpFormProps';
+import { useMutation } from '@tanstack/react-query';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { verifyOtpCode } from '../../services/apiAuth';
 
 const OtpForm = ({
+  phone,
   setPhone,
   setIsValid,
   setErrorMessage,
@@ -11,8 +16,24 @@ const OtpForm = ({
   otp,
   setOtp,
 }: IOtpFormProps) => {
+  const navigate = useNavigate();
+
   const [timer, setTimer] = useState(3);
   const [isResendAvailable, setIsResendAvailable] = useState(false);
+
+  const { mutate: verifyOtp, isPending } = useMutation({
+    mutationFn: ({ phone, otp }: { phone: string; otp: string }) =>
+      verifyOtpCode(phone, otp),
+    onSuccess: () => {
+      toast.success('ورود با موفقیت انجام شد');
+      navigate(-1);
+    },
+    onError: (err: unknown) => {
+      const message =
+        err instanceof Error ? err.message : 'کد وارد شده اشتباه است';
+      toast.error(message);
+    },
+  });
 
   useEffect(() => {
     if (timer > 0) {
@@ -99,6 +120,17 @@ const OtpForm = ({
           )}
         </div>
       </div>
+        <button
+          disabled={otp.length !== 6 || isPending}
+          onClick={() => verifyOtp({ phone, otp })}
+          className={`w-full rounded-md py-2 text-sm transition md:text-base ${
+            otp.length !== 6 || isPending
+              ? 'cursor-not-allowed bg-gray-300 text-gray-500'
+              : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
+          }`}
+        >
+          {isPending ? 'در حال بررسی...' : 'تأیید کد'}
+        </button>
     </div>
   );
 };
