@@ -1,6 +1,6 @@
 import PhoneInput from 'react-phone-input-2';
 
-const LoginPhoneInput = ({
+const PhoneInputBox = ({
   phone,
   onChangePhone,
   isValid,
@@ -52,4 +52,4 @@ const LoginPhoneInput = ({
   );
 };
 
-export default LoginPhoneInput;
+export default PhoneInputBox;

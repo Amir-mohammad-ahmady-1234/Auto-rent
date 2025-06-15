@@ -14,6 +14,7 @@
     "@builder.io/react": "^8.2.0",
     "@hookform/resolvers": "^5.1.1",
     "@reduxjs/toolkit": "^2.8.2",
+    "@supabase/supabase-js": "^2.50.0",
     "@tailwindcss/vite": "^4.1.7",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",

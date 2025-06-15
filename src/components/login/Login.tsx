@@ -1,71 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Logo from '../HeaderNav/Logo';
-import LogInImage from './LogInImage';
-import LoginHeaderContent from './LoginHeaderContent';
-import LoginPhoneInput from './LoginPhoneInput';
 import SendMessage from './OtpForm';
-import { validatePhone } from './loginLogics';
 
 import 'react-phone-input-2/lib/style.css';
+import useLogin from './useLogin';
+import PhoneInputBox from './PhoneInputBox';
+import LogInImage from './LogInImage';
+import HeaderContent from './HeaderContent';
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const [otp, setOtp] = useState('');
-  const [phone, setPhone] = useState<string>('');
-  const [isValid, setIsValid] = useState<boolean>(false);
-  const [isAcceptRules, setIsAcceptRules] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const [step, setStep] = useState<number>(1);
-
-  const isButtonDisabled =
-    (step === 1 && (!isValid || !isAcceptRules)) ||
-    (step === 2 && otp.length !== 6);
-
-  function handleChangeRulesStatus() {
-    setIsAcceptRules((prev) => !prev);
-  }
-
-  function handleChangePhone(rawValue: string) {
-    let cleaned = rawValue;
-
-    if (cleaned.startsWith('+98') && cleaned[3] === '0') {
-      cleaned = '+98' + cleaned.slice(4);
-    }
-
-    if (cleaned.startsWith('98') && cleaned[2] === '0') {
-      cleaned = '98' + cleaned.slice(3);
-    }
-
-    setPhone(cleaned);
-    setIsValid(validatePhone(cleaned));
-  }
-
-  function handleStep() {
-    if (step === 1 && isValid && isAcceptRules) {
-      setOtp('');
-      setStep(2);
-      setIsValid(false);
-      setIsAcceptRules(false);
-    } else if (step === 2) {
-      if (otp.length === 6) {
-        navigate(-1);
-      }
-      setIsAcceptRules(true);
-      setErrorMessage('');
-      setIsValid(true);
-    }
-  }
-
-  useEffect(() => {
-    if (!isValid && phone.length > 11) {
-      setErrorMessage('.شماره تلفن وارد شده معتبر نمیباشد');
-    } else {
-      setErrorMessage('');
-    }
-  }, [isValid, phone.length]);
-
+  const {
+    step,
+    phone,
+    handleChangePhone,
+    isValid,
+    errorMessage,
+    handleChangeRulesStatus,
+    isAcceptRules,
+    otp,
+    setOtp,
+    setStep,
+    setPhone,
+    setIsValid,
+    setErrorMessage,
+    setIsAcceptRules,
+    isButtonDisabled,
+    handleStep,
+  } = useLogin();
   return (
     <div
       dir="ltr"
@@ -83,11 +43,11 @@ const Login = () => {
 
           {/* محتوای فرم */}
           <div className="flex h-full flex-col justify-center gap-6">
-            {step === 1 && <LoginHeaderContent />}
+            {step === 1 && <HeaderContent />}
 
             <div className="flex flex-col gap-3">
               {step === 1 && (
-                <LoginPhoneInput
+                <PhoneInputBox
                   phone={phone}
                   onChangePhone={handleChangePhone}
                   isValid={isValid}

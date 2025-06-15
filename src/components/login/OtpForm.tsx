@@ -1,16 +1,7 @@
 import { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
-// import { useNavigate } from 'react-router-dom';
+import type { IOtpFormProps } from '../../types/OtpFormProps';
 
-interface IOtpFormProps {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-  setPhone: React.Dispatch<React.SetStateAction<string>>;
-  setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
-  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-  setIsAcceptRules: React.Dispatch<React.SetStateAction<boolean>>;
-  otp: string;
-  setOtp: React.Dispatch<React.SetStateAction<string>>;
-}
 const OtpForm = ({
   setPhone,
   setIsValid,
@@ -20,8 +11,7 @@ const OtpForm = ({
   otp,
   setOtp,
 }: IOtpFormProps) => {
-  // const navigate = useNavigate();
-  const [timer, setTimer] = useState(120);
+  const [timer, setTimer] = useState(3);
   const [isResendAvailable, setIsResendAvailable] = useState(false);
 
   useEffect(() => {
@@ -40,13 +30,6 @@ const OtpForm = ({
       setOtp(value);
     }
   };
-
-  // const handleAcceptLogin = () => {
-  //   if (otp.length === 6) {
-  //     console.log('OTP accepted!');
-  //     navigate(-1);
-  //   }
-  // };
 
   const handleResendCode = () => {
     console.log('کد مجدد ارسال شد');
@@ -116,18 +99,6 @@ const OtpForm = ({
           )}
         </div>
       </div>
-
-      {/* <button
-        onClick={handleAcceptLogin}
-        disabled={otp.length !== 6}
-        className={`mt-4 w-full rounded-md py-2 text-sm transition md:text-base ${
-          otp.length === 6
-            ? 'bg-blue-600 text-white hover:bg-blue-700'
-            : 'cursor-not-allowed bg-gray-300 text-gray-500'
-        }`}
-      >
-        تأیید
-      </button> */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-const LoginHeaderContent = () => {
+const HeaderContent = () => {
   return (
     <>
       <h2 className="text-center text-xl font-semibold md:text-2xl">
@@ -11,4 +11,4 @@ const LoginHeaderContent = () => {
   );
 };
 
-export default LoginHeaderContent;
+export default HeaderContent;
