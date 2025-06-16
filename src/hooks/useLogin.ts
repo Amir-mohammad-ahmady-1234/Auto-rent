@@ -1,81 +1,61 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useSendOtp } from './useLoginMutation';
 import { validatePhone } from '../components/login/loginUtils';
 
 const useLogin = () => {
-  const navigate = useNavigate();
-
-  const [otp, setOtp] = useState('');
-  const [phone, setPhone] = useState<string>('');
-  const [isValid, setIsValid] = useState<boolean>(false);
-  const [isAcceptRules, setIsAcceptRules] = useState<boolean>(false);
+  const [step, setStep] = useState(1);
+  const [phone, setPhone] = useState('');
+  const [isValid, setIsValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [step, setStep] = useState<number>(1);
+  const [isAcceptRules, setIsAcceptRules] = useState(false);
+  const [otp, setOtp] = useState('');
 
-  const isButtonDisabled =
-    (step === 1 && (!isValid || !isAcceptRules)) ||
-    (step === 2 && otp.length !== 6);
+  const sendOtpMutation = useSendOtp();
 
-  function handleChangeRulesStatus() {
+  const handleChangePhone = (value: string) => {
+    setPhone(value);
+    const valid = validatePhone(value);
+    setIsValid(valid);
+    setErrorMessage(valid ? '' : 'شماره معتبر نیست');
+  };
+
+  const handleChangeRulesStatus = () => {
     setIsAcceptRules((prev) => !prev);
-  }
+  };
 
-  function handleChangePhone(rawValue: string) {
-    let cleaned = rawValue;
+  const handleStep = async () => {
+    if (!isValid || !isAcceptRules) return;
 
-    if (cleaned.startsWith('+98') && cleaned[3] === '0') {
-      cleaned = '+98' + cleaned.slice(4);
-    }
-
-    if (cleaned.startsWith('98') && cleaned[2] === '0') {
-      cleaned = '98' + cleaned.slice(3);
-    }
-
-    setPhone(cleaned);
-    setIsValid(validatePhone(cleaned));
-  }
-
-  function handleStep() {
-    if (step === 1 && isValid && isAcceptRules) {
-      setOtp('');
+    try {
+      await sendOtpMutation.mutateAsync(phone);
       setStep(2);
-      setIsValid(false);
-      setIsAcceptRules(false);
-    } else if (step === 2) {
-      if (otp.length === 6) {
-        navigate(-1);
-      }
-      //   setIsAcceptRules(true);
-      setErrorMessage('');
-      //   setIsValid(true);
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : 'ارسال کد با خطا مواجه شد';
+      setErrorMessage(message);
+      console.error('خطا در ارسال کد:', err);
     }
-  }
+  };
 
-  useEffect(() => {
-    if (!isValid && phone.length > 11) {
-      setErrorMessage('.شماره تلفن وارد شده معتبر نمیباشد');
-    } else {
-      setErrorMessage('');
-    }
-  }, [isValid, phone.length]);
+  const isButtonDisabled = !isValid || !isAcceptRules;
 
   return {
+    step,
+    phone,
+    handleChangePhone,
+    isValid,
+    errorMessage,
+    handleChangeRulesStatus,
+    isAcceptRules,
     otp,
     setOtp,
-    phone,
-    setPhone,
-    isValid,
-    setIsValid,
-    isAcceptRules,
-    setIsAcceptRules,
-    errorMessage,
-    setErrorMessage,
-    step,
     setStep,
-    handleStep,
+    setPhone,
+    setIsValid,
+    setErrorMessage,
+    setIsAcceptRules,
     isButtonDisabled,
-    handleChangeRulesStatus,
-    handleChangePhone,
+    handleStep,
   };
 };
 

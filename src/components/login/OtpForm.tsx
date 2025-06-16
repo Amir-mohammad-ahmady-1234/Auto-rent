@@ -1,45 +1,59 @@
 import { useEffect, useState } from 'react';
 import OtpInput from 'react-otp-input';
-import type { IOtpFormProps } from '../../types/OtpFormProps';
-import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { verifyOtpCode } from '../../services/apiAuth';
+import { useMutation } from '@tanstack/react-query';
+import { supabase } from '../../services/supabase';
 
-const OtpForm = ({
-  phone,
-  setPhone,
-  setIsValid,
-  setErrorMessage,
-  setIsAcceptRules,
-  setStep,
-  otp,
-  setOtp,
-}: IOtpFormProps) => {
+interface Props {
+  phone: string;
+  otp: string;
+  setOtp: (value: string) => void;
+}
+
+const OtpForm = ({ phone, otp, setOtp }: Props) => {
   const navigate = useNavigate();
-
-  const [timer, setTimer] = useState(3);
+  const [timer, setTimer] = useState(120);
   const [isResendAvailable, setIsResendAvailable] = useState(false);
+  const [attemptsLeft, setAttemptsLeft] = useState(5);
 
   const { mutate: verifyOtp, isPending } = useMutation({
-    mutationFn: ({ phone, otp }: { phone: string; otp: string }) =>
-      verifyOtpCode(phone, otp),
+    mutationFn: async () => {
+      const { data, error } = await supabase.auth.verifyOtp({
+        phone,
+        token: otp,
+        type: 'sms',
+      });
+
+      if (error) throw new Error(error.message);
+
+      // درج در جدول users
+      const { error: insertError } = await supabase
+        .from('users')
+        .insert({ phone });
+
+      if (insertError) throw new Error(insertError.message);
+
+      return data;
+    },
     onSuccess: () => {
       toast.success('ورود با موفقیت انجام شد');
       navigate(-1);
     },
     onError: (err: unknown) => {
-      const message =
-        err instanceof Error ? err.message : 'کد وارد شده اشتباه است';
-      toast.error(message);
+      setAttemptsLeft((prev) => prev - 1);
+      const msg = err instanceof Error ? err.message : 'خطایی رخ داد';
+      toast.error(`${msg} | تلاش‌های باقی‌مانده: ${attemptsLeft - 1}`);
+
+      if (attemptsLeft - 1 <= 0) {
+        toast.error('تلاش‌های شما تمام شد! لطفاً کد جدید دریافت کنید.');
+      }
     },
   });
 
   useEffect(() => {
     if (timer > 0) {
-      const interval = setInterval(() => {
-        setTimer((prev) => prev - 1);
-      }, 1000);
+      const interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
       return () => clearInterval(interval);
     } else {
       setIsResendAvailable(true);
@@ -47,23 +61,21 @@ const OtpForm = ({
   }, [timer]);
 
   const handleChange = (value: string) => {
-    if (/^\d*$/.test(value)) {
-      setOtp(value);
-    }
+    if (/^\d*$/.test(value)) setOtp(value);
   };
 
-  const handleResendCode = () => {
-    console.log('کد مجدد ارسال شد');
+  const handleResendCode = async () => {
     setTimer(120);
     setIsResendAvailable(false);
-  };
+    setAttemptsLeft(5);
 
-  const handleEditPhoneNumber = () => {
-    setStep(1);
-    setPhone('');
-    setIsValid(false);
-    setErrorMessage('');
-    setIsAcceptRules(false);
+    const { error } = await supabase.auth.signInWithOtp({ phone });
+
+    if (error) {
+      toast.error('خطا در ارسال مجدد کد');
+    } else {
+      toast.success('کد جدید ارسال شد');
+    }
   };
 
   const formatTime = (seconds: number) => {
@@ -98,10 +110,10 @@ const OtpForm = ({
 
       <div className="flex items-center gap-40">
         <button
-          onClick={handleEditPhoneNumber}
-          className="cursor-pointer text-sm text-blue-500 hover:text-blue-700"
+          onClick={() => location.reload()}
+          className="text-sm text-blue-500 hover:text-blue-700"
         >
-          ویرایش شماره موبایل
+          بازگشت
         </button>
 
         <div className="text-center text-sm text-gray-600">
@@ -120,17 +132,18 @@ const OtpForm = ({
           )}
         </div>
       </div>
-        <button
-          disabled={otp.length !== 6 || isPending}
-          onClick={() => verifyOtp({ phone, otp })}
-          className={`w-full rounded-md py-2 text-sm transition md:text-base ${
-            otp.length !== 6 || isPending
-              ? 'cursor-not-allowed bg-gray-300 text-gray-500'
-              : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
-          }`}
-        >
-          {isPending ? 'در حال بررسی...' : 'تأیید کد'}
-        </button>
+
+      <button
+        disabled={otp.length !== 6 || isPending || attemptsLeft <= 0}
+        onClick={() => verifyOtp()}
+        className={`w-full rounded-md py-2 text-sm transition md:text-base ${
+          otp.length !== 6 || isPending || attemptsLeft <= 0
+            ? 'cursor-not-allowed bg-gray-300 text-gray-500'
+            : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
+        }`}
+      >
+        {isPending ? 'در حال بررسی...' : 'تأیید کد'}
+      </button>
     </div>
   );
 };
