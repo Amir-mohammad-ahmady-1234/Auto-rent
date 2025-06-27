@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useSendOtp } from './useLoginMutation';
 import { validatePhone } from '../components/login/loginUtils';
+import { getLatestOtpCode } from '../services/apiAuth';
+import toast from 'react-hot-toast';
 
 const useLogin = () => {
   const [step, setStep] = useState(1);
@@ -29,10 +31,16 @@ const useLogin = () => {
     try {
       await sendOtpMutation.mutateAsync(phone);
       setStep(2);
+      const code = await getLatestOtpCode(phone);
+      toast.success(`کد شما: ${code}`, {
+        duration: 8000,
+      });
     } catch (err) {
       const message =
         err instanceof Error ? err.message : 'ارسال کد با خطا مواجه شد';
       setErrorMessage(message);
+      toast.error('کد موجود نیست');
+      console.log(err);
       console.error('خطا در ارسال کد:', err);
     }
   };

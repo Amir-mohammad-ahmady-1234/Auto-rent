@@ -7,7 +7,7 @@ const FeaturesCarComponent = ({ carInfo }: MainCarType) => {
       <h3 className="mb-4 text-xl font-semibold text-yellow-600">امکانات</h3>
       <div className="space-y-3">
         {features.map(({ icon, title }) => (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" key={title}>
             <span>{icon}</span>
             <span>{title}</span>
           </div>

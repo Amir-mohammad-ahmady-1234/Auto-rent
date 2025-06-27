@@ -19,23 +19,33 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
 
   const { mutate: verifyOtp, isPending } = useMutation({
     mutationFn: async () => {
-      const { data, error } = await supabase.auth.verifyOtp({
-        phone,
-        token: otp,
-        type: 'sms',
-      });
+  // گرفتن آخرین OTP ثبت شده برای این شماره
+  const { data, error } = await supabase
+    .from('test_otps')
+    .select('*')
+    .eq('phone', phone)
+    .order('expires_at', { ascending: false })
+    .limit(1);
 
-      if (error) throw new Error(error.message);
+  if (error) throw new Error(error.message);
 
-      // درج در جدول users
-      const { error: insertError } = await supabase
-        .from('users')
-        .insert({ phone });
+  const otpFromDb = data?.[0]?.code;
 
-      if (insertError) throw new Error(insertError.message);
+  // مقایسه OTP وارد شده با دیتابیس
+  if (otp !== otpFromDb) {
+    throw new Error('کد وارد شده اشتباه است');
+  }
 
-      return data;
-    },
+  // اگر برابر بود -> درج در جدول users
+  const { error: insertError } = await supabase
+    .from('users')
+    .insert({ phone });
+
+  if (insertError) throw new Error(insertError.message);
+
+  return data;
+},
+
     onSuccess: () => {
       toast.success('ورود با موفقیت انجام شد');
       navigate(-1);
