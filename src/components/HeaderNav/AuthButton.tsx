@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/useAuth';
 
 const AuthButton: React.FC = () => {
   const { phone } = useAuth();
+  const { pathname } = useLocation();
 
   return (
-    <Link to={phone ? '' : `login`}>
+    <Link to={`${phone ? pathname : 'login'}`}>
       <motion.button
         whileHover={{ scale: 1.05 }}
         transition={{ type: 'spring', stiffness: 300 }}
