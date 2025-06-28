@@ -11,6 +11,7 @@ const useLogin = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [isAcceptRules, setIsAcceptRules] = useState(false);
   const [otp, setOtp] = useState('');
+  const [isSendedOtpCode, setIsSendedOtpCode] = useState(false);
 
   const sendOtpMutation = useSendOtp();
 
@@ -29,6 +30,7 @@ const useLogin = () => {
     if (!isValid || !isAcceptRules) return;
 
     try {
+      setIsSendedOtpCode(true);
       await sendOtpMutation.mutateAsync(phone);
       setStep(2);
       const code = await getLatestOtpCode(phone);
@@ -43,6 +45,8 @@ const useLogin = () => {
       console.log(err);
       console.error('خطا در ارسال کد:', err);
     }
+
+    setIsSendedOtpCode(false);
   };
 
   const isButtonDisabled = !isValid || !isAcceptRules;
@@ -64,6 +68,7 @@ const useLogin = () => {
     setIsAcceptRules,
     isButtonDisabled,
     handleStep,
+    isSendedOtpCode,
   };
 };
 

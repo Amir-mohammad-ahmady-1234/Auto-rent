@@ -4,6 +4,8 @@ import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { supabase } from '../../services/supabase';
+import { useAuth } from '../../context/Auth/useAuth';
+import { addUser } from '../../services/apiAuth';
 
 interface Props {
   phone: string;
@@ -16,35 +18,34 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
   const [timer, setTimer] = useState(120);
   const [isResendAvailable, setIsResendAvailable] = useState(false);
   const [attemptsLeft, setAttemptsLeft] = useState(5);
+  const { setPhone, login } = useAuth();
 
   const { mutate: verifyOtp, isPending } = useMutation({
     mutationFn: async () => {
-  // گرفتن آخرین OTP ثبت شده برای این شماره
-  const { data, error } = await supabase
-    .from('test_otps')
-    .select('*')
-    .eq('phone', phone)
-    .order('expires_at', { ascending: false })
-    .limit(1);
+      // گرفتن آخرین OTP ثبت شده برای این شماره
+      const { data, error } = await supabase
+        .from('test_otps')
+        .select('*')
+        .eq('phone', phone)
+        .order('expires_at', { ascending: false })
+        .limit(1);
 
-  if (error) throw new Error(error.message);
+      if (error) throw new Error(error.message);
 
-  const otpFromDb = data?.[0]?.code;
+      const otpFromDb = data?.[0]?.code;
 
-  // مقایسه OTP وارد شده با دیتابیس
-  if (otp !== otpFromDb) {
-    throw new Error('کد وارد شده اشتباه است');
-  }
+      // مقایسه OTP وارد شده با دیتابیس
+      if (otp !== otpFromDb) {
+        throw new Error('کد وارد شده اشتباه است');
+      }
 
-  // اگر برابر بود -> درج در جدول users
-  const { error: insertError } = await supabase
-    .from('users')
-    .insert({ phone });
+      // اگر برابر بود -> درج در جدول users
+      addUser(phone, setPhone, login);
+      
+      // if (insertError) throw new Error(insertError.message);
 
-  if (insertError) throw new Error(insertError.message);
-
-  return data;
-},
+      return data;
+    },
 
     onSuccess: () => {
       toast.success('ورود با موفقیت انجام شد');

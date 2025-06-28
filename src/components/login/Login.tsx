@@ -19,6 +19,7 @@ const Login = () => {
     setOtp,
     isButtonDisabled,
     handleStep,
+    isSendedOtpCode,
   } = useLogin();
 
   return (
@@ -58,7 +59,7 @@ const Login = () => {
                   disabled={isButtonDisabled}
                   onClick={handleStep}
                   className={`rounded-md py-2 text-sm transition md:text-base ${
-                    isButtonDisabled
+                    isButtonDisabled || isSendedOtpCode
                       ? 'cursor-not-allowed bg-gray-300 text-gray-500'
                       : 'cursor-pointer bg-blue-600 text-white hover:bg-blue-700'
                   }`}

@@ -15,7 +15,7 @@ export async function sendTestOtp(phone: string): Promise<string> {
     );
 
   if (error) {
-    throw new Error('خطا در تولید کد OTP');
+    throw new Error(' . otp خطا در تولید کد ');
   }
   // برگرداندن کد برای نمایش با toast
   return otp;
@@ -60,11 +60,18 @@ export async function verifyTestOtp(
 }
 
 // افزودن کاربر به جدول users بعد از تأیید موفق
-export async function addUser(phone: string): Promise<void> {
+export async function addUser(
+  phone: string,
+  setPhone: React.Dispatch<React.SetStateAction<string | null>>,
+  login: (phone: string) => void
+): Promise<void> {
   const { error } = await supabase.from('users').insert({ phone });
   if (error) {
     throw new Error('خطا در افزودن کاربر');
   }
+
+  setPhone(phone);
+  login(phone);
 }
 export const getLatestOtpCode = async (phone: string) => {
   // حذف + و 0 ابتدای شماره، فقط عدد 989xxxxxxxxx
