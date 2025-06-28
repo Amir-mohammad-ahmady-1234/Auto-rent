@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { AuthContext } from './AuthContext';
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [phone, setPhone] = useState<string | null>(null);
+  const [phone, setPhone] = useState<string | null>(
+    localStorage.getItem('phoneNumber')
+  );
 
   const login = (phone: string) => {
     setPhone(phone);
@@ -10,6 +12,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = () => {
     setPhone(null);
+    localStorage.removeItem('phoneNumber');
   };
 
   return (

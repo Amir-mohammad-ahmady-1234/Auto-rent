@@ -70,6 +70,8 @@ export async function addUser(
     throw new Error('خطا در افزودن کاربر');
   }
 
+  localStorage.setItem('phoneNumber', phone);
+
   setPhone(phone);
   login(phone);
 }
