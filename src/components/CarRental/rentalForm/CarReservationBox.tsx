@@ -16,12 +16,17 @@ import { FilterInputContext } from '../../../context/filtersInputContext/filterI
 import TitleForm from './TitleForm';
 import FormFooter from './FormFooter';
 import type { MainCarType } from '../../../types/MainCarType';
-
+import { useAuth } from '../../../context/Auth/useAuth';
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const CarReservationBox = ({ carInfo }: MainCarType) => {
   const { selectedInsurance } = useContext(FilterInputContext);
-
   const { dailyPrice, monthlyPrice } = carInfo;
+
+  const navigate = useNavigate();
+
+  const { phone } = useAuth();
 
   const {
     handleSubmit,
@@ -34,6 +39,12 @@ const CarReservationBox = ({ carInfo }: MainCarType) => {
   });
 
   const onSubmit = (data: SchemaFormValues) => {
+    if (!phone) {
+      toast.error('ابتدا به حساب خود وارد شوید');
+      navigate('/login');
+      return;
+    }
+
     const finalData = {
       ...data,
       insurance: selectedInsurance,
