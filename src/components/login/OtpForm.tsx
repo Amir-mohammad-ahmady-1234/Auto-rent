@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { supabase } from '../../services/supabase';
 import { useAuth } from '../../context/Auth/useAuth';
-import { addUser } from '../../services/apiAuth';
+import { addUser, getLatestOtpCode } from '../../services/apiAuth';
+import { useSendOtp } from '../../hooks/useLoginMutation';
 
 interface Props {
   phone: string;
@@ -19,6 +20,8 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
   const [isResendAvailable, setIsResendAvailable] = useState(false);
   const [attemptsLeft, setAttemptsLeft] = useState(5);
   const { setPhone, login } = useAuth();
+
+  const sendOtpMutation = useSendOtp();
 
   const { mutate: verifyOtp, isPending } = useMutation({
     mutationFn: async () => {
@@ -41,7 +44,7 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
 
       // اگر برابر بود -> درج در جدول users
       addUser(phone, setPhone, login);
-      
+
       // if (insertError) throw new Error(insertError.message);
 
       return data;
@@ -63,13 +66,25 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
   });
 
   useEffect(() => {
-    if (timer > 0) {
-      const interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
-      return () => clearInterval(interval);
-    } else {
+    if (timer <= 0) {
       setIsResendAvailable(true);
+
+      const deleteOtp = async () => {
+        const lastOtpCode = await getLatestOtpCode(phone);
+        await supabase.from('test_otps').delete().eq('code', lastOtpCode);
+      };
+
+      deleteOtp();
+
+      return; // اینجا دیگه interval نیاز نداری
     }
-  }, [timer]);
+
+    const interval = setInterval(() => {
+      setTimer((prev) => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [timer, phone]);
 
   const handleChange = (value: string) => {
     if (/^\d*$/.test(value)) setOtp(value);
@@ -80,12 +95,14 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
     setIsResendAvailable(false);
     setAttemptsLeft(5);
 
-    const { error } = await supabase.auth.signInWithOtp({ phone });
-
-    if (error) {
+    try {
+      const code = await sendOtpMutation.mutateAsync(phone);
+      toast.success(`کد جدید : ${code}`, {
+        duration: 8000,
+      });
+    } catch (err) {
       toast.error('خطا در ارسال مجدد کد');
-    } else {
-      toast.success('کد جدید ارسال شد');
+      console.error(err);
     }
   };
 

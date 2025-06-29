@@ -7,12 +7,10 @@ export async function sendTestOtp(phone: string): Promise<string> {
   const expires_at = new Date(Date.now() + 2 * 60 * 1000).toISOString(); // 2 دقیقه بعد
 
   // درج یا به‌روزرسانی: attempts را صفر می‌کنیم
-  const { error } = await supabase
-    .from('test_otps')
-    .upsert(
-      { phone, code: otp, expires_at, attempts: 0 },
-      { onConflict: 'phone' }
-    );
+  const { error } = await supabase.from('test_otps').upsert(
+    { phone, code: otp, expires_at, attempts: 0 }
+    // { onConflict: 'code' }
+  );
 
   if (error) {
     throw new Error(' . otp خطا در تولید کد ');

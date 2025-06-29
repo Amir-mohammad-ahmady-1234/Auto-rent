@@ -12,6 +12,7 @@ const AuthButton: React.FC = () => {
 
     if (isLogout) {
       await supabase.from('test_otps').delete().eq('phone', phone);
+      await supabase.from('users').delete().eq('phone', phone);
       logout();
     }
   }
