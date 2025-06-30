@@ -4,7 +4,6 @@ import { FaChevronDown } from 'react-icons/fa';
 import { useAppDispatch } from '../../../hooks/reduxHooks';
 import { filterByPrice } from '../../../features/rentCarFilters/headerCarsFilterSlice';
 
-// تقویم قیمتی
 
 export function HeaderPriceFilter() {
   const [isOpen, setIsOpen] = useState(false);

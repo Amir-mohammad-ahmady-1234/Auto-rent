@@ -10,7 +10,6 @@ import {
   sortByOldYear,
 } from '../../../features/rentCarFilters/sortByFilterSlice';
 
-// مرتب‌سازی بر اساس
 
 export function HeaderCarsFilter() {
   const [isOpen, setIsOpen] = useState(false);

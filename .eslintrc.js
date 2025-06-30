@@ -17,8 +17,7 @@ module.exports = {
     },
   },
   rules: {
-    // اینجا می‌تونی قوانین شخصی‌سازی‌شده بذاری
-    'react/react-in-jsx-scope': 'off', // برای پروژه‌های React 17+
+    'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unused-vars': ['warn'],
   },
 };

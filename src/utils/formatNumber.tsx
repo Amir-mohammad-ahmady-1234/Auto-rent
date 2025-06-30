@@ -1,11 +1,9 @@
-// src/utils/formatNumber.tsx
-
 import React from 'react';
 import { formatNumber } from './formatNumber.1';
 
 type Props = {
   value: number | string;
-  withSuffix?: string; // مثلاً "تومان" یا "عدد"
+  withSuffix?: string;
   className?: string;
 };
 

@@ -1,11 +1,9 @@
-// components/ScrollToTopButton.tsx
 import { useEffect, useState } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // نشون دادن یا مخفی کردن دکمه با توجه به موقعیت اسکرول
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {
@@ -19,7 +17,6 @@ const ScrollToTopButton = () => {
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
-  // عملکرد کلیک
   const handleClick = () => {
     window.scrollTo({
       top: 0,

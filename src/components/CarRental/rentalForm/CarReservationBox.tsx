@@ -50,6 +50,7 @@ const CarReservationBox = ({ carInfo }: MainCarType) => {
       insurance: selectedInsurance,
       dailyPrice,
       monthlyPrice,
+      phone,
     };
 
     console.log(finalData);

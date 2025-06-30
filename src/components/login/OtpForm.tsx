@@ -25,7 +25,6 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
 
   const { mutate: verifyOtp, isPending } = useMutation({
     mutationFn: async () => {
-      // گرفتن آخرین OTP ثبت شده برای این شماره
       const { data, error } = await supabase
         .from('test_otps')
         .select('*')
@@ -37,12 +36,10 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
 
       const otpFromDb = data?.[0]?.code;
 
-      // مقایسه OTP وارد شده با دیتابیس
       if (otp !== otpFromDb) {
         throw new Error('کد وارد شده اشتباه است');
       }
 
-      // اگر برابر بود -> درج در جدول users
       addUser(phone, setPhone, login);
 
       // if (insertError) throw new Error(insertError.message);
@@ -76,7 +73,7 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
 
       deleteOtp();
 
-      return; // اینجا دیگه interval نیاز نداری
+      return;
     }
 
     const interval = setInterval(() => {
