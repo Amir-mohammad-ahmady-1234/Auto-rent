@@ -25,10 +25,14 @@ const usePageLocation = () => {
   // Drived state
   const pageRoute = pathname.split('/')[1];
 
-  const current = pageData[pageRoute] || {
+  let current = pageData[pageRoute] || {
     title: '',
     subtitle: '',
   };
+
+  if (pathname === '/rent/select_user_info') {
+    current = { title: 'مشخصات', subtitle: 'ثبت درخواست رزرو' };
+  }
 
   return current;
 };

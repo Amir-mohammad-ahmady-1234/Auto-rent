@@ -14,6 +14,7 @@ import SelectCarInfo from '../pages/SelectCarInfo';
 import LoginPage from '../pages/LoginPage';
 import { AuthProvider } from '../context/Auth/AuthProvider';
 import { ReserveProvider } from '../context/carReservedData/ReservedProvider';
+import SelectUserInfo from '../pages/SelectUserInfo';
 
 const AppRoutes = () => {
   return (
@@ -39,6 +40,10 @@ const AppRoutes = () => {
                       <Route
                         path="chose_car_info/:brand"
                         element={<SelectCarInfo />}
+                      />
+                      <Route
+                        path="select_user_info"
+                        element={<SelectUserInfo />}
                       />
                     </Route>
                   </Route>
