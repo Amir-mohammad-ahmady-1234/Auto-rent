@@ -1,9 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { carsData } from '../../data/carsData';
 import type { CarsState } from '../../types/filterCarType';
+import type { TCar } from '../../types/CarType';
 
 const initialState: CarsState = {
-  filteredCars: carsData,
+  filteredCars: [],
+  cars: [],
 };
 
 const filterPrice = createSlice({
@@ -14,7 +15,7 @@ const filterPrice = createSlice({
       const isRange = action.payload.split(',').length > 1;
       const [min, max] = action.payload.split(',').map(Number);
 
-      state.filteredCars = carsData.filter((car) => {
+      state.filteredCars = state.cars.filter((car) => {
         return (
           (isRange
             ? +car.dailyPrice <= max && +car.dailyPrice >= min
@@ -24,8 +25,12 @@ const filterPrice = createSlice({
         );
       });
     },
+    setCars: (state, action: PayloadAction<TCar[]>) => {
+      state.cars = action.payload;
+      state.filteredCars = action.payload;
+    },
   },
 });
 
 export default filterPrice.reducer;
-export const { filterByPrice } = filterPrice.actions;
+export const { filterByPrice, setCars } = filterPrice.actions;

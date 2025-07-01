@@ -3,21 +3,13 @@ import CarsListHeader from './CarsListHeader';
 import { CarsContext } from '../../../context/cars/CarsContext';
 import Car from '../../../ui/Car';
 
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import LoadingCar from '../../../ui/LoadingCar';
 
 const CarsList = () => {
   const { cars: allCars, isLoading, error } = useContext(CarsContext);
   const cars = [...allCars]?.splice(0, 5);
 
-  if (isLoading)
-    return (
-      <div className="m-10 grid grid-cols-2 gap-4">
-        {[...Array(2)].map((_, i) => (
-          <Skeleton key={i} height={200} />
-        ))}
-      </div>
-    );
+  if (isLoading) return <LoadingCar />;
 
   if (error)
     return (

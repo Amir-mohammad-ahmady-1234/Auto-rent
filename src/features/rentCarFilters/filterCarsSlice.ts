@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { carsData } from '../../data/carsData';
 import type { CarsState } from '../../types/filterCarType';
+import type { TCar } from '../../types/CarType';
 
 interface IPayload {
   price: string;
@@ -9,7 +9,7 @@ interface IPayload {
   type: string;
 }
 
-const initialState: CarsState = { filteredCars: carsData };
+const initialState: CarsState = { filteredCars: [], cars: [] };
 
 const filterCars = createSlice({
   name: 'filterCars',
@@ -17,7 +17,7 @@ const filterCars = createSlice({
   reducers: {
     // payload types : price: string,brand: array, type: string
     allFilters: (state, action: PayloadAction<IPayload>) => {
-      state.filteredCars = carsData.filter((car) => {
+      state.filteredCars = state.cars.filter((car) => {
         return (
           +car.dailyPrice >= +action.payload.price &&
           +car.dailyPrice <= +action.payload.maxPrice &&
@@ -27,8 +27,12 @@ const filterCars = createSlice({
         );
       });
     },
+    setCars: (state, action: PayloadAction<TCar[]>) => {
+      state.cars = action.payload;
+      state.filteredCars = action.payload;
+    },
   },
 });
 
 export default filterCars.reducer;
-export const { allFilters } = filterCars.actions;
+export const { allFilters, setCars } = filterCars.actions;

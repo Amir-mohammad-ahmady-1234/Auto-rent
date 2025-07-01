@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CarsContext } from './CarsContext';
 import { useQuery } from '@tanstack/react-query';
 import { getCars } from '../../services/apiCars';
 import type { TCar } from '../../types/CarType';
+import { useAppDispatch } from '../../hooks/reduxHooks';
+import { setCars as setFilterCars } from '../../features/rentCarFilters/filterCarsSlice';
+import { setCars as setPriceCars } from '../../features/rentCarFilters/headerCarsFilterSlice';
+import { setCars as setSortCars } from '../../features/rentCarFilters/sortByFilterSlice';
 
 // provider
 const CarsProvider = ({ children }: { children: React.ReactNode }) => {
   // const [cars, setCars] = useState<TCar[]>(carsData);
+  const dispatch = useAppDispatch();
 
   const {
     data: cars,
@@ -16,6 +21,14 @@ const CarsProvider = ({ children }: { children: React.ReactNode }) => {
     queryKey: ['cars'],
     queryFn: getCars,
   });
+
+  useEffect(() => {
+    if (cars) {
+      dispatch(setFilterCars(cars));
+      dispatch(setPriceCars(cars));
+      dispatch(setSortCars(cars));
+    }
+  }, [cars, dispatch]);
 
   return (
     <CarsContext.Provider value={{ cars: cars ?? [], error, isLoading }}>
