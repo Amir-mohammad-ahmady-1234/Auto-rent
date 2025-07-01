@@ -23,5 +23,4 @@ export interface TCar {
     icon: string;
   }[];
   about: string;
-  number: number;
 }

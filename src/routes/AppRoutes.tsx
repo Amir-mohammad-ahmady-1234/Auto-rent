@@ -35,7 +35,7 @@ const AppRoutes = () => {
                     <Route index element={<Navigate to="cars" replace />} />
                     <Route path="cars" element={<BrowseCarsPage />} />
                     <Route
-                      path="chose_car_info/:id"
+                      path="chose_car_info/:brand"
                       element={<SelectCarInfo />}
                     />
                   </Route>

@@ -13,11 +13,12 @@ import InviteCars from '../components/CarRental/InviteCars';
 import FullPageLoading from '../ui/FullPageLoading';
 
 const SelectCarInfo = () => {
-  const { id } = useParams();
+  const { brand } = useParams();
   const { cars } = useContext(CarsContext);
-  const itemNumberID = Number(id);
 
-  const mainCar = cars.filter((car) => car.number === itemNumberID)[0];
+  const mainCar = cars.filter((car) => {
+    return car.brand === brand;
+  })[0];
 
   if (!mainCar) return <FullPageLoading />;
 
