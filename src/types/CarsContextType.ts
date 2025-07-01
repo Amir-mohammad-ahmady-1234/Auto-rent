@@ -1,6 +1,7 @@
-import type { TCar } from "./CarType.ts";
+import type { TCar } from './CarType.ts';
 
 export interface CarsContextType {
   cars: TCar[];
-  setCars: React.Dispatch<React.SetStateAction<TCar[]>>;
+  error: Error | null;
+  isLoading: boolean;
 }
