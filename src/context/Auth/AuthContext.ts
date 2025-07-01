@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 
-export type AuthContextType = {
+type AuthContextType = {
   phone: string | null;
   setPhone: React.Dispatch<React.SetStateAction<string | null>>;
   login: (phone: string) => void;

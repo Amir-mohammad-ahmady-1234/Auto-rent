@@ -4,57 +4,16 @@ import LocationSelector from './LocationSelector';
 import DateTimePicker from './dateAndTimepicker/DateTimePicker';
 import InsuranceSelector from './InsuranceSelector';
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useForm } from 'react-hook-form';
-import {
-  defaultValues,
-  schema,
-  type SchemaFormValues,
-} from '../../../zodSchema/rentSchema';
-import { useContext } from 'react';
-import { FilterInputContext } from '../../../context/filtersInputContext/filterInputContext';
+import { Controller } from 'react-hook-form';
+import { type SchemaFormValues } from '../../../zodSchema/rentSchema';
 import TitleForm from './TitleForm';
 import FormFooter from './FormFooter';
 import type { MainCarType } from '../../../types/MainCarType';
-import { useAuth } from '../../../context/Auth/useAuth';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-
+import { useReservedInfo } from '../../../context/carReservedData/useReserved';
 const CarReservationBox = ({ carInfo }: MainCarType) => {
-  const { selectedInsurance } = useContext(FilterInputContext);
   const { dailyPrice, monthlyPrice } = carInfo;
-  
-  const navigate = useNavigate();
-
-  const { phone } = useAuth();
-
-  const {
-    handleSubmit,
-    control,
-    formState: { errors, isSubmitting },
-  } = useForm<SchemaFormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: defaultValues,
-    mode: 'onSubmit',
-  });
-
-  const onSubmit = (data: SchemaFormValues) => {
-    if (!phone) {
-      toast.error('ابتدا به حساب خود وارد شوید');
-      navigate('/login');
-      return;
-    }
-
-    const finalData = {
-      ...data,
-      insurance: selectedInsurance,
-      dailyPrice,
-      monthlyPrice,
-      phone,
-    };
-
-    console.log(finalData);
-  };
+  const { handleSubmit, control, errors, isSubmitting, onSubmit } =
+    useReservedInfo();
 
   return (
     <form
