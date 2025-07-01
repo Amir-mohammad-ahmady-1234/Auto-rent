@@ -8,7 +8,7 @@ interface Prop {
 }
 
 const Car = ({ carDetails }: Prop) => {
-  const { dailyPrice, deposit, id, image, model, monthlyPrice, title } =
+  const { dailyPrice, deposit, id, image, model, monthlyPrice, title, number } =
     carDetails;
 
   return (
@@ -75,7 +75,7 @@ const Car = ({ carDetails }: Prop) => {
           </span>
         </div>
 
-        <Link to={`/rent/chose_car_info/${id}`}>
+        <Link to={`/rent/chose_car_info/${number}`}>
           <button className="font-iranyekan mt-4 w-full cursor-pointer rounded-lg bg-[#194BF0] py-2.5 text-center text-sm font-extrabold text-white transition-colors hover:bg-[#1539C0] sm:py-3">
             درخواست رزرو
           </button>

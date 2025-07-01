@@ -23,7 +23,7 @@ import toast from 'react-hot-toast';
 const CarReservationBox = ({ carInfo }: MainCarType) => {
   const { selectedInsurance } = useContext(FilterInputContext);
   const { dailyPrice, monthlyPrice } = carInfo;
-
+  
   const navigate = useNavigate();
 
   const { phone } = useAuth();

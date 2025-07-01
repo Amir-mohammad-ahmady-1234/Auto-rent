@@ -10,17 +10,20 @@ import MoreCarDetails from '../components/CarRental/MoreCarDetails';
 import CommentForSelectedCar from '../components/CarRental/CommentForSelectedCar';
 import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 import InviteCars from '../components/CarRental/InviteCars';
+import FullPageLoading from '../ui/FullPageLoading';
 
 const SelectCarInfo = () => {
   const { id } = useParams();
   const { cars } = useContext(CarsContext);
   const itemNumberID = Number(id);
 
-  const mainCar = cars.filter((car) => car.id === itemNumberID)[0];
+  const mainCar = cars.filter((car) => car.number === itemNumberID)[0];
+
+  if (!mainCar) return <FullPageLoading />;
 
   return (
     <div className="mt-16 flex min-h-screen w-full flex-col gap-8 lg:flex-row">
-      <div className="order-1 h-full flex w-full justify-center lg:order-2 lg:w-1/3">
+      <div className="order-1 flex h-full w-full justify-center lg:order-2 lg:w-1/3">
         <CarReservationBox carInfo={mainCar} />
       </div>
 
