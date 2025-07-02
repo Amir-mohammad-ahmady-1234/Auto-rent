@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CarsContext } from '../context/cars/CarsContext';
 import CarReservationBox from '../components/CarRental/rentalForm/CarReservationBox';
 import CarInfoBox from '../components/CarRental/CarInfoBox';
@@ -11,14 +11,24 @@ import CommentForSelectedCar from '../components/CarRental/CommentForSelectedCar
 import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 import InviteCars from '../components/CarRental/InviteCars';
 import FullPageLoading from '../ui/FullPageLoading';
+import { useStep } from '../context/handleReserveSteps/useStep';
 
 const SelectCarInfo = () => {
   const { brand } = useParams();
   const { cars } = useContext(CarsContext);
+  const { currentStep } = useStep();
+  const navigate = useNavigate();
 
   const mainCar = cars.filter((car) => {
     return car.brand === brand;
   })[0];
+
+  useEffect(
+    function () {
+      if (currentStep === 2) navigate('/rent/select_user_info');
+    },
+    [currentStep, navigate]
+  );
 
   if (!mainCar) return <FullPageLoading />;
 

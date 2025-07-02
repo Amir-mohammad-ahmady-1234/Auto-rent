@@ -9,8 +9,9 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../Auth/useAuth';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FilterInputContext } from '../filtersInputContext/filterInputContext';
+import { useStep } from '../handleReserveSteps/useStep';
 
 export const ReserveProvider = ({
   children,
@@ -19,7 +20,10 @@ export const ReserveProvider = ({
 }) => {
   const navigate = useNavigate();
   const { phone } = useAuth();
+  const [formInfo, setFormInfo] = useState<null | SchemaFormValues>(null);
+
   const { selectedInsurance } = useContext(FilterInputContext);
+  const { setCurrentStep } = useStep();
 
   const {
     handleSubmit,
@@ -44,12 +48,21 @@ export const ReserveProvider = ({
       phone,
     };
 
-    console.log(finalData);
+    setFormInfo(finalData);
+    setCurrentStep(2);
   };
 
   return (
     <ReservedContext.Provider
-      value={{ handleSubmit, control, errors, isSubmitting, onSubmit }}
+      value={{
+        handleSubmit,
+        control,
+        errors,
+        isSubmitting,
+        onSubmit,
+        formInfo,
+        setFormInfo,
+      }}
     >
       {children}
     </ReservedContext.Provider>

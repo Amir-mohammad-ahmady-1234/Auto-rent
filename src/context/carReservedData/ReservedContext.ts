@@ -12,8 +12,9 @@ interface ReservedContextType {
   errors: FieldErrors<SchemaFormValues>;
   isSubmitting: boolean;
   onSubmit: (data: SchemaFormValues) => void;
+  formInfo: SchemaFormValues | null;
+  setFormInfo: React.Dispatch<React.SetStateAction<SchemaFormValues | null>>;
 }
-
 export const ReservedContext = createContext<ReservedContextType>({
   handleSubmit: () => {
     throw new Error('handleSubmit is not implemented');
@@ -23,5 +24,9 @@ export const ReservedContext = createContext<ReservedContextType>({
   isSubmitting: false,
   onSubmit: () => {
     throw new Error('onSubmit is not implemented');
+  },
+  formInfo: null,
+  setFormInfo: () => {
+    throw new Error('setFormInfo is not implemented');
   },
 });
