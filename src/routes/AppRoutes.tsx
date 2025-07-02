@@ -16,6 +16,7 @@ import { AuthProvider } from '../context/Auth/AuthProvider';
 import { ReserveProvider } from '../context/carReservedData/ReservedProvider';
 import SelectUserInfo from '../pages/SelectUserInfo';
 import { StepProvider } from '../context/handleReserveSteps/StepProvider';
+import UserReservedInfoProvider from '../context/userReservedData/UserReservedInfoProvider';
 
 const AppRoutes = () => {
   return (
@@ -24,37 +25,42 @@ const AppRoutes = () => {
       <AuthProvider>
         <StepProvider>
           <ReserveProvider>
-            <CarsProvider>
-              <FilterInputProvider>
-                <Routes>
-                  <Route path="/" element={<AppLayout />}>
-                    <Route index element={<Home />} />
-                    <Route element={<BannerLayout />}>
-                      {/* Non-functional Page  */}
-                      <Route path="faq" element={<FAQ />} />
-                      <Route path="concat" element={<ContactPage />} />
-                      <Route path="about" element={<AboutUs />} />
+            <UserReservedInfoProvider>
+              <CarsProvider>
+                <FilterInputProvider>
+                  <Routes>
+                    <Route path="/" element={<AppLayout />}>
+                      <Route index element={<Home />} />
+                      <Route element={<BannerLayout />}>
+                        {/* Non-functional Page  */}
+                        <Route path="faq" element={<FAQ />} />
+                        <Route path="concat" element={<ContactPage />} />
+                        <Route path="about" element={<AboutUs />} />
 
-                      {/* Dynamic Page */}
-                      <Route path="rent">
-                        <Route index element={<Navigate to="cars" replace />} />
-                        <Route path="cars" element={<BrowseCarsPage />} />
-                        <Route
-                          path="chose_car_info/:brand"
-                          element={<SelectCarInfo />}
-                        />
-                        <Route
-                          path="select_user_info"
-                          element={<SelectUserInfo />}
-                        />
+                        {/* Dynamic Page */}
+                        <Route path="rent">
+                          <Route
+                            index
+                            element={<Navigate to="cars" replace />}
+                          />
+                          <Route path="cars" element={<BrowseCarsPage />} />
+                          <Route
+                            path="chose_car_info/:brand"
+                            element={<SelectCarInfo />}
+                          />
+                          <Route
+                            path="select_user_info"
+                            element={<SelectUserInfo />}
+                          />
+                        </Route>
                       </Route>
                     </Route>
-                  </Route>
-                  <Route path="login" element={<LoginPage />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </FilterInputProvider>
-            </CarsProvider>
+                    <Route path="login" element={<LoginPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </FilterInputProvider>
+              </CarsProvider>
+            </UserReservedInfoProvider>
           </ReserveProvider>
         </StepProvider>
       </AuthProvider>

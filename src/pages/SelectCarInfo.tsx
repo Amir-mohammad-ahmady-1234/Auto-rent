@@ -27,7 +27,7 @@ const SelectCarInfo = () => {
     function () {
       if (currentStep === 2) navigate('/rent/select_user_info');
     },
-    [currentStep, navigate]
+    [currentStep, navigate, brand]
   );
 
   if (!mainCar) return <FullPageLoading />;
