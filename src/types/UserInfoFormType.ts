@@ -4,4 +4,5 @@ export type FormTypes = {
   nationalCode: number | null;
   phone: number | null;
   email: string;
+  adress: string;
 };

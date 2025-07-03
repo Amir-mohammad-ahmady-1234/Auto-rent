@@ -1,3 +1,4 @@
+import { number } from 'framer-motion';
 import { z } from 'zod';
 
 export const schema = z.object({
@@ -36,6 +37,7 @@ export const defaultValues = {
   returnDate: null,
   pickupLocation: 'انتخاب کنید',
   returnLocation: 'انتخاب کنید',
+  phone: number,
 };
 
 export type SchemaFormValues = z.infer<typeof schema>;

@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { useStep } from '../context/handleReserveSteps/useStep';
 import StepManagement from '../ui/StepManagement';
 import { useUserRserveInfo } from '../context/userReservedData/useUserReservedInfo';
+import { useAuth } from '../context/Auth/useAuth';
 
 const SelectUserInfo = () => {
   const navigate = useNavigate();
 
   const { currentStep } = useStep();
   const { errors, handleSubmit, onSubmit, register } = useUserRserveInfo();
+  const { phone } = useAuth();
 
   useEffect(
     function () {
@@ -87,6 +89,7 @@ const SelectUserInfo = () => {
             <input
               {...register('phone', { required: true, minLength: 10 })}
               type="number"
+              defaultValue={phone ?? ''}
               className="w-full rounded border border-gray-300 p-2"
             />
             {errors.phone && (
@@ -97,7 +100,7 @@ const SelectUserInfo = () => {
               </p>
             )}
           </div>
-          <div className="md:col-span-2">
+          <div>
             <label className="mb-1 block text-sm">ایمیل</label>
             <input
               {...register('email', { required: true })}
@@ -112,19 +115,32 @@ const SelectUserInfo = () => {
               </p>
             )}
           </div>
+          <div>
+            <label className="mb-1 block text-sm">ادرس</label>
+            <input
+              {...register('adress', { required: true })}
+              type="text"
+              className="w-full rounded border border-gray-300 p-2"
+            />
+            {errors.adress && (
+              <p className="mt-1 text-xs text-red-600">
+                {errors.adress.type === 'required' &&
+                  'لطفا ادرس خود را وارد کنید.'}
+              </p>
+            )}
+            {/* Car Image */}
+            <div className="mx-auto mt-6 max-w-6xl px-4 md:px-0">
+              <img
+                src="/images/caaars 1.png"
+                alt="car"
+                className="w-full rounded-lg object-cover"
+              />
+            </div>
+          </div>
           <button className="mt-6 w-full cursor-pointer rounded bg-blue-600 py-2 text-white">
             ادامه رزرو
           </button>
         </form>
-      </div>
-
-      {/* Car Image */}
-      <div className="mx-auto mt-6 max-w-4xl">
-        <img
-          src="/path-to-your-car-image.png"
-          alt="car"
-          className="w-full rounded-lg"
-        />
       </div>
     </section>
   );

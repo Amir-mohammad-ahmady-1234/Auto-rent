@@ -1,11 +1,7 @@
-import { useReservedInfo } from '../context/carReservedData/useReserved';
 import { useStep } from '../context/handleReserveSteps/useStep';
 
 const StepManagement = () => {
   const { currentStep } = useStep();
-
-  const { formInfo } = useReservedInfo();
-  console.log(formInfo);
 
   return (
     <div className="mx-auto flex max-w-4xl items-center justify-between rounded-lg bg-white p-4 shadow">
