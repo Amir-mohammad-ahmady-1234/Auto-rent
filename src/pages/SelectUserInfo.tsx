@@ -1,23 +1,35 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStep } from '../context/handleReserveSteps/useStep';
 import StepManagement from '../ui/StepManagement';
 import { useUserRserveInfo } from '../context/userReservedData/useUserReservedInfo';
 import { useAuth } from '../context/Auth/useAuth';
+import RulesModal from '../ui/RulesModal';
 
 const SelectUserInfo = () => {
   const navigate = useNavigate();
 
-  const { currentStep } = useStep();
+  const { currentStep, setCurrentStep } = useStep();
   const { errors, handleSubmit, onSubmit, register } = useUserRserveInfo();
   const { phone } = useAuth();
+
+  const [isRulesOpen, setIsRulesOpen] = useState(false);
 
   useEffect(
     function () {
       if (currentStep === 1) navigate('/rent');
+      if (currentStep === 3) navigate('/rent/swdw');
     },
     [currentStep, navigate]
   );
+
+  const handleConfirm = () => {
+    setCurrentStep(3);
+    setIsRulesOpen(false);
+  };
+
+  if (isRulesOpen)
+    return <RulesModal isOpen={isRulesOpen} onConfirm={handleConfirm} />;
 
   return (
     <section className="w-full bg-gray-50 py-8">
@@ -137,7 +149,10 @@ const SelectUserInfo = () => {
               />
             </div>
           </div>
-          <button className="mt-6 w-full cursor-pointer rounded bg-blue-600 py-2 text-white">
+          <button
+            onClick={() => setIsRulesOpen(true)}
+            className="mt-6 w-full cursor-pointer rounded bg-blue-600 py-2 text-white"
+          >
             ادامه رزرو
           </button>
         </form>
