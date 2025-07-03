@@ -18,13 +18,13 @@ const SelectUserInfo = () => {
   useEffect(
     function () {
       if (currentStep === 1) navigate('/rent');
-      if (currentStep === 3) navigate('/rent/swdw');
+      if (currentStep === 4) navigate('/rent/payment');
     },
     [currentStep, navigate]
   );
 
   const handleConfirm = () => {
-    setCurrentStep(3);
+    setCurrentStep(4);
     setIsRulesOpen(false);
   };
 
@@ -42,7 +42,7 @@ const SelectUserInfo = () => {
       </div>
 
       {/* Form */}
-      <div className="mx-auto mt-6 max-w-4xl rounded-lg bg-white p-6 shadow">
+      <div className="mx-auto mt-10 max-w-4xl rounded-lg bg-white p-6 shadow">
         <h2 className="mb-4 text-xl font-semibold">مشخصات کاربر</h2>
 
         <form
@@ -140,22 +140,25 @@ const SelectUserInfo = () => {
                   'لطفا ادرس خود را وارد کنید.'}
               </p>
             )}
-            {/* Car Image */}
-            <div className="mx-auto mt-6 max-w-6xl px-4 md:px-0">
-              <img
-                src="/images/caaars 1.png"
-                alt="car"
-                className="w-full rounded-lg object-cover"
-              />
-            </div>
           </div>
-          <button
-            onClick={() => setIsRulesOpen(true)}
-            className="mt-6 w-full cursor-pointer rounded bg-blue-600 py-2 text-white"
-          >
-            ادامه رزرو
-          </button>
         </form>
+      </div>
+      {/* Car Image & Button */}
+      <div className="flex w-full flex-col items-center justify-center gap-4 px-4 md:flex-row">
+        <button
+          onClick={() => {
+            setIsRulesOpen(true);
+            setCurrentStep(3);
+          }}
+          className="w-full cursor-pointer rounded bg-blue-600 py-4 text-white md:w-1/2"
+        >
+          ادامه رزرو
+        </button>
+        <img
+          src="/images/caaars 1.png"
+          alt="car"
+          className="w-full rounded-lg object-cover md:w-1/2"
+        />
       </div>
     </section>
   );

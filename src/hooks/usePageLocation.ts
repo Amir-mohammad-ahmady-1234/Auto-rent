@@ -34,6 +34,10 @@ const usePageLocation = () => {
     current = { title: 'مشخصات', subtitle: 'ثبت درخواست رزرو' };
   }
 
+  if (pathname === '/rent/payment') {
+    current = { title: 'پرداخت', subtitle: 'ثبت درخواست رزرو' };
+  }
+
   return current;
 };
 

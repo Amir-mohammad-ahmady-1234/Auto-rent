@@ -17,6 +17,7 @@ import { ReserveProvider } from '../context/carReservedData/ReservedProvider';
 import SelectUserInfo from '../pages/SelectUserInfo';
 import { StepProvider } from '../context/handleReserveSteps/StepProvider';
 import UserReservedInfoProvider from '../context/userReservedData/UserReservedInfoProvider';
+import Payment from '../pages/Payment';
 
 const AppRoutes = () => {
   return (
@@ -52,6 +53,7 @@ const AppRoutes = () => {
                             path="select_user_info"
                             element={<SelectUserInfo />}
                           />
+                          <Route path="payment" element={<Payment />} />
                         </Route>
                       </Route>
                     </Route>
