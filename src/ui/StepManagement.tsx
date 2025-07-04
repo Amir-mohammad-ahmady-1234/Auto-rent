@@ -4,36 +4,39 @@ const StepManagement = () => {
   const { currentStep } = useStep();
 
   return (
-    <div className="mx-auto flex max-w-4xl items-center justify-between rounded-lg bg-white p-4 shadow">
+    <div className="relative mx-auto flex max-w-4xl items-center justify-between rounded-lg bg-white p-4 shadow">
+      {/* Full line behind steps: from center of first to center of last */}
+      <div className="absolute top-9 left-1/10 right-1/10 h-0.5 bg-gray-300 z-0"></div>
+
       <Step
         icon="🚗"
         title="انتخاب خودرو"
-        isActive={currentStep > 1 ? true : false}
-        isCurrentStep={currentStep === 1 ? true : false}
+        isActive={currentStep > 1}
+        isCurrentStep={currentStep === 1}
       />
       <Step
         icon="📄"
         title="مشخصات"
-        isActive={currentStep > 2 ? true : false}
-        isCurrentStep={currentStep === 2 ? true : false}
+        isActive={currentStep > 2}
+        isCurrentStep={currentStep === 2}
       />
       <Step
         icon="✅"
         title="تایید اطلاعات"
-        isActive={currentStep > 3 ? true : false}
-        isCurrentStep={currentStep === 3 ? true : false}
+        isActive={currentStep > 3}
+        isCurrentStep={currentStep === 3}
       />
       <Step
         icon="💳"
         title="پرداخت"
-        isActive={currentStep > 4 ? true : false}
-        isCurrentStep={currentStep === 4 ? true : false}
+        isActive={currentStep > 4}
+        isCurrentStep={currentStep === 4}
       />
       <Step
         icon="🏁"
         title="تحویل خودرو"
-        isActive={currentStep > 5 ? true : false}
-        isCurrentStep={currentStep === 5 ? true : false}
+        isActive={currentStep > 5}
+        isCurrentStep={currentStep === 5}
       />
     </div>
   );
@@ -50,7 +53,7 @@ const Step = ({
   isActive?: boolean;
   isCurrentStep?: boolean;
 }) => (
-  <div className="flex flex-col items-center">
+  <div className="relative flex flex-1 flex-col items-center z-10">
     <div
       className={`flex h-10 w-10 items-center justify-center rounded-full text-xl ${
         isCurrentStep
@@ -62,7 +65,6 @@ const Step = ({
     >
       {icon}
     </div>
-
     <span className="mt-2 text-xs">{title}</span>
   </div>
 );
