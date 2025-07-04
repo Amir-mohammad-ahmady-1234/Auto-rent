@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStep } from '../context/handleReserveSteps/useStep';
 import StepManagement from '../ui/StepManagement';
+import ReserveInfo from '../components/Payment/ReserveInfo';
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -18,6 +19,8 @@ const Payment = () => {
   return (
     <section className="w-full bg-gray-50 py-8">
       <StepManagement />
+
+      <ReserveInfo />
     </section>
   );
 };
