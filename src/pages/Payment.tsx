@@ -38,12 +38,16 @@ const Payment = () => {
 
       <div className="flex flex-col space-y-16">
         <ReserveInfo />
-        <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:items-stretch lg:gap-0">
-          <CalculateMany />
-          <PayMany
-            onPaymentOptionChange={handlePaymentOptionChange}
-            onPaymentSubmit={handlePaymentSubmit}
-          />
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center space-y-6 lg:flex-row lg:gap-0 lg:space-y-0 lg:space-x-0">
+          <div className="flex w-full lg:w-1/2">
+            <CalculateMany />
+          </div>
+          <div className="flex w-full lg:w-1/2">
+            <PayMany
+              onPaymentOptionChange={handlePaymentOptionChange}
+              onPaymentSubmit={handlePaymentSubmit}
+            />
+          </div>
         </div>
       </div>
     </section>

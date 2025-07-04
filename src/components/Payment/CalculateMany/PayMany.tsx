@@ -70,7 +70,7 @@ const PayMany: React.FC<PayManyProps> = ({
   );
 
   return (
-    <div className="payment-options-container mx-auto flex w-full max-w-[518px] flex-col items-center justify-center gap-4 rounded-2xl bg-white p-5 font-['Estedad'] shadow-sm md:gap-6 md:p-6 lg:h-[350px] lg:rounded-l-2xl lg:rounded-r-none">
+    <div className="payment-options-container mx-auto flex w-full flex-col items-center justify-center gap-4 overflow-x-auto border-dashed border-[#AEAEAE] bg-white p-5 font-['Estedad'] shadow-sm md:gap-6 md:p-8 lg:min-h-[350px] lg:rounded-l-2xl lg:rounded-r-none lg:border-r">
       {/* Payment Options */}
       <div className="flex w-full flex-col items-end gap-6">
         <div className="flex w-full flex-col items-end gap-2.5">

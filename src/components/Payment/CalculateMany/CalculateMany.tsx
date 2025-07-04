@@ -56,7 +56,7 @@ const CalculateMany: React.FC<CalculateManyProps> = (props) => {
   return (
     <div
       dir="ltr"
-      className="flex max-w-[705px] flex-col overflow-hidden rounded-r-2xl border-l border-dashed border-[#AEAEAE] bg-white p-4 md:p-6 lg:h-[350px]"
+      className="flex w-full flex-col overflow-x-auto rounded-r-2xl border-dashed border-[#AEAEAE] bg-white p-5 md:p-8 lg:min-h-[350px] lg:border-l"
     >
       {/* Header Section */}
       <div className="flex w-full flex-col items-stretch justify-center">
