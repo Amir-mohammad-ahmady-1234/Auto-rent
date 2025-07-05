@@ -50,6 +50,7 @@ export const ReserveProvider = ({
 
     setFormInfo(finalData);
     setCurrentStep(2);
+    // console.log(finalData.deliveryDate.format()); for get date
   };
 
   return (

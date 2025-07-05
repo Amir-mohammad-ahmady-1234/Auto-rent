@@ -1,8 +1,9 @@
 import { Controller } from 'react-hook-form';
 import type { DateTimePickerProps } from '../../../../types/DatePickerProps';
 
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-multi-date-picker';
+import persian from 'react-date-object/calendars/persian';
+import persian_fa from 'react-date-object/locales/persian_fa';
 
 const DatePickerForm = ({ control, errors }: DateTimePickerProps) => {
   return (
@@ -16,13 +17,11 @@ const DatePickerForm = ({ control, errors }: DateTimePickerProps) => {
               تاریخ تحویل
             </label>
             <DatePicker
-              selected={value}
+              calendar={persian}
+              value={value}
               onChange={onChange}
-              className={`form-input w-full ${errors.deliveryDate?.message ? 'border-red-500' : ''}`}
-              dateFormat="yyyy/MM/dd"
-              calendarClassName="rtl"
-              placeholderText="انتخاب تاریخ"
-              minDate={new Date()}
+              locale={persian_fa}
+              calendarPosition="bottom-right"
             />
             {typeof errors.deliveryDate?.message === 'string' && (
               <p className="mt-1 text-sm text-red-500">
@@ -41,15 +40,13 @@ const DatePickerForm = ({ control, errors }: DateTimePickerProps) => {
               تاریخ بازگشت
             </label>
             <DatePicker
-              selected={value}
+              calendar={persian}
+              value={value}
               onChange={onChange}
-              className={`form-input w-full ${errors.returnDate?.message ? 'border-red-500' : ''}`}
-              dateFormat="yyyy/MM/dd"
-              calendarClassName="rtl"
-              placeholderText="انتخاب تاریخ"
-              minDate={new Date()}
+              locale={persian_fa}
+              calendarPosition="bottom-right"
             />
-            {typeof errors.returnDate?.message ===  'string' && (
+            {typeof errors.returnDate?.message === 'string' && (
               <p className="mt-1 text-sm text-red-500">
                 {errors.returnDate.message}
               </p>
