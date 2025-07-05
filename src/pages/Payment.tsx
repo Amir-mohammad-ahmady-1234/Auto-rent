@@ -5,12 +5,16 @@ import StepManagement from '../ui/StepManagement';
 import ReserveInfo from '../components/Payment/ReserveInfo/ReserveInfo';
 import CalculateMany from '../components/Payment/CalculateMany/CalculateMany';
 import PayMany from '../components/Payment/CalculateMany/PayMany';
+import RulesModal from '../ui/RulesModal';
+import { RulesAccept } from '../components/Payment/Rules accept and pat btn';
 
 const Payment = () => {
   const navigate = useNavigate();
   const { currentStep } = useStep();
   const [selectedPaymentOption, setSelectedPaymentOption] =
     useState<string>('');
+  const [isRulesAccepted, setIsRulesAccepted] = useState(false);
+  const [isRulesModalOpen, setIsRulesModalOpen] = useState(false);
 
   useEffect(
     function () {
@@ -32,6 +36,19 @@ const Payment = () => {
     }
   };
 
+  const handleRulesAcceptChange = (accepted: boolean) => {
+    setIsRulesAccepted(accepted);
+  };
+
+  const handleViewRules = () => {
+    setIsRulesModalOpen(true);
+  };
+
+  const handleRulesModalConfirm = () => {
+    setIsRulesModalOpen(false);
+    setIsRulesAccepted(true);
+  };
+
   return (
     <section className="w-full bg-gray-50 py-8">
       <StepManagement />
@@ -49,6 +66,19 @@ const Payment = () => {
             />
           </div>
         </div>
+        <div className="mx-auto mt-8 w-full max-w-5xl rounded-xl bg-white p-4 shadow md:p-8">
+          <RulesAccept
+            isAccepted={isRulesAccepted}
+            onAcceptChange={handleRulesAcceptChange}
+            onViewRules={handleViewRules}
+          />
+        </div>
+        {isRulesModalOpen && (
+          <RulesModal
+            isOpen={isRulesModalOpen}
+            onConfirm={handleRulesModalConfirm}
+          />
+        )}
       </div>
     </section>
   );

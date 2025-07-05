@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { toPersianNumbers } from '../../../utils/toPersianNumbers';
+import { PayBtn } from '../Rules accept and pat btn';
 
 interface PaymentOption {
   id: string;
@@ -139,18 +139,11 @@ const PayMany: React.FC<PayManyProps> = ({
       </div>
 
       {/* Payment Button */}
-      <button
+      <PayBtn
+        totalAmount={totalAmount}
+        isDisabled={!selectedOption}
         onClick={handlePaymentSubmit}
-        disabled={!selectedOption}
-        className={`flex h-12 w-full max-w-[472px] cursor-pointer items-center justify-center rounded px-3 text-center text-[18px] font-bold text-white transition-all duration-200 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none md:h-[58px] md:px-[14px] md:text-[20px] lg:text-[22px] ${
-          selectedOption
-            ? 'bg-[#269E22] hover:bg-[#1e7a1c] active:bg-[#156018]'
-            : 'cursor-not-allowed bg-gray-400'
-        }`}
-        aria-label={`پرداخت مبلغ ${toPersianNumbers(totalAmount)} تومان`}
-      >
-        قابل پرداخت {toPersianNumbers(totalAmount)} تومان
-      </button>
+      />
     </div>
   );
 };
