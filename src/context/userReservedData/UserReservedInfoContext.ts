@@ -12,6 +12,10 @@ type UserReservedInfoContextType = {
   handleSubmit: UseFormHandleSubmit<FormTypes>;
   errors: FieldErrors<FormTypes>;
   onSubmit: SubmitHandler<FormTypes>;
+  currentStep: number;
+  isRulesOpen: boolean;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setIsRulesOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const UserReservedInfoContext =
@@ -26,4 +30,12 @@ export const UserReservedInfoContext =
     onSubmit: () => {
       throw new Error('onSubmit is not implemented');
     },
-    });
+    currentStep: 0,
+    isRulesOpen: false,
+    setCurrentStep: () => {
+      throw new Error('setCurrentStep is not implemented');
+    },
+    setIsRulesOpen: () => {
+      throw new Error('setIsRulesOpen is not implemented');
+    },
+  });

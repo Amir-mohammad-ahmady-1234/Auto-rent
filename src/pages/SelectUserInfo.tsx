@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useStep } from '../context/handleReserveSteps/useStep';
 import StepManagement from '../ui/StepManagement';
 import { useUserRserveInfo } from '../context/userReservedData/useUserReservedInfo';
 import { useAuth } from '../context/Auth/useAuth';
@@ -9,11 +8,17 @@ import RulesModal from '../ui/RulesModal';
 const SelectUserInfo = () => {
   const navigate = useNavigate();
 
-  const { currentStep, setCurrentStep } = useStep();
-  const { errors, handleSubmit, onSubmit, register } = useUserRserveInfo();
+  const {
+    errors,
+    handleSubmit,
+    onSubmit,
+    register,
+    currentStep,
+    isRulesOpen,
+    setCurrentStep,
+    setIsRulesOpen,
+  } = useUserRserveInfo();
   const { phone } = useAuth();
-
-  const [isRulesOpen, setIsRulesOpen] = useState(false);
 
   useEffect(
     function () {
@@ -141,25 +146,19 @@ const SelectUserInfo = () => {
               </p>
             )}
           </div>
+          <div className="flex w-full max-w-4xl flex-col items-center justify-between gap-4 px-4 md:flex-row">
+            <button className="w-full cursor-pointer rounded bg-blue-600 py-4 text-white md:w-auto md:px-12">
+              ادامه رزرو
+            </button>
+            <img
+              src="/images/caaars 1.png"
+              alt="car"
+              className="w-full rounded-lg object-cover md:w-1/2"
+            />
+          </div>
         </form>
       </div>
       {/* Car Image & Button */}
-      <div className="flex w-full flex-col items-center justify-center gap-4 px-4 md:flex-row">
-        <button
-          onClick={() => {
-            setIsRulesOpen(true);
-            setCurrentStep(3);
-          }}
-          className="w-full cursor-pointer rounded bg-blue-600 py-4 text-white md:w-1/2"
-        >
-          ادامه رزرو
-        </button>
-        <img
-          src="/images/caaars 1.png"
-          alt="car"
-          className="w-full rounded-lg object-cover md:w-1/2"
-        />
-      </div>
     </section>
   );
 };
