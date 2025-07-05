@@ -1,4 +1,5 @@
 import React from 'react';
+import PayAllManyBtn from './PayAllManyBtn';
 
 interface RulesAcceptProps {
   isAccepted: boolean;
@@ -121,6 +122,7 @@ const RulesAccept: React.FC<RulesAcceptProps> = ({
           <DocumentIcon />
         </span>
       </div>
+      <PayAllManyBtn />
     </div>
   );
 };
