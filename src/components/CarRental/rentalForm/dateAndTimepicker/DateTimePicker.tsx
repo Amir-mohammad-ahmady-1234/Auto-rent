@@ -1,5 +1,3 @@
-import 'react-datepicker/dist/react-datepicker.css';
-
 import 'react-time-picker/dist/TimePicker.css';
 
 import type { DateTimePickerProps } from '../../../../types/DatePickerProps';
