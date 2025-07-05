@@ -77,6 +77,9 @@ const RulesAccept: React.FC<RulesAcceptProps> = ({
   className = '',
   'data-testid': testId = 'rules-accept',
 }) => {
+
+  
+
   return (
     <div
       dir="ltr"
@@ -122,7 +125,7 @@ const RulesAccept: React.FC<RulesAcceptProps> = ({
           <DocumentIcon />
         </span>
       </div>
-      <PayAllManyBtn />
+      <PayAllManyBtn isRulsAccept={isAccepted} />
     </div>
   );
 };

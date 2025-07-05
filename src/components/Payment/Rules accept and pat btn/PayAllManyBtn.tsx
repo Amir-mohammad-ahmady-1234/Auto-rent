@@ -1,4 +1,4 @@
-const PayAllManyBtn = () => {
+const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
   return (
     <>
       {/* Gray payment summary box */}
@@ -18,7 +18,14 @@ const PayAllManyBtn = () => {
           </span>
         </div>
 
-        <button className="mt-4 cursor-pointer rounded-lg bg-blue-600 px-12 py-2 text-white transition duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none sm:mt-0">
+        <button
+          disabled={!isRulsAccept}
+          className={`mt-4 cursor-pointer rounded-lg px-12 py-2 text-white transition duration-200 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:outline-none sm:mt-0 ${
+            isRulsAccept
+              ? 'bg-blue-600 hover:bg-blue-700'
+              : 'cursor-not-allowed bg-gray-400'
+          }`}
+        >
           پرداخت
         </button>
       </div>

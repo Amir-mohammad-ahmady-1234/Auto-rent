@@ -53,7 +53,7 @@ const Payment = () => {
     <section className="w-full bg-gray-50 py-8">
       <StepManagement />
 
-      <div className="flex flex-col space-y-16">
+      <div className="flex flex-col space-y-10">
         <ReserveInfo />
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center space-y-6 lg:flex-row lg:gap-0 lg:space-y-0 lg:space-x-0">
           <div className="flex w-full lg:w-1/2">
@@ -66,7 +66,7 @@ const Payment = () => {
             />
           </div>
         </div>
-        <div className="mx-auto mt-8 w-full max-w-5xl rounded-xl bg-white p-4 shadow md:p-8">
+        <div className="mx-auto w-full max-w-5xl rounded-xl bg-white p-4 shadow md:p-8">
           <RulesAccept
             isAccepted={isRulesAccepted}
             onAcceptChange={handleRulesAcceptChange}
