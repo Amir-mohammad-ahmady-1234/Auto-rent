@@ -1,50 +1,60 @@
-import React from 'react';
 import { DataField } from './DataField';
+import FullPageLoading from '../../../ui/FullPageLoading';
+import { DateObject } from 'react-multi-date-picker';
 
-// Interfaces
-interface ReservationData {
-  car: string;
-  deliveryDate: string;
-  deliveryLocation: string;
-  driver?: string;
-  returnDate: string;
+export interface CarData {
+  title: string;
+}
+
+export interface FormInfo {
+  rentalType: string;
+  deliveryTime: string;
+  returnTime: string;
+  deliveryDate: DateObject;
+  returnDate: DateObject;
+  pickupLocation: string;
   returnLocation: string;
-  coverage: string;
-  location1: string;
-  location2: string;
 }
 
 interface ReserveInfoProps {
-  data?: ReservationData;
+  data: [CarData, FormInfo];
 }
 
-// Main component
-const ReserveInfo: React.FC<ReserveInfoProps> = ({ data }) => {
-  const defaultData: ReservationData = {
-    car: 'بنز s500',
-    deliveryDate: '1403/02/10',
-    deliveryLocation: 'تحویل در محل تهران',
-    returnDate: '1403/02/28',
-    returnLocation: 'تحویل در محل بازگشت',
-    coverage: 'بدون پوشش',
-    location1: 'تهران',
-    location2: 'تهران',
-  };
+const ReserveInfo = ({ data }: ReserveInfoProps) => {
+  if (!data) return <FullPageLoading />;
+  console.log(data);
+  const carData = data[0];
+  const formInfo = data[1];
 
-  const reservationData = data || defaultData;
+  const { title } = carData;
+  const {
+    rentalType,
+    deliveryTime,
+    returnTime,
+    deliveryDate,
+    returnDate,
+    pickupLocation,
+    returnLocation,
+  } = formInfo;
 
   const rows = [
-    { label: 'خودرو', value: reservationData.car },
-    { label: 'تاریخ تحویل', value: reservationData.deliveryDate },
-    { label: 'محل تحویل', value: reservationData.deliveryLocation },
+    { label: 'ساعت تحویل', value: deliveryTime },
+    { label: 'تاریخ تحویل', value: deliveryDate.format() },
+    { label: 'خودرو', value: title },
 
-    { label: 'با راننده', value: reservationData.driver || 'بدون راننده' },
-    { label: 'تاریخ بازگشت', value: reservationData.returnDate },
-    { label: 'محل بازگشت', value: reservationData.returnLocation },
+    { label: 'ساعت برگشت', value: returnTime },
+    { label: 'تاریخ بازگشت', value: returnDate.format() },
+    { label: 'محل تحویل', value: pickupLocation },
 
-    { label: 'پوشش', value: reservationData.coverage },
-    { label: 'محل', value: reservationData.location1 },
-    { label: 'محل', value: reservationData.location2 },
+    {
+      label: 'مناسب ماشین عروس',
+      value: rentalType?.includes('ماشین عروس') ? 'بله' : 'خیر',
+    },
+    {
+      label: 'با راننده',
+      value: rentalType?.includes('با راننده') ? 'با راننده' : 'بدون راننده',
+    },
+    { label: 'محل بازگشت', value: returnLocation },
   ];
 
   return (

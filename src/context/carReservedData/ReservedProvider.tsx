@@ -12,6 +12,7 @@ import { useAuth } from '../Auth/useAuth';
 import { useContext, useState } from 'react';
 import { FilterInputContext } from '../filtersInputContext/filterInputContext';
 import { useStep } from '../handleReserveSteps/useStep';
+import type { TCar } from '../../types/CarType';
 
 export const ReserveProvider = ({
   children,
@@ -19,8 +20,10 @@ export const ReserveProvider = ({
   children: React.ReactNode;
 }) => {
   const navigate = useNavigate();
+
   const { phone } = useAuth();
   const [formInfo, setFormInfo] = useState<null | SchemaFormValues>(null);
+  const [mainCar, setMainCar] = useState<null | TCar>(null);
 
   const { selectedInsurance } = useContext(FilterInputContext);
   const { setCurrentStep } = useStep();
@@ -63,6 +66,8 @@ export const ReserveProvider = ({
         onSubmit,
         formInfo,
         setFormInfo,
+        mainCar,
+        setMainCar,
       }}
     >
       {children}

@@ -2,11 +2,16 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStep } from '../context/handleReserveSteps/useStep';
 import StepManagement from '../ui/StepManagement';
-import ReserveInfo from '../components/Payment/ReserveInfo/ReserveInfo';
+import ReserveInfo, {
+  type CarData,
+  type FormInfo,
+} from '../components/Payment/ReserveInfo/ReserveInfo';
 import CalculateMany from '../components/Payment/CalculateMany/CalculateMany';
 import PayMany from '../components/Payment/CalculateMany/PayMany';
 import RulesModal from '../ui/RulesModal';
 import { RulesAccept } from '../components/Payment/Rules accept and pat btn';
+import { useReservedInfo } from '../context/carReservedData/useReserved';
+import FullPageLoading from '../ui/FullPageLoading';
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -15,6 +20,8 @@ const Payment = () => {
     useState<string>('');
   const [isRulesAccepted, setIsRulesAccepted] = useState(false);
   const [isRulesModalOpen, setIsRulesModalOpen] = useState(false);
+
+  const { mainCar, formInfo } = useReservedInfo();
 
   useEffect(
     function () {
@@ -49,12 +56,15 @@ const Payment = () => {
     setIsRulesAccepted(true);
   };
 
+  if (!mainCar || !formInfo) return <FullPageLoading />;
+  const data: [CarData, FormInfo] = [mainCar as CarData, formInfo as FormInfo];
+
   return (
     <section className="w-full bg-gray-50 py-8">
       <StepManagement />
 
       <div className="flex flex-col space-y-10">
-        <ReserveInfo />
+        <ReserveInfo data={data} />
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center space-y-6 lg:flex-row lg:gap-0 lg:space-y-0 lg:space-x-0">
           <div className="flex w-full lg:w-1/2">
             <CalculateMany />

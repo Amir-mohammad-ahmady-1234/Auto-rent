@@ -5,6 +5,7 @@ import type {
   FieldErrors,
   UseFormHandleSubmit,
 } from 'react-hook-form';
+import type { TCar } from '../../types/CarType';
 
 interface ReservedContextType {
   handleSubmit: UseFormHandleSubmit<SchemaFormValues>;
@@ -14,6 +15,8 @@ interface ReservedContextType {
   onSubmit: (data: SchemaFormValues) => void;
   formInfo: SchemaFormValues | null;
   setFormInfo: React.Dispatch<React.SetStateAction<SchemaFormValues | null>>;
+  mainCar: TCar | null;
+  setMainCar: React.Dispatch<React.SetStateAction<TCar | null>>;
 }
 export const ReservedContext = createContext<ReservedContextType>({
   handleSubmit: () => {
@@ -28,5 +31,9 @@ export const ReservedContext = createContext<ReservedContextType>({
   formInfo: null,
   setFormInfo: () => {
     throw new Error('setFormInfo is not implemented');
+  },
+  mainCar: null,
+  setMainCar: () => {
+    throw new Error('setMainCar is not implemented');
   },
 });

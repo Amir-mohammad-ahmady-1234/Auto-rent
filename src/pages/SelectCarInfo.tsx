@@ -12,16 +12,26 @@ import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 import InviteCars from '../components/CarRental/InviteCars';
 import FullPageLoading from '../ui/FullPageLoading';
 import { useStep } from '../context/handleReserveSteps/useStep';
+import { useReservedInfo } from '../context/carReservedData/useReserved';
 
 const SelectCarInfo = () => {
+  const navigate = useNavigate();
   const { brand } = useParams();
+
   const { cars } = useContext(CarsContext);
   const { currentStep } = useStep();
-  const navigate = useNavigate();
+  const { setMainCar } = useReservedInfo();
 
   const mainCar = cars.filter((car) => {
     return car.brand === brand;
   })[0];
+
+  useEffect(
+    function () {
+      setMainCar(mainCar);
+    },
+    [mainCar, setMainCar]
+  );
 
   useEffect(
     function () {
