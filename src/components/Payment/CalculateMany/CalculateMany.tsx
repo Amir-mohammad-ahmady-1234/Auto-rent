@@ -1,57 +1,49 @@
-import React from 'react';
 import { PriceRow } from './PriceRow';
+import { useQuery } from '@tanstack/react-query';
+import { getCarFullDetails } from '../../../services/apiDeposit';
+import type { TCar } from '../../../types/CarType';
+import FullPageLoading from '../../../ui/FullPageLoading';
 
-// Type definitions for price calculation items
-interface PriceItem {
-  label: string;
-  amount: string;
+export interface DataType {
+  cars: TCar;
+  deposit_amount: number;
+  license_deposit: number;
+  origin_delivery_fee: number;
+  return_delivery_fee: number;
+  tax_percent: number;
 }
 
-interface CalculateManyProps {
-  dailyCost?: string;
-  pickupDelivery?: string;
-  returnDelivery?: string;
-  tax?: string;
-  totalCost?: string;
-  deposit?: string;
-  licenseDeposit?: string;
-  totalWithDeposit?: string;
-}
-
-// Default values for demonstration
-const defaultProps: Required<CalculateManyProps> = {
-  dailyCost: '25,500,000',
-  pickupDelivery: '585,000',
-  returnDelivery: '585,000',
-  tax: '3,685,510',
-  totalCost: '30,355,510',
-  deposit: '150,000,000',
-  licenseDeposit: '0',
-  totalWithDeposit: '180,355,510',
+const convertToPriceItems = (data: DataType) => {
+  return [
+    { label: 'هزینه روزانه', amount: data.cars.dailyPrice },
+    { label: 'تحویل در محل مبدا', amount: data.origin_delivery_fee },
+    { label: 'تحویل در محل بازگشت', amount: data.return_delivery_fee },
+    { label: 'مالیات', amount: data.tax_percent },
+    { label: 'مجموع هزینه', amount: 'هاها' },
+    { label: 'ودیعه', amount: data.deposit_amount },
+    { label: 'ودیعه راهنمایی رانندگی', amount: data.license_deposit },
+    { label: 'مجموع هزینه بهمراه ودیعه', amount: 'هاها' },
+  ];
 };
 
-const CalculateMany: React.FC<CalculateManyProps> = (props) => {
-  const {
-    dailyCost,
-    pickupDelivery,
-    returnDelivery,
-    tax,
-    totalCost,
-    deposit,
-    licenseDeposit,
-    totalWithDeposit,
-  } = { ...defaultProps, ...props };
+const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
+  const { id } = mainCar;
 
-  const priceItems: PriceItem[] = [
-    { label: 'هزینه روزانه', amount: dailyCost },
-    { label: 'تحویل در محل مبدا', amount: pickupDelivery },
-    { label: 'تحویل در محل بازگشت', amount: returnDelivery },
-    { label: 'مالیات', amount: tax },
-    { label: 'مجموع هزینه', amount: totalCost },
-    { label: 'ودیعه', amount: deposit },
-    { label: 'ودیعه راهنمایی رانندگی', amount: licenseDeposit },
-    { label: 'مجموع هزینه بهمراه ودیعه', amount: totalWithDeposit },
-  ];
+  const {
+    data: priceItems,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['carDetails', id],
+    queryFn: () => getCarFullDetails(id),
+  });
+
+  if (isLoading) return <FullPageLoading />;
+
+  if (error || !priceItems)
+    return <p className="text-red-600">{error?.message}</p>;
+
+  const pricesArray = convertToPriceItems(priceItems);
 
   return (
     <div
@@ -71,9 +63,8 @@ const CalculateMany: React.FC<CalculateManyProps> = (props) => {
         </div>
       </div>
 
-      {/* Price Items */}
       <div className="mt-1 w-full text-xs leading-[22px] text-[#353535]">
-        {priceItems.map((item, index) => (
+        {pricesArray.map((item, index) => (
           <PriceRow
             key={index}
             label={item.label}
@@ -89,7 +80,7 @@ const CalculateMany: React.FC<CalculateManyProps> = (props) => {
 // Individual price row component
 export interface PriceRowProps {
   label: string;
-  amount: string;
+  amount: string | number;
   isFirst?: boolean;
 }
 
