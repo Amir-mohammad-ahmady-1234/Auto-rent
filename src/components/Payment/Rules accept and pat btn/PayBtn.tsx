@@ -1,8 +1,8 @@
 import React from 'react';
 import { toPersianNumbers } from '../../../utils/toPersianNumbers';
+import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
 
 interface PayBtnProps {
-  totalAmount: string;
   isDisabled?: boolean;
   isLoading?: boolean;
   onClick?: () => void;
@@ -10,12 +10,13 @@ interface PayBtnProps {
 }
 
 const PayBtn: React.FC<PayBtnProps> = ({
-  totalAmount,
   isDisabled = false,
   isLoading = false,
   onClick,
   className = '',
 }) => {
+  const { totalAmount } = useDepositPrice();
+
   const baseStyles = `
     flex h-12 w-full max-w-[472px] cursor-pointer items-center justify-center 
     rounded px-3 text-center text-[18px] font-bold text-white 

@@ -11,7 +11,11 @@ export interface DataType {
   tax_percent: number;
 }
 
-const convertToPriceItems = (data: DataType, rentalDays: number) => {
+const convertToPriceItems = (
+  data: DataType,
+  rentalDays: number,
+  setTotalAmount: React.Dispatch<React.SetStateAction<number>>
+) => {
   const {
     cars: { dailyPrice },
     deposit_amount,
@@ -28,9 +32,7 @@ const convertToPriceItems = (data: DataType, rentalDays: number) => {
 
   const totalWithDeposit = totalPrice + deposit_amount + license_deposit; // مجوع هزینه به همراه ودیعه ( و ودیعه راهنمایی رانندگی )
 
-  console.log({
-    totalPrice,
-  });
+  setTotalAmount(totalWithDeposit);
 
   return [
     { label: 'هزینه روزانه', amount: dailyPrice },
@@ -47,10 +49,17 @@ const convertToPriceItems = (data: DataType, rentalDays: number) => {
 
 const DepositPricePrivider = ({ children }: { children: React.ReactNode }) => {
   const [selectedOption, setSelectedOption] = useState<string>(''); // حالات ممکن: defer_deposit , cash_and_check , reservation_only
+  const [totalAmount, setTotalAmount] = useState(0);
 
   return (
     <DepositPriceContext.Provider
-      value={{ convertToPriceItems, selectedOption, setSelectedOption }}
+      value={{
+        convertToPriceItems,
+        selectedOption,
+        setSelectedOption,
+        totalAmount,
+        setTotalAmount,
+      }}
     >
       {children}
     </DepositPriceContext.Provider>

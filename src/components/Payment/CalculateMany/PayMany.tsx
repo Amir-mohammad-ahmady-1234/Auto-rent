@@ -15,7 +15,6 @@ interface PayManyProps {
 }
 
 const PayMany: React.FC<PayManyProps> = ({
-  totalAmount = '45,584,000',
   onPaymentOptionChange,
   onPaymentSubmit,
 }) => {
@@ -140,11 +139,7 @@ const PayMany: React.FC<PayManyProps> = ({
       </div>
 
       {/* Payment Button */}
-      <PayBtn
-        totalAmount={totalAmount}
-        isDisabled={!selectedOption}
-        onClick={handlePaymentSubmit}
-      />
+      <PayBtn isDisabled={!selectedOption} onClick={handlePaymentSubmit} />
     </div>
   );
 };
