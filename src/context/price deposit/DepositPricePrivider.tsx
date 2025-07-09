@@ -21,11 +21,16 @@ const convertToPriceItems = (data: DataType, rentalDays: number) => {
     tax_percent,
   } = data;
 
-  const totalPrice =
+  const totalPrice = Math.round(
     (+dailyPrice * rentalDays + origin_delivery_fee + return_delivery_fee) *
-    (1 + tax_percent / 100); // مجوع هزینه
+      (1 + tax_percent / 100)
+  ); // مجوع هزینه
 
   const totalWithDeposit = totalPrice + deposit_amount + license_deposit; // مجوع هزینه به همراه ودیعه ( و ودیعه راهنمایی رانندگی )
+
+  console.log({
+    totalPrice,
+  });
 
   return [
     { label: 'هزینه روزانه', amount: dailyPrice },
