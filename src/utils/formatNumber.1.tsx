@@ -1,4 +1,4 @@
-const toPersianDigits = (input: string): string => {
+export const toPersianDigits = (input: string): string => {
   return input.replace(/\d/g, (digit) => '۰۱۲۳۴۵۶۷۸۹'[+digit]);
 };
 const addCommas = (input: string): string => {

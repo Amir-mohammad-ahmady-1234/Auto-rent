@@ -18,7 +18,7 @@ const PayMany: React.FC<PayManyProps> = ({
   onPaymentOptionChange,
   onPaymentSubmit,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<string>(''); // حالات ممکن: defer_deposit , cash_and_check , reservation_only
 
   const paymentOptions: PaymentOption[] = [
     {

@@ -14,15 +14,30 @@ export interface DataType {
 }
 
 const convertToPriceItems = (data: DataType) => {
+  const {
+    cars: { dailyPrice },
+    deposit_amount,
+    license_deposit,
+    origin_delivery_fee,
+    return_delivery_fee,
+    tax_percent,
+  } = data;
+
+  const totalPrice =
+    (+dailyPrice + origin_delivery_fee + return_delivery_fee) *
+    (1 + tax_percent / 100); // مجوع هزینه
+
+  const totalWithDeposit = totalPrice + deposit_amount + license_deposit; // مجوع هزینه به همراه ودیعه ( و ودیعه راهنمایی رانندگی )
+// i should create a context for calculate and save deposit & prices => DepositPriceContext - DepositPriceProvider - useDpositPrice
   return [
-    { label: 'هزینه روزانه', amount: data.cars.dailyPrice },
-    { label: 'تحویل در محل مبدا', amount: data.origin_delivery_fee },
-    { label: 'تحویل در محل بازگشت', amount: data.return_delivery_fee },
-    { label: 'مالیات', amount: data.tax_percent },
-    { label: 'مجموع هزینه', amount: 'هاها' },
-    { label: 'ودیعه', amount: data.deposit_amount },
-    { label: 'ودیعه راهنمایی رانندگی', amount: data.license_deposit },
-    { label: 'مجموع هزینه بهمراه ودیعه', amount: 'هاها' },
+    { label: 'هزینه روزانه', amount: dailyPrice },
+    { label: 'تحویل در محل مبدا', amount: origin_delivery_fee },
+    { label: 'تحویل در محل بازگشت', amount: return_delivery_fee },
+    { label: 'مالیات', amount: tax_percent },
+    { label: 'مجموع هزینه', amount: totalPrice },
+    { label: 'ودیعه', amount: deposit_amount },
+    { label: 'ودیعه راهنمایی رانندگی', amount: license_deposit },
+    { label: 'مجموع هزینه بهمراه ودیعه', amount: totalWithDeposit },
   ];
 };
 
