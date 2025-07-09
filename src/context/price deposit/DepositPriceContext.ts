@@ -8,4 +8,6 @@ export const DepositPriceContext = createContext<null | {
     | { label: string; amount: string }
     | { label: string; amount: number }
   )[];
+  selectedOption: string;
+  setSelectedOption: React.Dispatch<React.SetStateAction<string>>;
 }>(null);

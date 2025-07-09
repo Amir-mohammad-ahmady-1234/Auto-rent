@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PayBtn } from '../Rules accept and pat btn';
+import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
 
 interface PaymentOption {
   id: string;
@@ -18,7 +19,7 @@ const PayMany: React.FC<PayManyProps> = ({
   onPaymentOptionChange,
   onPaymentSubmit,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>(''); // حالات ممکن: defer_deposit , cash_and_check , reservation_only
+  const { selectedOption, setSelectedOption } = useDepositPrice();
 
   const paymentOptions: PaymentOption[] = [
     {
