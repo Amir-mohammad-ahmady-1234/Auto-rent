@@ -3,7 +3,8 @@ import type { DataType } from './DepositPricePrivider';
 
 export const DepositPriceContext = createContext<null | {
   convertToPriceItems: (
-    data: DataType
+    data: DataType,
+    rentalDays: number
   ) => (
     | { label: string; amount: string }
     | { label: string; amount: number }

@@ -1,13 +1,13 @@
-import { number } from 'framer-motion';
 import { z } from 'zod';
 
 export const schema = z.object({
   rentalType: z.string().min(1, 'انتخاب نوع خودرو الزامی است'),
-  rentalDays: z
-    .string()
-    .min(1, 'تعداد روز الزامی است')
-    .transform((val) => Number(val))
-    .refine((val) => val >= 1, { message: 'حداقل یک روز لازم است' }),
+  rentalDays: z.coerce
+    .number({
+      required_error: 'تعداد روز الزامی است',
+      invalid_type_error: 'تعداد روز باید عدد باشد',
+    })
+    .min(1, { message: 'حداقل یک روز لازم است' }),
 
   deliveryDate: z
     .any()
@@ -67,13 +67,13 @@ export const schema = z.object({
 
 export const defaultValues = {
   rentalType: 'اجاره خودرو با راننده',
-  deliveryTime: '',
-  returnTime: '',
+  rentalDays: 1,
   deliveryDate: null,
   returnDate: null,
+  deliveryTime: '',
+  returnTime: '',
   pickupLocation: 'انتخاب کنید',
   returnLocation: 'انتخاب کنید',
-  phone: number,
 };
 
 export type SchemaFormValues = z.infer<typeof schema>;

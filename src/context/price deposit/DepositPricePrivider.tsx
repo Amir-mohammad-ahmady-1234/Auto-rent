@@ -11,7 +11,7 @@ export interface DataType {
   tax_percent: number;
 }
 
-const convertToPriceItems = (data: DataType) => {
+const convertToPriceItems = (data: DataType, rentalDays: number) => {
   const {
     cars: { dailyPrice },
     deposit_amount,
@@ -22,13 +22,14 @@ const convertToPriceItems = (data: DataType) => {
   } = data;
 
   const totalPrice =
-    (+dailyPrice + origin_delivery_fee + return_delivery_fee) *
+    (+dailyPrice * rentalDays + origin_delivery_fee + return_delivery_fee) *
     (1 + tax_percent / 100); // مجوع هزینه
 
   const totalWithDeposit = totalPrice + deposit_amount + license_deposit; // مجوع هزینه به همراه ودیعه ( و ودیعه راهنمایی رانندگی )
 
   return [
     { label: 'هزینه روزانه', amount: dailyPrice },
+    { label: 'تعداد روز اجاره', amount: rentalDays },
     { label: 'تحویل در محل مبدا', amount: origin_delivery_fee },
     { label: 'تحویل در محل بازگشت', amount: return_delivery_fee },
     { label: 'مالیات', amount: tax_percent },

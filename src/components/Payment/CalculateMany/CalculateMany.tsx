@@ -4,10 +4,12 @@ import { getCarFullDetails } from '../../../services/apiDeposit';
 import type { TCar } from '../../../types/CarType';
 import FullPageLoading from '../../../ui/FullPageLoading';
 import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
+import { useReservedInfo } from '../../../context/carReservedData/useReserved';
 
 const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
   const { id } = mainCar;
   const { convertToPriceItems } = useDepositPrice();
+  const { formInfo } = useReservedInfo();
 
   const {
     data: priceItems,
@@ -23,7 +25,10 @@ const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
   if (error || !priceItems)
     return <p className="text-red-600">{error?.message}</p>;
 
-  const pricesArray = convertToPriceItems(priceItems);
+  if (!formInfo) return;
+  const { rentalDays } = formInfo;
+
+  const pricesArray = convertToPriceItems(priceItems, rentalDays);
 
   return (
     <div

@@ -2,14 +2,32 @@ import { Link } from 'react-router-dom';
 import type { TCar } from '../types/CarType';
 import { formatNumber } from '../utils/formatNumber.1';
 import { toPersianNumbers } from '../utils/toPersianNumbers';
+import { getCarFullDetails } from '../services/apiDeposit';
+import { useQuery } from '@tanstack/react-query';
+import FullPageLoading from './FullPageLoading';
 
 interface Prop {
   carDetails: TCar;
 }
 
 const Car = ({ carDetails }: Prop) => {
-  const { dailyPrice, deposit, id, image, model, monthlyPrice, title, brand } =
+  const { dailyPrice, id, image, model, monthlyPrice, title, brand } =
     carDetails;
+
+  const {
+    data: priceItems,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ['carDetails', id],
+    queryFn: () => getCarFullDetails(id),
+  });
+
+  if (isLoading) return <FullPageLoading />;
+
+  const { deposit_amount } = priceItems;
+
+  if (error) throw new Error('can not fetch car deposit data.');
 
   return (
     <div
@@ -71,7 +89,7 @@ const Car = ({ carDetails }: Prop) => {
         <div className="mt-4 flex items-center justify-between rounded-lg border border-[#E5E5E5] p-2.5 sm:p-3">
           <span className="font-iransans">مبلغ ضمانت:</span>
           <span className="font-iranyekan text-sm font-extrabold text-[#212121] sm:text-base">
-            {toPersianNumbers(deposit)} تومان
+            {formatNumber(deposit_amount)} تومان
           </span>
         </div>
 
