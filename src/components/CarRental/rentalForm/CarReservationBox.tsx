@@ -10,6 +10,8 @@ import TitleForm from './TitleForm';
 import FormFooter from './FormFooter';
 import type { MainCarType } from '../../../types/MainCarType';
 import { useReservedInfo } from '../../../context/carReservedData/useReserved';
+import RentalDaysInput from './RentalDaysInput';
+
 const CarReservationBox = ({ carInfo }: MainCarType) => {
   const { dailyPrice, monthlyPrice } = carInfo;
   const { handleSubmit, control, errors, isSubmitting, onSubmit } =
@@ -39,6 +41,27 @@ const CarReservationBox = ({ carInfo }: MainCarType) => {
             </div>
           )}
         />
+
+        <Controller
+          name="rentalDays"
+          control={control}
+          defaultValue={1}
+          rules={{
+            required: 'تعداد روز اجاره الزامی است',
+            min: { value: 1, message: 'حداقل یک روز' },
+          }}
+          render={({ field }) => (
+            <div>
+              <RentalDaysInput {...field} />
+              {errors.rentalDays && (
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.rentalDays.message}
+                </p>
+              )}
+            </div>
+          )}
+        />
+
         <LocationSelector<SchemaFormValues> control={control} errors={errors} />
       </div>
 

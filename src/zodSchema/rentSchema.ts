@@ -3,6 +3,12 @@ import { z } from 'zod';
 
 export const schema = z.object({
   rentalType: z.string().min(1, 'انتخاب نوع خودرو الزامی است'),
+  rentalDays: z
+    .string()
+    .min(1, 'تعداد روز الزامی است')
+    .transform((val) => Number(val))
+    .refine((val) => val >= 1, { message: 'حداقل یک روز لازم است' }),
+
   deliveryDate: z
     .any()
     .refine(

@@ -31,7 +31,7 @@ const PriceBox = ({ dailyPrice, monthlyPrice }: PriceBoxProps) => {
         </div>
       </div>
       <div className="bg-blue-100 px-4 py-2 text-center text-xs text-blue-700">
-        قیمت‌ها شامل مالیات و عوارض می‌شوند
+        قیمت‌ها شامل مالیات و عوارض نی‌شوند
       </div>
     </div>
   );
