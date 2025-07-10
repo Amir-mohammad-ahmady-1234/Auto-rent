@@ -14,7 +14,8 @@ export interface DataType {
 const convertToPriceItems = (
   data: DataType,
   rentalDays: number,
-  setTotalAmount: React.Dispatch<React.SetStateAction<number>>
+  setTotalAmount: React.Dispatch<React.SetStateAction<number>>,
+  selectedOption: string
 ) => {
   const {
     cars: { dailyPrice },
@@ -32,7 +33,11 @@ const convertToPriceItems = (
 
   const totalWithDeposit = totalPrice + deposit_amount + license_deposit; // مجوع هزینه به همراه ودیعه ( و ودیعه راهنمایی رانندگی )
 
-  setTotalAmount(totalWithDeposit);
+  if (selectedOption === 'reservation_only' || selectedOption === '')
+    setTotalAmount(totalWithDeposit);
+  else if (selectedOption === 'defer_deposit') setTotalAmount(totalPrice);
+  else if (selectedOption === 'cash_and_check')
+    setTotalAmount(totalWithDeposit - (deposit_amount + license_deposit) / 2);
 
   return [
     { label: 'هزینه روزانه', amount: dailyPrice },

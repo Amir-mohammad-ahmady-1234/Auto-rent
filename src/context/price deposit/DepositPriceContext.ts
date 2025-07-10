@@ -5,7 +5,8 @@ export const DepositPriceContext = createContext<null | {
   convertToPriceItems: (
     data: DataType,
     rentalDays: number,
-    setTotalAmount: React.Dispatch<React.SetStateAction<number>>
+    setTotalAmount: React.Dispatch<React.SetStateAction<number>>,
+    selectedOption: string
   ) => (
     | { label: string; amount: string }
     | { label: string; amount: number }

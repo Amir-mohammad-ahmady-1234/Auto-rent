@@ -1,6 +1,6 @@
 import React from 'react';
-import { toPersianNumbers } from '../../../utils/toPersianNumbers';
 import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
+import { formatNumber } from '../../../utils/formatNumber.1';
 
 interface PayBtnProps {
   isDisabled?: boolean;
@@ -44,7 +44,7 @@ const PayBtn: React.FC<PayBtnProps> = ({
         </div>
       );
     }
-    return `قابل پرداخت ${toPersianNumbers(totalAmount)} تومان`;
+    return `قابل پرداخت ${formatNumber(totalAmount)} تومان`;
   };
 
   return (
@@ -52,7 +52,7 @@ const PayBtn: React.FC<PayBtnProps> = ({
       onClick={onClick}
       disabled={isDisabled || isLoading}
       className={`${getButtonStyles()} ${className}`}
-      aria-label={`پرداخ�� مبلغ ${toPersianNumbers(totalAmount)} تومان`}
+      aria-label={`پرداخ�� مبلغ ${formatNumber(totalAmount)} تومان`}
     >
       {getButtonContent()}
     </button>

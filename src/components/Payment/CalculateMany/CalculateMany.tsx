@@ -10,7 +10,7 @@ const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
   const { id } = mainCar;
   const { convertToPriceItems } = useDepositPrice();
   const { formInfo } = useReservedInfo();
-  const { setTotalAmount } = useDepositPrice();
+  const { setTotalAmount, selectedOption } = useDepositPrice();
 
   const {
     data: priceItems,
@@ -32,7 +32,8 @@ const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
   const pricesArray = convertToPriceItems(
     priceItems,
     rentalDays,
-    setTotalAmount
+    setTotalAmount,
+    selectedOption
   );
 
   return (
