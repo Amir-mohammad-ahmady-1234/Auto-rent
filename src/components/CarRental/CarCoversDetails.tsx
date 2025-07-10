@@ -1,7 +1,29 @@
-import React from 'react';
 import InsuranceRadio from './InsuranceRadio';
+import { getCarFullDetails } from '../../services/apiDeposit';
+import { useQuery } from '@tanstack/react-query';
+import type { MainCarType } from '../../types/MainCarType';
+import FullPageLoading from '../../ui/FullPageLoading';
+import { formatNumber } from '../../utils/formatNumber.1';
+import toast from 'react-hot-toast';
+import FormFooter from '../../ui/FormFooter';
 
-const CarCoversDetails: React.FC = () => {
+const CarCoversDetails = ({ carInfo }: MainCarType) => {
+  const { id } = carInfo;
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['carDetails', id],
+    queryFn: () => getCarFullDetails(id),
+  });
+
+  if (isLoading) return <FullPageLoading />;
+
+  const { deposit_amount } = data;
+
+  if (error) {
+    toast.error('خطا در دریافت اصلاعات خودرو');
+    return;
+  }
+
   return (
     <div
       dir="rtl"
@@ -29,16 +51,24 @@ const CarCoversDetails: React.FC = () => {
       {/* Table */}
       <div className="font-IRANYekan flex flex-col gap-4 text-sm text-black">
         {[
-          { full: '32,045,275', basic: '0', label: 'قیمت' },
-          { full: '250,000,000', basic: '250,000,000', label: 'ودیعه' },
           {
-            full: '50,000,000',
-            basic: '250,000,000',
+            full: formatNumber(carInfo.monthlyPrice),
+            basic: formatNumber(carInfo.monthlyPrice),
+            label: 'قیمت ماهانه',
+          },
+          {
+            full: formatNumber(deposit_amount / 5),
+            basic: formatNumber(deposit_amount),
+            label: 'ودیعه',
+          },
+          {
+            full: formatNumber(deposit_amount / 10),
+            basic: formatNumber(deposit_amount / 5),
             label: 'حداکثر تعهد خسارت جزیی',
           },
           {
-            full: '500,000,000',
-            basic: '1,500,000,000',
+            full: formatNumber(deposit_amount * 6),
+            basic: formatNumber(deposit_amount * 11),
             label: 'حداکثر تعهد خسارت کلی',
           },
           {
@@ -66,6 +96,7 @@ const CarCoversDetails: React.FC = () => {
             نصف قیمت اجاره <br /> حداکثر بمدت 30 روز
           </div>
         </div>
+        <FormFooter text="کسر قیمت بیمه بعد از رزرو خودرو به صورت حضوری و بعد از ارائه مدارک مورد نیاز صورت میگیرد." />
       </div>
     </div>
   );

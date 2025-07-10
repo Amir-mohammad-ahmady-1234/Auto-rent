@@ -53,7 +53,7 @@ const SelectCarInfo = () => {
         <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 rounded-xl bg-white p-3 shadow sm:gap-4 sm:p-4">
           <HeroSlider carInfo={mainCar} />
         </div>
-        <CarCoversDetails />
+        <CarCoversDetails carInfo={mainCar} />
         <MoreCarDetails carInfo={mainCar} />
         <FeaturesCarComponent carInfo={mainCar} />
         <AboutCarComponent carInfo={mainCar} />

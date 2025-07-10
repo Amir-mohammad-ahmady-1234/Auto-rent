@@ -7,7 +7,7 @@ import InsuranceSelector from './InsuranceSelector';
 import { Controller } from 'react-hook-form';
 import { type SchemaFormValues } from '../../../zodSchema/rentSchema';
 import TitleForm from './TitleForm';
-import FormFooter from './FormFooter';
+import FormFooter from '../../../ui/FormFooter';
 import type { MainCarType } from '../../../types/MainCarType';
 import { useReservedInfo } from '../../../context/carReservedData/useReserved';
 import RentalDaysInput from './RentalDaysInput';
@@ -79,7 +79,11 @@ const CarReservationBox = ({ carInfo }: MainCarType) => {
         {isSubmitting ? 'در حال ثبت...' : 'ثبت درخواست'}
       </button>
 
-      <FormFooter />
+      <FormFooter
+        text={
+          'پس از ثبت درخواست، کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت'
+        }
+      />
     </form>
   );
 };
