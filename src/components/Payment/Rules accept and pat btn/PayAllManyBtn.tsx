@@ -1,18 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+import { useStep } from '../../../context/handleReserveSteps/useStep';
 import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
 import { formatNumber } from '../../../utils/formatNumber.1';
 import toast from 'react-hot-toast';
 
 const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
   const { totalAmount } = useDepositPrice();
-  const navigate = useNavigate();
+  const { setCurrentStep } = useStep();
 
   function handlePay() {
     toast.success('پرداخت شما با موفقیت انجام شد.', {
       duration: 3000,
     });
 
-    navigate('/rent/order-details');
+    setCurrentStep(5);
   }
 
   return (

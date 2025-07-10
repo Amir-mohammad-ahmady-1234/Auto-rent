@@ -1,11 +1,15 @@
+import { useContext } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { CarsContext } from '../context/cars/CarsContext';
 
 const LoadingCar = () => {
+  const { cars } = useContext(CarsContext);
+
   return (
     <div className="m-10 grid grid-cols-2 gap-4">
-      {[...Array(2)].map((_, i) => (
-        <Skeleton key={i} height={200} />
+      {[...Array(cars.length)].map((_, i) => (
+        <Skeleton baseColor="red" key={i} width={300} height={500} />
       ))}
     </div>
   );

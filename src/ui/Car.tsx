@@ -4,7 +4,7 @@ import { formatNumber } from '../utils/formatNumber.1';
 import { toPersianNumbers } from '../utils/toPersianNumbers';
 import { getCarFullDetails } from '../services/apiDeposit';
 import { useQuery } from '@tanstack/react-query';
-import FullPageLoading from './FullPageLoading';
+import LoadingCar from './LoadingCar';
 
 interface Prop {
   carDetails: TCar;
@@ -23,7 +23,7 @@ const Car = ({ carDetails }: Prop) => {
     queryFn: () => getCarFullDetails(id),
   });
 
-  if (isLoading) return <FullPageLoading />;
+  if (isLoading) return <LoadingCar />;
 
   const { deposit_amount } = priceItems;
 

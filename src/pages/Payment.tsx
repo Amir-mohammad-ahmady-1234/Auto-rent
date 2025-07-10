@@ -26,7 +26,7 @@ const Payment = () => {
   useEffect(
     function () {
       if (currentStep === 1) navigate('/rent');
-      if (currentStep === 5) navigate('/rent/step4');
+      if (currentStep === 5) navigate('/rent/order-details');
     },
     [currentStep, navigate]
   );
