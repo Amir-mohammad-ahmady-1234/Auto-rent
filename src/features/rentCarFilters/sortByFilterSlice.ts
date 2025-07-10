@@ -12,32 +12,36 @@ const sortByFiler = createSlice({
   initialState,
   reducers: {
     sortByHighPrice: (state) => {
+      const carsLength = state.cars.length;
       state.filteredCars = [...state.cars]
         .sort((a, b) => {
           return +b.dailyPrice - +a.dailyPrice;
         })
-        .slice(0, 3);
+        .slice(0, carsLength < 5 ? 1 : 3);
     },
     sortByLowPrice: (state) => {
+      const carsLength = state.cars.length;
       state.filteredCars = [...state.cars]
         .sort((a, b) => {
           return +a.dailyPrice - +b.dailyPrice;
         })
-        .slice(0, 3);
+        .slice(0, carsLength < 5 ? 1 : 3);
     },
     sortByNewYear: (state) => {
+      const carsLength = state.cars.length;
       state.filteredCars = [...state.cars]
         .sort((a, b) => {
           return +b.model - +a.model;
         })
-        .slice(0, 3);
+        .slice(0, carsLength < 5 ? 1 : 3);
     },
     sortByOldYear: (state) => {
+      const carsLength = state.cars.length;
       state.filteredCars = [...state.cars]
         .sort((a, b) => {
           return +a.model - +b.model;
         })
-        .slice(0, 3);
+        .slice(0, carsLength < 5 ? 1 : 3);
     },
     resetSort: (state) => {
       state.filteredCars = state.cars;
@@ -56,5 +60,5 @@ export const {
   sortByNewYear,
   sortByOldYear,
   resetSort,
-  setCars
+  setCars,
 } = sortByFiler.actions;

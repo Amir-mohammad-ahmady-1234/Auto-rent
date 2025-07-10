@@ -42,7 +42,7 @@ export const carsData: TCar[] = [
     id: '2',
     image:
       'https://cdn.builder.io/api/v1/image/assets/TEMP/6cae8afd917916381bfeaaa1dda381a68fba179a?placeholderIfAbsent=true',
-    title: 'اجاره تویوتا لندکروز در تهران ',
+    title: 'اجاره تویوتا لندکروز در تهران',
     type: ['بدون راننده', 'ایرانی'],
     brand: 'تویوتا',
     model: '2016',
