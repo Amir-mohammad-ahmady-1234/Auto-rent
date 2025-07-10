@@ -7,7 +7,6 @@ export interface TCar {
   model: string;
   dailyPrice: string;
   monthlyPrice: string;
-  deposit: string;
   maxPassenger: number;
   minDriverAge: number;
   maxBag: number;
