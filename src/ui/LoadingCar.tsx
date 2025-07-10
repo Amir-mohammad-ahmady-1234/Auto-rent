@@ -9,7 +9,7 @@ const LoadingCar = () => {
   return (
     <div className="m-10 grid grid-cols-2 gap-4">
       {[...Array(cars.length)].map((_, i) => (
-        <Skeleton baseColor="red" key={i} width={300} height={500} />
+        <Skeleton key={i} width={300} height={500} />
       ))}
     </div>
   );

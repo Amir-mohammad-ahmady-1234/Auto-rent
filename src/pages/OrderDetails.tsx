@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useReservedInfo } from '../context/carReservedData/useReserved';
+import FullPageLoading from '../ui/FullPageLoading';
 import StepManagement from '../ui/StepManagement';
 import { useEffect } from 'react';
 import { useStep } from '../context/handleReserveSteps/useStep';
@@ -14,76 +16,104 @@ const OrderDetails = () => {
     [currentStep, navigate]
   );
 
+  const { formInfo, mainCar } = useReservedInfo();
+
+  if (!formInfo || !mainCar) return <FullPageLoading />;
+
+  const { title } = mainCar;
+
+  const {
+    rentalType,
+    deliveryDate,
+    returnDate,
+    pickupLocation,
+    returnLocation,
+  } = formInfo;
+
+  function handleOrderTracking() {
+    navigate('/');
+  }
+
   return (
     <>
       <StepManagement />
-
-      <section className="mx-auto my-10 max-w-3xl px-4">
-        <div className="rounded-md border border-green-300 bg-green-100 p-6 text-center">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-lg font-medium text-green-700">
-              پرداخت با موفقیت انجام شد.
-            </span>
-            <svg
-              className="h-10 w-10 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-          <p className="mt-4 text-gray-700">
-            خودروی شما آماده تحویل می‌باشد. کارشناسان ما در سریع‌ترین زمان ممکن
-            جهت پیگیری سفارش با شما تماس خواهند گرفت.
-          </p>
+      <div className="mx-auto my-12 max-w-4xl px-4 text-right" dir="rtl">
+        {/* Banner */}
+        <div className="flex items-center justify-center space-x-3 rounded-lg border border-green-200 bg-green-50 p-4">
+          <svg
+            className="h-6 w-6 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={3}
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <span className="font-medium text-green-800">
+            پرداخت شما با موفقیت انجام شد.
+          </span>
         </div>
 
-        <div className="mt-6 rounded-md border bg-white p-4 shadow-sm">
-          <h2 className="mb-4 text-center text-lg font-semibold">
+        {/* Subtext */}
+        <p className="mt-4 text-center text-gray-700">
+          خودروی شما آماده تحویل می‌باشد، کارشناسان ما در سریع‌ترین زمان ممکن
+          جهت پیگیری سفارش با شما تماس خواهند گرفت.
+        </p>
+
+        {/* Order Details Card */}
+        <div className="mt-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+          <h2 className="mb-6 text-center text-lg font-semibold">
             جزئیات سفارش
           </h2>
-          <div className="grid grid-cols-2 gap-4 text-center sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-x-4 gap-y-6 text-center sm:grid-cols-2 lg:grid-cols-3">
             <div>
-              <p className="text-gray-500">خودرو</p>
-              <p className="font-medium">بنز S500</p>
+              <p className="text-sm text-gray-500">خودرو</p>
+              <p className="mt-1 font-medium">{title}</p>
             </div>
             <div>
-              <p className="text-gray-500">محل تحویل</p>
-              <p className="font-medium">تحویل در محل تهران</p>
+              <p className="text-sm text-gray-500">محل تحویل</p>
+              <p className="mt-1 font-medium">{pickupLocation}</p>
             </div>
             <div>
-              <p className="text-gray-500">محل</p>
-              <p className="font-medium">تهران</p>
+              <p className="text-sm text-gray-500">محل بازگشت</p>
+              <p className="mt-1 font-medium">{returnLocation}</p>
             </div>
             <div>
-              <p className="text-gray-500">تاریخ تحویل</p>
-              <p className="font-medium">1404/01/10</p>
+              <p className="text-sm text-gray-500">مناسب ماشین عروس</p>
+              <p className="mt-1 font-medium">
+                {rentalType?.includes('ماشین عروس') ? 'بله' : 'خیر'}
+              </p>
+            </div>
+            <div className="sm:col-span-2 lg:col-span-1">
+              <p className="text-sm text-gray-500">راننده</p>
+              <p className="mt-1 font-medium">
+                {rentalType?.includes('با راننده')
+                  ? 'با راننده'
+                  : 'بدون راننده'}
+              </p>
             </div>
             <div>
-              <p className="text-gray-500">تاریخ بازگشت</p>
-              <p className="font-medium">1404/01/28</p>
+              <p className="text-sm text-gray-500">تاریخ تحویل</p>
+              <p className="mt-1 font-medium">{deliveryDate.format()}</p>
             </div>
             <div>
-              <p className="text-gray-500">محل بازگشت</p>
-              <p className="font-medium">تحویل در محل بازگشت</p>
-            </div>
-            <div className="col-span-2 sm:col-span-3">
-              <p className="text-gray-500">راننده</p>
-              <p className="font-medium">پارکنده</p>
+              <p className="text-sm text-gray-500">تاریخ بازگشت</p>
+              <p className="mt-1 font-medium">{returnDate.format()}</p>
             </div>
           </div>
 
-          <button className="mt-6 w-full rounded-md bg-blue-600 py-2 text-white transition hover:bg-blue-700">
+          <button
+            onClick={handleOrderTracking}
+            className="mt-8 w-full cursor-pointer rounded-lg bg-blue-600 py-3 font-medium text-white hover:bg-blue-700"
+          >
             پیگیری سفارش
           </button>
         </div>
-      </section>
+      </div>
     </>
   );
 };
