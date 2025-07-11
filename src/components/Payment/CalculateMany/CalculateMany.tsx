@@ -5,12 +5,17 @@ import type { TCar } from '../../../types/CarType';
 import FullPageLoading from '../../../ui/FullPageLoading';
 import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
 import { useReservedInfo } from '../../../context/carReservedData/useReserved';
+import { useEffect, useState } from 'react';
 
 const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
   const { id } = mainCar;
   const { convertToPriceItems } = useDepositPrice();
   const { formInfo } = useReservedInfo();
   const { setTotalAmount, selectedOption } = useDepositPrice();
+
+  const [pricesArray, setPricesArray] = useState<
+    { label: string; amount: string | number }[]
+  >([]);
 
   const {
     data: priceItems,
@@ -21,20 +26,33 @@ const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
     queryFn: () => getCarFullDetails(id),
   });
 
+  const rentalDays = formInfo ? formInfo.rentalDays : 1;
+
+  useEffect(
+    function () {
+      const prices = convertToPriceItems(
+        priceItems,
+        rentalDays,
+        setTotalAmount,
+        selectedOption
+      );
+      setPricesArray(prices);
+    },
+    [
+      priceItems,
+      rentalDays,
+      selectedOption,
+      setTotalAmount,
+      convertToPriceItems,
+    ]
+  );
+
   if (isLoading) return <FullPageLoading />;
 
   if (error || !priceItems)
     return <p className="text-red-600">{error?.message}</p>;
 
-  if (!formInfo) return;
-  const { rentalDays } = formInfo;
-
-  const pricesArray = convertToPriceItems(
-    priceItems,
-    rentalDays,
-    setTotalAmount,
-    selectedOption
-  );
+  if (!formInfo) return null;
 
   return (
     <div

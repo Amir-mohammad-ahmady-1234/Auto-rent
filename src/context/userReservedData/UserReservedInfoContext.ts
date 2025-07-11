@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 import type { FormTypes } from '../../types/UserInfoFormType';
 import type {
   FieldErrors,
@@ -16,6 +16,8 @@ type UserReservedInfoContextType = {
   isRulesOpen: boolean;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
   setIsRulesOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  userReservedInfo: null | FormTypes;
+  setUserReservedInfo: React.Dispatch<React.SetStateAction<FormTypes | null>>;
 };
 
 export const UserReservedInfoContext =
@@ -37,5 +39,9 @@ export const UserReservedInfoContext =
     },
     setIsRulesOpen: () => {
       throw new Error('setIsRulesOpen is not implemented');
+    },
+    userReservedInfo: null,
+    setUserReservedInfo: () => {
+      throw new Error('setUserReservedInfo is not implemented');
     },
   });

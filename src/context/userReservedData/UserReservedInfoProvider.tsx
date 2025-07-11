@@ -16,13 +16,17 @@ const UserReservedInfoProvider = ({
     formState: { errors },
   } = useForm<FormTypes>();
 
+  const [userReservedInfo, setUserReservedInfo] = useState<FormTypes | null>(
+    null
+  );
+
   const { currentStep, setCurrentStep } = useStep();
   const [isRulesOpen, setIsRulesOpen] = useState(false);
 
   const onSubmit = (data: FormTypes) => {
+    setUserReservedInfo(data);
     setIsRulesOpen(true);
     setCurrentStep(3);
-    console.log(data);
   };
 
   return (
@@ -36,6 +40,8 @@ const UserReservedInfoProvider = ({
         isRulesOpen,
         setCurrentStep,
         setIsRulesOpen,
+        userReservedInfo,
+        setUserReservedInfo,
       }}
     >
       {children}

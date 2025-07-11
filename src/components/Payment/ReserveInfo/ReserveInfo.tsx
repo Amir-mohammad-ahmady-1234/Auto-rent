@@ -22,7 +22,7 @@ interface ReserveInfoProps {
 
 const ReserveInfo = ({ data }: ReserveInfoProps) => {
   if (!data) return <FullPageLoading />;
-  console.log(data);
+  // console.log(data);
   const carData = data[0];
   const formInfo = data[1];
 

@@ -7,7 +7,7 @@ import LoadingCar from '../../../ui/LoadingCar';
 
 const CarsList = () => {
   const { cars: allCars, isLoading, error } = useContext(CarsContext);
-  const cars = [...allCars]?.splice(0, 5);
+  const cars = [...allCars]?.splice(0, 3);
 
   if (isLoading) return <LoadingCar />;
 

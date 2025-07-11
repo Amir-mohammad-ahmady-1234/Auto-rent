@@ -19,6 +19,6 @@ export async function getCarFullDetails(carId: string | undefined) {
     return null;
   }
 
-  console.log('🔥 مشخصات کامل ماشین:', data);
+  // console.log('🔥 مشخصات کامل ماشین:', data);
   return data;
 }
