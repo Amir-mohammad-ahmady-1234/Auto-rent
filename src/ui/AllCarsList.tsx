@@ -15,7 +15,7 @@ const AllCarsList = () => {
   return (
     <section className="min-h-[60vh] overflow-y-auto">
       <div className="mt-6 px-4 font-[Estedad-FD] sm:px-2 md:max-w-full">
-        {isLoading && <LoadingCar />}
+        {isLoading && <LoadingCar carsLength={cars.length} />}
 
         {cars.length > 0 && !isLoading && (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">

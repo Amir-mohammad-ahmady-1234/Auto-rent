@@ -66,9 +66,9 @@ export async function addUser(
 export const getLatestOtpCode = async (phone: string) => {
   const normalizeTo989 = (num: string) => {
     if (num.startsWith('+98')) return num.slice(1);
-    if (num.startsWith('0')) return '98' + num.slice(1); 
-    if (num.startsWith('98')) return num; 
-    return num; 
+    if (num.startsWith('0')) return '98' + num.slice(1);
+    if (num.startsWith('98')) return num;
+    return num;
   };
 
   const possiblePhones = [
@@ -92,3 +92,17 @@ export const getLatestOtpCode = async (phone: string) => {
 
   throw new Error('کدی یافت نشد');
 };
+
+export async function getUserId(phone: string | null) {
+  const { data: id, error } = await supabase
+    .from('users')
+    .select('id')
+    .eq('phone', phone)
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return id.id;
+}

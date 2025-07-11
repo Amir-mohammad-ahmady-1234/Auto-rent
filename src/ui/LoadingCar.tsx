@@ -1,14 +1,10 @@
-import { useContext } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { CarsContext } from '../context/cars/CarsContext';
 
-const LoadingCar = () => {
-  const { cars } = useContext(CarsContext);
-
+const LoadingCar = ({ carsLength }: { carsLength: number }) => {
   return (
     <div className="mx-auto my-10 grid max-w-7xl grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-      {[...Array(cars ? cars.length : 6)].map((_, i) => (
+      {[...Array(carsLength ? carsLength : 6)].map((_, i) => (
         <div
           key={i}
           className="flex w-full max-w-[450px] flex-col rounded-xl border border-gray-300 bg-white p-6 shadow-lg transition-transform duration-200 hover:scale-[1.02]"

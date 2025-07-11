@@ -4,12 +4,10 @@ import FullPageLoading from '../ui/FullPageLoading';
 import StepManagement from '../ui/StepManagement';
 import { useEffect } from 'react';
 import { useStep } from '../context/handleReserveSteps/useStep';
-import { useUserRserveInfo } from '../context/userReservedData/useUserReservedInfo';
 
 const OrderDetails = () => {
   const navigate = useNavigate();
   const { currentStep } = useStep();
-  const { userReservedInfo } = useUserRserveInfo();
 
   useEffect(
     function () {
@@ -35,8 +33,6 @@ const OrderDetails = () => {
   function handleOrderTracking() {
     navigate('/');
   }
-
-  console.log(mainCar, formInfo, userReservedInfo);
 
   return (
     <>

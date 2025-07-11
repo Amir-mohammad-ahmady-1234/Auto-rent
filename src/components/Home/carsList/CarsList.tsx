@@ -10,14 +10,14 @@ const CarsList = () => {
   const { cars: allCars, isLoading, error } = useContext(CarsContext);
   const cars = [...allCars]?.splice(0, 3);
 
-  if (isLoading) return <LoadingCar />;
-
   if (error) return <NoCarsFound />;
 
   return (
     <>
       <CarsListHeader />
       <div className="mt-6 px-4 sm:px-2 md:max-w-full">
+        {isLoading && <LoadingCar carsLength={3} />}
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {cars.map((car) => (
             <Car carDetails={car} key={car.id} />

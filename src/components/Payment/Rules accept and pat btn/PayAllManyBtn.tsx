@@ -1,11 +1,21 @@
+import { useReservedInfo } from '../../../context/carReservedData/useReserved';
 import { useStep } from '../../../context/handleReserveSteps/useStep';
 import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
+import { useUserRserveInfo } from '../../../context/userReservedData/useUserReservedInfo';
 import { formatNumber } from '../../../utils/formatNumber.1';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../../context/Auth/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import { getUserId } from '../../../services/apiAuth';
+import FullPageLoading from '../../../ui/FullPageLoading';
 
 const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
   const { totalAmount } = useDepositPrice();
   const { setCurrentStep } = useStep();
+
+  const { userReservedInfo } = useUserRserveInfo();
+  const { formInfo, mainCar } = useReservedInfo();
+  const { phone } = useAuth();
 
   function handlePay() {
     toast.success('پرداخت شما با موفقیت انجام شد.', {
@@ -15,6 +25,15 @@ const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
     setCurrentStep(5);
   }
 
+  const { data: userID, isLoading } = useQuery<string | null, Error>({
+    queryKey: ['users'],
+    queryFn: () => getUserId(phone),
+  });
+
+  if (isLoading) return <FullPageLoading />;
+
+  console.log(totalAmount, userReservedInfo, formInfo, mainCar?.id, userID);
+  
   return (
     <>
       {/* Gray payment summary box */}
