@@ -4,6 +4,7 @@ import { CarsContext } from '../../../context/cars/CarsContext';
 import Car from '../../../ui/Car';
 
 import LoadingCar from '../../../ui/LoadingCar';
+import NoCarsFound from '../../../ui/NoCarsFound';
 
 const CarsList = () => {
   const { cars: allCars, isLoading, error } = useContext(CarsContext);
@@ -11,19 +12,7 @@ const CarsList = () => {
 
   if (isLoading) return <LoadingCar />;
 
-  if (error)
-    return (
-      <div className="flex w-full flex-col items-center justify-center px-4 py-8">
-        <img
-          src="/images/error.png"
-          alt="خطای بارگذاری خودروها"
-          className="w-full max-w-md object-contain"
-        />
-        <p className="mt-4 text-center text-lg font-semibold text-gray-700">
-          اوه شت! مشکلی در بارگذاری ماشین‌ها پیش اومد. دوباره تلاش کن.
-        </p>
-      </div>
-    );
+  if (error) return <NoCarsFound />;
 
   return (
     <>

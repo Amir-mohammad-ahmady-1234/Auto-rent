@@ -6,6 +6,7 @@ import FullPageLoading from '../../../ui/FullPageLoading';
 import { useDepositPrice } from '../../../context/price deposit/useDepositPrice';
 import { useReservedInfo } from '../../../context/carReservedData/useReserved';
 import { useEffect, useState } from 'react';
+import NoCarsFound from '../../../ui/NoCarsFound';
 
 const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
   const { id } = mainCar;
@@ -49,8 +50,7 @@ const CalculateMany = ({ mainCar }: { mainCar: TCar }) => {
 
   if (isLoading) return <FullPageLoading />;
 
-  if (error || !priceItems)
-    return <p className="text-red-600">{error?.message}</p>;
+  if (error || !priceItems) return <NoCarsFound />;
 
   if (!formInfo) return null;
 

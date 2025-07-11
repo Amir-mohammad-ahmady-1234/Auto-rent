@@ -4,7 +4,10 @@ import { formatNumber } from '../utils/formatNumber.1';
 import { toPersianNumbers } from '../utils/toPersianNumbers';
 import { getCarFullDetails } from '../services/apiDeposit';
 import { useQuery } from '@tanstack/react-query';
-import LoadingCar from './LoadingCar';
+import NoCarsFound from './NoCarsFound';
+
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 interface Prop {
   carDetails: TCar;
@@ -23,11 +26,11 @@ const Car = ({ carDetails }: Prop) => {
     queryFn: () => getCarFullDetails(id),
   });
 
-  if (isLoading) return <LoadingCar />;
+  const deposit_amount = priceItems?.deposit_amount;
 
-  const { deposit_amount } = priceItems;
-
-  if (error) throw new Error('can not fetch car deposit data.');
+  if (error) {
+    return <NoCarsFound />;
+  }
 
   return (
     <div
@@ -88,9 +91,19 @@ const Car = ({ carDetails }: Prop) => {
 
         <div className="mt-4 flex items-center justify-between rounded-lg border border-[#E5E5E5] p-2.5 sm:p-3">
           <span className="font-iransans">مبلغ ضمانت:</span>
-          <span className="font-iranyekan text-sm font-extrabold text-[#212121] sm:text-base">
-            {formatNumber(deposit_amount)} تومان
-          </span>
+          {isLoading ? (
+            <div className="w-20">
+              <Skeleton
+                highlightColor="#e5e7eb"
+                baseColor="#d1d5db"
+                height={20}
+              />
+            </div>
+          ) : (
+            <span className="font-iranyekan text-sm font-extrabold text-[#212121] sm:text-base">
+              {formatNumber(deposit_amount)} تومان
+            </span>
+          )}
         </div>
 
         <Link to={`/rent/chose_car_info/${brand}`}>
