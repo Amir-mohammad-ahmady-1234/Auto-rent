@@ -5,6 +5,7 @@ import PhoneInputBox from './PhoneInputBox';
 import LogInImage from './LogInImage';
 import HeaderContent from './HeaderContent';
 import OtpForm from './OtpForm';
+import HaveAccount from './HaveAccount';
 
 const Login = () => {
   const {
@@ -21,6 +22,12 @@ const Login = () => {
     handleStep,
     isSendedOtpCode,
   } = useLogin();
+
+  const phoneNumber = localStorage.getItem('phoneNumber');
+
+  if (phoneNumber) {
+    return <HaveAccount phone={phoneNumber} />;
+  }
 
   return (
     <div

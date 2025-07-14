@@ -1,20 +1,27 @@
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/useAuth';
-import { supabase } from '../../services/supabase';
+import { useMutation } from '@tanstack/react-query';
+import { delteUserAcc } from '../../services/apiLogout';
 
 const AuthButton: React.FC = () => {
   const { phone, logout } = useAuth();
   const { pathname } = useLocation();
 
-  async function handleLogout() {
+  const { error, isPending, mutate } = useMutation({
+    mutationFn: () => delteUserAcc(phone),
+    onSuccess: () => {
+      logout();
+    },
+    onError: () => {
+      throw new Error('there is problem in deleting user');
+    },
+  });
+
+  function handleLogout() {
     const isLogout = confirm('قصد داری از حسابت خارج شی ؟');
 
-    if (isLogout) {
-      await supabase.from('test_otps').delete().eq('phone', phone);
-      await supabase.from('users').delete().eq('phone', phone);
-      logout();
-    }
+    if (isLogout) mutate();
   }
 
   return (
@@ -25,7 +32,15 @@ const AuthButton: React.FC = () => {
         transition={{ type: 'spring', stiffness: 300 }}
         className="font-iranyekan h-10 cursor-pointer rounded-lg bg-blue-600 px-4 font-medium text-white shadow-md hover:shadow-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
       >
-        {phone ? phone : 'ورود / ثبت‌نام'}
+        {isPending
+          ? 'در حال خروج ...'
+          : !phone
+            ? 'ورود / ثبت نام'
+            : phone
+              ? phone
+              : error
+                ? 'خطا در خروج'
+                : '___'}
       </motion.button>
     </Link>
   );
