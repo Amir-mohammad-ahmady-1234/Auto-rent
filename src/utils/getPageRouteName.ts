@@ -12,6 +12,9 @@ const getPageRouteName = (irLoc: string) => {
     'رزرو خودرو': {
       route: 'rent/cars',
     },
+    'بلاگ': {
+      route: 'blog',
+    },
   };
 
   return pageRoute[irLoc];

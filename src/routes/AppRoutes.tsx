@@ -11,6 +11,7 @@ import { StepProvider } from '../context/handleReserveSteps/StepProvider';
 import UserReservedInfoProvider from '../context/userReservedData/UserReservedInfoProvider';
 import DepositPricePrivider from '../context/price deposit/DepositPricePrivider';
 import FullPageLoading from '../ui/FullPageLoading';
+import Blog from '../pages/Blog';
 
 // Lazy load صفحات
 const Home = lazy(() => import('../pages/Home'));
@@ -41,12 +42,12 @@ const AppRoutes = () => {
                         <Route path="/" element={<AppLayout />}>
                           <Route index element={<Home />} />
                           <Route element={<BannerLayout />}>
-                            {/* Non-functional Page  */}
+                            {/* Non-functional Pages  */}
                             <Route path="faq" element={<FAQ />} />
                             <Route path="concat" element={<ContactPage />} />
                             <Route path="about" element={<AboutUs />} />
 
-                            {/* Dynamic Page */}
+                            {/* Dynamic Pages */}
                             <Route path="rent">
                               <Route
                                 index
@@ -67,6 +68,8 @@ const AppRoutes = () => {
                                 element={<OrderDetails />}
                               />
                             </Route>
+
+                            <Route path="Blog" element={<Blog />} />
                           </Route>
                         </Route>
                         <Route path="login" element={<LoginPage />} />

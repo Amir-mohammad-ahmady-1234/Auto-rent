@@ -20,6 +20,10 @@ const usePageLocation = () => {
       title: 'اجاره خودرو',
       subtitle: 'لیست خودرو های اجاره ای',
     },
+    blog: {
+      title: 'مقالات',
+      subtitle: 'مقالات',
+    },
   };
 
   // Drived state
