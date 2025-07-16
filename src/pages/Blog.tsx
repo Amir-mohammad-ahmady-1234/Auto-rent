@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import SearchArticle from '../components/blogSection/SearchArticle';
+import MainBlogCards from '../components/blogSection/MainBlogCards';
+import LatestArticles from '../components/blogSection/LatestArticles';
+import BlogTags from '../components/blogSection/BlogTags';
+import SeeAllBlogs from '../components/blogSection/SeeAllBlogs';
 
-interface BlogType {
+export interface BlogType {
   id: string;
   title: string;
   content: string;
@@ -78,44 +83,23 @@ const Blog = () => {
 
   return (
     <div className="bg-gray-100 px-4 py-10">
-      {/* Search */}
-      <div className="mx-auto mb-10 max-w-6xl">
-        <input
-          value={search}
-          type="text"
-          placeholder="جستجو در سایت اجاره خودرو اتورنت"
-          className="w-full rounded-lg border p-3 text-right focus:ring focus:ring-yellow-400 focus:outline-none"
-          onChange={(e) => {
-            setSearch(e.target.value);
-            handleSearch(e.target.value);
-          }}
-        />
-      </div>
+      <SearchArticle
+        search={search}
+        setSearch={setSearch}
+        handleSearch={handleSearch}
+      />
 
       <div className="max-w-8xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-4">
-        {/* Main Blog Cards */}
         <div className="order-2 grid grid-cols-1 gap-6 md:order-1 md:col-span-3 md:grid-cols-2 lg:grid-cols-3">
           {filteredSearch.map((item) => (
-            <div
-              key={item.id}
-              className="overflow-hidden rounded-lg bg-white shadow-sm"
-            >
-              <img
-                src={item.src}
-                alt="car"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-4 text-right">
-                <h3 className="mb-2 font-bold">{item.title}</h3>
-                <p className="mb-4 text-sm text-gray-600">
-                  {item.content.slice(0, 90)}...
-                </p>
-                <div className="flex items-center justify-between text-sm text-gray-500">
-                  <span>{item.readTime} دقیقه</span>
-                  <span>👁 {item.readed}</span>
-                </div>
-              </div>
-            </div>
+            <MainBlogCards
+              content={item.content}
+              id={item.id}
+              readTime={item.readTime}
+              readed={item.readed}
+              src={item.src}
+              title={item.title}
+            />
           ))}
         </div>
 
@@ -127,49 +111,25 @@ const Blog = () => {
             </h2>
             <div className="space-y-4">
               {lastArticles.map((item) => (
-                <div key={item.id} className="flex items-center gap-3">
-                  <img
-                    src={item.src}
-                    alt="article"
-                    className="h-16 w-16 rounded-md object-cover"
-                  />
-                  <div className="text-sm">
-                    <h3 className="text-sm font-bold">{item.title}</h3>
-                    <div className="mt-1 flex items-center gap-2 text-gray-500">
-                      <span>{item.readTime} دقیقه</span>
-                      <span>👁 {item.readed}</span>
-                    </div>
-                  </div>
-                </div>
+                <LatestArticles
+                  content={item.content}
+                  id={item.id}
+                  readTime={item.readTime}
+                  readed={item.readed}
+                  src={item.src}
+                  title={item.title}
+                />
               ))}
             </div>
           </div>
 
           {/* Tags */}
-          <div className="rounded-lg bg-white p-4">
-            <h2 className="mb-4 inline-block border-b-4 border-yellow-400 text-xl font-bold">
-              برچسب‌ها
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {['اجاره خودرو', 'مرسدس بنز', 'ون', 'بدون راننده'].map((tag) => (
-                <span
-                  key={tag}
-                  className="cursor-pointer rounded-full bg-gray-200 px-3 py-1 text-sm transition hover:bg-yellow-400"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+          <BlogTags />
         </div>
       </div>
 
       {/* View All */}
-      <div className="mx-auto mt-10 max-w-6xl text-center">
-        <button className="font-bold text-blue-600 transition hover:text-blue-800">
-          مشاهده همه
-        </button>
-      </div>
+      <SeeAllBlogs />
     </div>
   );
 };
