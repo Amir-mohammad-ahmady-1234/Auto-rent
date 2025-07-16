@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface BlogType {
   id: string;
   title: string;
@@ -59,23 +61,41 @@ const blogs: BlogType[] = [
 ];
 
 const Blog = () => {
+  const [filteredSearch, setFilteredSearch] = useState(blogs);
+  const [search, setSearch] = useState('');
+
   const lastArticles = blogs.slice(blogs.length - 5, blogs.length - 1);
+
+  function handleSearch(searchText: string) {
+    const filteredContent = blogs.filter((blog) => {
+      return (
+        blog.title.includes(searchText) || blog.content.includes(searchText)
+      );
+    });
+
+    setFilteredSearch(filteredContent);
+  }
 
   return (
     <div className="bg-gray-100 px-4 py-10">
       {/* Search */}
       <div className="mx-auto mb-10 max-w-6xl">
         <input
+          value={search}
           type="text"
           placeholder="جستجو در سایت اجاره خودرو اتورنت"
           className="w-full rounded-lg border p-3 text-right focus:ring focus:ring-yellow-400 focus:outline-none"
+          onChange={(e) => {
+            setSearch(e.target.value);
+            handleSearch(e.target.value);
+          }}
         />
       </div>
 
-      <div className="mx-auto grid max-w-8xl grid-cols-1 gap-8 md:grid-cols-4">
+      <div className="max-w-8xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-4">
         {/* Main Blog Cards */}
         <div className="order-2 grid grid-cols-1 gap-6 md:order-1 md:col-span-3 md:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((item) => (
+          {filteredSearch.map((item) => (
             <div
               key={item.id}
               className="overflow-hidden rounded-lg bg-white shadow-sm"
@@ -88,7 +108,7 @@ const Blog = () => {
               <div className="p-4 text-right">
                 <h3 className="mb-2 font-bold">{item.title}</h3>
                 <p className="mb-4 text-sm text-gray-600">
-                  {item.content.slice(0, 30)}
+                  {item.content.slice(0, 90)}...
                 </p>
                 <div className="flex items-center justify-between text-sm text-gray-500">
                   <span>{item.readTime} دقیقه</span>
@@ -114,7 +134,7 @@ const Blog = () => {
                     className="h-16 w-16 rounded-md object-cover"
                   />
                   <div className="text-sm">
-                    <h3 className="font-bold">{item.title}</h3>
+                    <h3 className="text-sm font-bold">{item.title}</h3>
                     <div className="mt-1 flex items-center gap-2 text-gray-500">
                       <span>{item.readTime} دقیقه</span>
                       <span>👁 {item.readed}</span>
