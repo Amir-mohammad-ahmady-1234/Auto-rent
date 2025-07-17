@@ -27,7 +27,9 @@ const BlogList = ({
           title={item.title}
         />
       ))}
-      {!search.trim() && <SeeAllBlogs setIsSeeAll={setIsSeeAll} isSeeAll={isSeeAll} />}
+      {!search.trim() && (
+        <SeeAllBlogs setIsSeeAll={setIsSeeAll} isSeeAll={isSeeAll} />
+      )}
     </div>
   );
 };

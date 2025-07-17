@@ -20,7 +20,7 @@ const usePageLocation = () => {
       title: 'اجاره خودرو',
       subtitle: 'لیست خودرو های اجاره ای',
     },
-    blog: {
+    blogs: {
       title: 'مقالات',
       subtitle: 'مقالات',
     },

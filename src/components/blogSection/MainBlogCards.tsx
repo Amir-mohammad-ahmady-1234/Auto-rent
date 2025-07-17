@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { BlogType } from '../../pages/Blog';
 
 const MainBlogCards = ({
@@ -13,15 +14,20 @@ const MainBlogCards = ({
       key={id}
       className="h-fit overflow-hidden rounded-lg bg-white shadow-sm hover:scale-110"
     >
-      <img src={src} alt="car" className="h-48 w-full object-cover" />
-      <div className="p-4 text-right">
-        <h3 className="mb-2 font-bold">{title}</h3>
-        <p className="mb-4 text-sm text-gray-600">{content.slice(0, 90)}...</p>
-        <div className="-center flex justify-between text-sm text-gray-500">
-          <span>{readTime} دقیقه</span>
-          <span>👁 {readed}</span>
+      <Link to={`/blogs/article/${id}`}>
+        <img src={src} alt="car" className="h-48 w-full object-cover" />
+
+        <div className="p-4 text-right">
+          <h3 className="mb-2 font-bold">{title}</h3>
+          <p className="mb-4 text-sm text-gray-600">
+            {content.slice(0, 90)}...
+          </p>
+          <div className="-center flex justify-between text-sm text-gray-500">
+            <span>{readTime} دقیقه</span>
+            <span>👁 {readed}</span>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

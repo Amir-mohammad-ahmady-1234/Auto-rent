@@ -13,7 +13,7 @@ const getPageRouteName = (irLoc: string) => {
       route: 'rent/cars',
     },
     'بلاگ': {
-      route: 'blog',
+      route: 'blogs/all_blogs',
     },
   };
 

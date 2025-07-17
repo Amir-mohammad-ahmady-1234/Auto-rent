@@ -16,14 +16,14 @@ import { useReservedInfo } from '../context/carReservedData/useReserved';
 
 const SelectCarInfo = () => {
   const navigate = useNavigate();
-  const { brand } = useParams();
+  const { id } = useParams();
 
   const { cars } = useContext(CarsContext);
   const { currentStep } = useStep();
   const { setMainCar } = useReservedInfo();
 
   const mainCar = cars.filter((car) => {
-    return car.brand === brand;
+    return car.id === id;
   })[0];
 
   useEffect(
@@ -37,7 +37,7 @@ const SelectCarInfo = () => {
     function () {
       if (currentStep === 2) navigate('/rent/select_user_info');
     },
-    [currentStep, navigate, brand]
+    [currentStep, navigate, id]
   );
 
   if (!mainCar) return <FullPageLoading />;

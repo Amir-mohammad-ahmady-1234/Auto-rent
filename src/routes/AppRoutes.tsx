@@ -11,9 +11,8 @@ import { StepProvider } from '../context/handleReserveSteps/StepProvider';
 import UserReservedInfoProvider from '../context/userReservedData/UserReservedInfoProvider';
 import DepositPricePrivider from '../context/price deposit/DepositPricePrivider';
 import FullPageLoading from '../ui/FullPageLoading';
-import Blog from '../pages/Blog';
+import ArticlePage from '../pages/ArticlePage';
 
-// Lazy load صفحات
 const Home = lazy(() => import('../pages/Home'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 const FAQ = lazy(() => import('../pages/FAQ'));
@@ -25,6 +24,7 @@ const LoginPage = lazy(() => import('../pages/LoginPage'));
 const SelectUserInfo = lazy(() => import('../pages/SelectUserInfo'));
 const Payment = lazy(() => import('../pages/Payment'));
 const OrderDetails = lazy(() => import('../pages/OrderDetails'));
+const Blog = lazy(() => import('../pages/Blog'));
 
 const AppRoutes = () => {
   return (
@@ -55,7 +55,7 @@ const AppRoutes = () => {
                               />
                               <Route path="cars" element={<BrowseCarsPage />} />
                               <Route
-                                path="chose_car_info/:brand"
+                                path="chose_car_info/:id"
                                 element={<SelectCarInfo />}
                               />
                               <Route
@@ -69,7 +69,17 @@ const AppRoutes = () => {
                               />
                             </Route>
 
-                            <Route path="Blog" element={<Blog />} />
+                            <Route path="Blogs">
+                              <Route
+                                index
+                                element={<Navigate to="all_blogs" replace />}
+                              />
+                              <Route path="all_blogs" element={<Blog />} />
+                              <Route
+                                path="article/:id"
+                                element={<ArticlePage />}
+                              />
+                            </Route>
                           </Route>
                         </Route>
                         <Route path="login" element={<LoginPage />} />

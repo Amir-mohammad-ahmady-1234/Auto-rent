@@ -1,8 +1,12 @@
+import { Link } from 'react-router-dom';
 import type { BlogType } from '../../pages/Blog';
 
 const LatestArticles = ({ id, src, title, readTime, readed }: BlogType) => {
   return (
-    <div key={id} className="flex items-center gap-3">
+    <Link
+      to={`/blogs/article/${id}`}
+      className="flex items-center gap-3"
+    >
       <img
         src={src}
         alt="article"
@@ -15,7 +19,7 @@ const LatestArticles = ({ id, src, title, readTime, readed }: BlogType) => {
           <span>👁 {readed}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

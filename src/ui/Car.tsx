@@ -14,8 +14,7 @@ interface Prop {
 }
 
 const Car = ({ carDetails }: Prop) => {
-  const { dailyPrice, id, image, model, monthlyPrice, title, brand } =
-    carDetails;
+  const { dailyPrice, id, image, model, monthlyPrice, title } = carDetails;
 
   const {
     data: priceItems,
@@ -106,7 +105,7 @@ const Car = ({ carDetails }: Prop) => {
           )}
         </div>
 
-        <Link to={`/rent/chose_car_info/${brand}`}>
+        <Link to={`/rent/chose_car_info/${id}`}>
           <button className="font-iranyekan mt-4 w-full cursor-pointer rounded-lg bg-[#194BF0] py-2.5 text-center text-sm font-extrabold text-white transition-colors hover:bg-[#1539C0] sm:py-3">
             درخواست رزرو
           </button>
