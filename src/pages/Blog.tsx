@@ -25,7 +25,8 @@ const Blog = () => {
   if (error || !blogs?.length) return <NotBlogsFounded />;
 
   const filteredBlogs = blogs.filter(
-    (blog) => blog.title.includes(search.trim()) || blog.content.includes(search.trim())
+    (blog) =>
+      blog.title.includes(search.trim()) || blog.content.includes(search.trim())
   );
 
   const lastArticles = blogs?.slice(blogs.length - 5, blogs.length - 1);
@@ -44,8 +45,6 @@ const Blog = () => {
 
         <BlogSidebar lastArticles={lastArticles} />
       </div>
-
-      {/* <SeeAllBlogs setIsSeeAll={setIsSeeAll} isSeeAll={isSeeAll} /> */}
     </div>
   );
 };
