@@ -13,6 +13,7 @@ export interface BlogType {
   readTime: number;
   readed: number;
   src: string;
+  created_at?: string;
 }
 
 const Blog = () => {
