@@ -11,11 +11,11 @@ const BlogSidebar = ({ lastArticles }: { lastArticles: BlogType[] }) => {
         </h2>
         <div className="space-y-4">
           {lastArticles?.map((item) => (
-            <LatestArticles 
+            <LatestArticles
               content={item.content}
               id={item.id}
               readTime={item.readTime}
-              readed={item.readed}
+              views={item.views}
               src={item.src}
               title={item.title}
             />

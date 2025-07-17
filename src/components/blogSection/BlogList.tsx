@@ -22,7 +22,7 @@ const BlogList = ({
           content={item.content}
           id={item.id}
           readTime={item.readTime}
-          readed={item.readed}
+          views={item.views}
           src={item.src}
           title={item.title}
         />

@@ -11,9 +11,9 @@ export interface BlogType {
   title: string;
   content: string;
   readTime: number;
-  readed: number;
   src: string;
   created_at?: string;
+  views: number;
 }
 
 const Blog = () => {

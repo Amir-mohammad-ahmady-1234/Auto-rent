@@ -5,7 +5,7 @@ const MainBlogCards = ({
   content,
   id,
   readTime,
-  readed,
+  views,
   src,
   title,
 }: BlogType) => {
@@ -24,7 +24,7 @@ const MainBlogCards = ({
           </p>
           <div className="-center flex justify-between text-sm text-gray-500">
             <span>{readTime} دقیقه</span>
-            <span>👁 {readed}</span>
+            <span>👁 {views}</span>
           </div>
         </div>
       </Link>
