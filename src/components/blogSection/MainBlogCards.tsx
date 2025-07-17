@@ -9,7 +9,10 @@ const MainBlogCards = ({
   title,
 }: BlogType) => {
   return (
-    <div key={id} className="overflow-hidden rounded-lg bg-white shadow-sm">
+    <div
+      key={id}
+      className="h-fit overflow-hidden rounded-lg bg-white shadow-sm hover:scale-110"
+    >
       <img src={src} alt="car" className="h-48 w-full object-cover" />
       <div className="p-4 text-right">
         <h3 className="mb-2 font-bold">{title}</h3>

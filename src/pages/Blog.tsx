@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import SearchArticle from '../components/blogSection/SearchArticle';
-import SeeAllBlogs from '../components/blogSection/SeeAllBlogs';
 import { useFetchBlogs } from '../hooks/useBlogQuery';
 import FullPageLoading from '../ui/FullPageLoading';
 import NotBlogsFounded from '../components/blogSection/NotBlogsFounded';
@@ -20,12 +19,13 @@ const Blog = () => {
   const { blogs, error, isLoading } = useFetchBlogs();
 
   const [search, setSearch] = useState('');
+  const [isSeeAll, setIsSeeAll] = useState(false);
 
   if (isLoading) return <FullPageLoading />;
   if (error || !blogs?.length) return <NotBlogsFounded />;
 
   const filteredBlogs = blogs.filter(
-    (blog) => blog.title.includes(search) || blog.content.includes(search)
+    (blog) => blog.title.includes(search.trim()) || blog.content.includes(search.trim())
   );
 
   const lastArticles = blogs?.slice(blogs.length - 5, blogs.length - 1);
@@ -35,12 +35,17 @@ const Blog = () => {
       <SearchArticle search={search} setSearch={setSearch} />
 
       <div className="max-w-8xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-4">
-        <BlogList filteredBlogs={filteredBlogs} />
+        <BlogList
+          filteredBlogs={filteredBlogs}
+          isSeeAll={isSeeAll}
+          setIsSeeAll={setIsSeeAll}
+          search={search}
+        />
 
         <BlogSidebar lastArticles={lastArticles} />
       </div>
 
-      <SeeAllBlogs />
+      {/* <SeeAllBlogs setIsSeeAll={setIsSeeAll} isSeeAll={isSeeAll} /> */}
     </div>
   );
 };
