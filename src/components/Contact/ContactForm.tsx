@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { IoClose, IoMail } from 'react-icons/io5';
 
-interface ContactFormProps {
-  userEmail?: string;
-}
-
-const ContactForm: React.FC<ContactFormProps> = ({
-  userEmail = 'Mohammad@Gmail.Com',
-}) => {
+const ContactForm = () => {
   const [message, setMessage] = useState('');
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [userEmail, setUserEmail] = useState('');
 
   const maxMessageLength = 200;
   const clear = (setter: React.Dispatch<React.SetStateAction<string>>) => () =>
@@ -24,7 +19,10 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ fullName, email: userEmail, phoneNumber, message });
+    setMessage('');
+    setFullName('');
+    setPhoneNumber('');
+    setUserEmail('');
   };
 
   return (
@@ -90,6 +88,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 id="email"
                 type="email"
                 placeholder={userEmail}
+                value={userEmail}
+                onChange={(e) => setUserEmail(e.target.value)}
                 className="font-iransans h-14 w-full rounded-xl border border-gray-200 bg-gray-50 px-4 pt-6 pb-2 text-right text-gray-700 placeholder-gray-500 shadow-sm"
                 required
               />

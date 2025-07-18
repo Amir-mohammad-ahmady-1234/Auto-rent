@@ -25,6 +25,7 @@ const BlogList = ({
           views={item.views}
           src={item.src}
           title={item.title}
+          key={item.id}
         />
       ))}
       {!search.trim() && (

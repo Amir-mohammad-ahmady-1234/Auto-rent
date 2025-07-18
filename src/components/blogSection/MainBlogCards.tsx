@@ -11,7 +11,6 @@ const MainBlogCards = ({
 }: BlogType) => {
   return (
     <div
-      key={id}
       className="h-fit overflow-hidden rounded-lg bg-white shadow-sm hover:scale-110"
     >
       <Link to={`/blogs/article/${id}`}>

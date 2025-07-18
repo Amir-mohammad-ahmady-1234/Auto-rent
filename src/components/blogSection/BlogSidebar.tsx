@@ -18,6 +18,7 @@ const BlogSidebar = ({ lastArticles }: { lastArticles: BlogType[] }) => {
               views={item.views}
               src={item.src}
               title={item.title}
+              key={item.id}
             />
           ))}
         </div>

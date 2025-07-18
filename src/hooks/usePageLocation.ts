@@ -1,7 +1,14 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useFetchBlogs } from './useBlogQuery';
 
 const usePageLocation = () => {
   const { pathname } = useLocation();
+  const { id } = useParams();
+  const { blogs, isLoading } = useFetchBlogs();
+
+  if (isLoading) return { isLoading };
+
+  const mainBlog = blogs?.find((blog) => blog.id === id);
 
   const pageData: Record<string, { title: string; subtitle: string }> = {
     concat: {
@@ -24,6 +31,10 @@ const usePageLocation = () => {
       title: 'مقالات',
       subtitle: 'مقالات',
     },
+    'blogs/article/:id': {
+      title: 'مقالاات',
+      subtitle: 'هلو هلو هلو',
+    },
   };
 
   // Drived state
@@ -40,6 +51,10 @@ const usePageLocation = () => {
 
   if (pathname === '/rent/payment') {
     current = { title: 'پرداخت', subtitle: 'ثبت درخواست رزرو' };
+  }
+
+  if (pathname === `/blogs/article/${id}`) {
+    current = { title: 'مقالات', subtitle: mainBlog.title };
   }
 
   return current;
