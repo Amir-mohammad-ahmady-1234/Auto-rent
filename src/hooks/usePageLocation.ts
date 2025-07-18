@@ -6,7 +6,7 @@ const usePageLocation = () => {
   const { id } = useParams();
   const { blogs, isLoading } = useFetchBlogs();
 
-  if (isLoading) return { isLoading };
+  if (isLoading) return { title: 'مقالات', subtitle: 'در حال بارگذاری' };
 
   const mainBlog = blogs?.find((blog) => blog.id === id);
 
