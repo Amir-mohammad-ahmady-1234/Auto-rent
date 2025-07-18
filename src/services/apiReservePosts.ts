@@ -1,4 +1,4 @@
-import { supabase } from './supabase'; // آدرس فایل کانفیگ supabase
+import { supabase } from './supabase'; 
 
 interface Reservation {
   deliveryDate: string;
