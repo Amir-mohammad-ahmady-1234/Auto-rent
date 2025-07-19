@@ -2,11 +2,12 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { getAllComments, sendComment } from '../services/apiComment';
 import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import type { Comment } from '../components/CarRental/rentalForm/comment/CommentForSelectedCar';
 
 export const useGetComments = () => {
   const { id: currentCarId } = useParams();
 
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery<Comment[]>({
     queryKey: ['comments', currentCarId],
     queryFn: () => getAllComments(currentCarId ?? ''),
   });

@@ -7,7 +7,7 @@ import HeroSlider from '../components/CarRental/HeroSlider';
 import FeaturesCarComponent from '../components/CarRental/FeaturesCarComponent';
 import AboutCarComponent from '../components/CarRental/AboutCarComponent';
 import MoreCarDetails from '../components/CarRental/MoreCarDetails';
-import CommentForSelectedCar from '../components/CarRental/CommentForSelectedCar';
+import CommentForSelectedCar from '../components/CarRental/rentalForm/comment/CommentForSelectedCar';
 import CarCoversDetails from '../components/CarRental/CarCoversDetails';
 import InviteCars from '../components/CarRental/InviteCars';
 import FullPageLoading from '../ui/FullPageLoading';
@@ -54,7 +54,7 @@ const SelectCarInfo = () => {
         <FeaturesCarComponent carInfo={mainCar} />
         <AboutCarComponent carInfo={mainCar} />
 
-        <div className="hidden lg:block">
+        <div className="hidden space-y-32 lg:block">
           <CommentForSelectedCar />
           <InviteCars />
         </div>
@@ -63,7 +63,7 @@ const SelectCarInfo = () => {
       <div className="order-2 flex h-full w-full flex-col justify-center lg:order-2 lg:w-1/3">
         <CarReservationBox carInfo={mainCar} />
 
-        <div className="mt-6 block space-y-4 lg:hidden">
+        <div className="mt-6 block space-y-32 lg:hidden">
           <CommentForSelectedCar />
           <InviteCars />
         </div>
