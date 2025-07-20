@@ -15,6 +15,10 @@ import ArticlePage from '../pages/ArticlePage';
 import Rules from '../pages/Rules';
 import UserPanel from '../pages/UserPanel';
 import Walet from '../components/panel/pages/Walet';
+import MyReservedCars from '../components/panel/pages/MyReservedCars';
+import MyAddress from '../components/panel/pages/MyAddress';
+import MyPayments from '../components/panel/pages/MyPayments';
+import MyComments from '../components/panel/pages/MyComments';
 
 const Home = lazy(() => import('../pages/Home'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -93,6 +97,22 @@ const AppRoutes = () => {
                           />
 
                           <Route path="walet" element={<Walet />} />
+                          <Route
+                            path="my_reserved"
+                            element={<MyReservedCars />}
+                          />
+                          <Route
+                            path="my_address"
+                            element={<MyAddress />}
+                          />
+                          <Route
+                            path="my_payments"
+                            element={<MyPayments />}
+                          />
+                          <Route
+                            path="my_comments"
+                            element={<MyComments />}
+                          />
                         </Route>
                         <Route path="login" element={<LoginPage />} />
                         <Route path="*" element={<NotFoundPage />} />

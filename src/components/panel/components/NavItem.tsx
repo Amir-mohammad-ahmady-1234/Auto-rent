@@ -8,10 +8,12 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ icon, label, active = false }) => (
   <div
-    className={`flex cursor-pointer items-center text-sm ${active ? 'text-blue-600' : 'text-gray-600'} hover:text-blue-500`}
+    className={`flex cursor-pointer items-center text-sm ${
+      active ? 'text-blue-600' : 'text-gray-600'
+    } hover:text-blue-500`}
   >
     {icon}
-    <span className="mr-3">{label}</span>
+    <span className={`mr-3 ${label ==='خروج' && 'text-red-500'}`}>{label}</span>
   </div>
 );
 
