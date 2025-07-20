@@ -14,6 +14,7 @@ import FullPageLoading from '../ui/FullPageLoading';
 import ArticlePage from '../pages/ArticlePage';
 import Rules from '../pages/Rules';
 import UserPanel from '../pages/UserPanel';
+import Walet from '../components/panel/pages/Walet';
 
 const Home = lazy(() => import('../pages/Home'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -85,7 +86,14 @@ const AppRoutes = () => {
                             </Route>
                           </Route>
                         </Route>
-                        <Route path="panel" element={<UserPanel />} />
+                        <Route path="panel" element={<UserPanel />}>
+                          <Route
+                            index
+                            element={<Navigate to="walet" replace />}
+                          />
+
+                          <Route path="walet" element={<Walet />} />
+                        </Route>
                         <Route path="login" element={<LoginPage />} />
                         <Route path="*" element={<NotFoundPage />} />
                       </Routes>

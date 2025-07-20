@@ -11,14 +11,14 @@ import {
   FaBars,
   FaTimes,
 } from 'react-icons/fa';
-import Walet from '../components/panel/pages/Walet';
 import NavItem from '../components/panel/components/NavItem';
+import { Outlet } from 'react-router-dom';
 
 const UserPanel: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen flex-col md:flex-row bg-gray-50">
+    <div className="flex min-h-screen flex-col bg-gray-50 md:flex-row">
       {/* Mobile header */}
       <header className="flex w-full items-center justify-between bg-white p-4 shadow md:hidden">
         <h1 className="text-lg font-semibold">پنل کاربری</h1>
@@ -73,7 +73,7 @@ const UserPanel: React.FC = () => {
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto p-4 md:p-8">
-        <Walet />
+        <Outlet />
       </main>
     </div>
   );
