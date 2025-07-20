@@ -1,12 +1,14 @@
-import { motion } from 'framer-motion';
-import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/useAuth';
 import { useMutation } from '@tanstack/react-query';
 import { delteUserAcc } from '../../services/apiLogout';
+import { useState } from 'react';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 const AuthButton: React.FC = () => {
   const { phone, logout } = useAuth();
-  const { pathname } = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const { error, isPending, mutate } = useMutation({
     mutationFn: () => delteUserAcc(phone),
@@ -14,35 +16,81 @@ const AuthButton: React.FC = () => {
       logout();
     },
     onError: () => {
-      throw new Error('there is problem in deleting user');
+      console.error('Error deleting user:', error);
+      alert('مشکلی در حذف حساب رخ داد.');
     },
   });
 
   function handleLogout() {
     const isLogout = confirm('قصد داری از حسابت خارج شی ؟');
-
     if (isLogout) mutate();
   }
 
-  return (
-    <Link to={`${phone ? pathname : 'login'}`}>
-      <motion.button
-        onClick={phone ? handleLogout : undefined}
-        whileHover={{ scale: 1.05 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-        className="font-iranyekan h-10 cursor-pointer rounded-lg bg-blue-600 px-4 font-medium text-white shadow-md hover:shadow-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
-      >
-        {isPending
-          ? 'در حال خروج ...'
+  function toggleDropdown() {
+    setIsOpen((prev) => !prev);
+  }
+
+  const ButtonContent = (
+    <>
+      {isPending
+        ? 'در حال خروج ...'
+        : error
+          ? 'خطا در خروج'
           : !phone
             ? 'ورود / ثبت نام'
-            : phone
-              ? phone
-              : error
-                ? 'خطا در خروج'
-                : '___'}
-      </motion.button>
-    </Link>
+            : phone}
+
+      {phone &&
+        (isOpen ? (
+          <FiChevronUp className="ml-2" />
+        ) : (
+          <FiChevronDown className="ml-2" />
+        ))}
+    </>
+  );
+
+  const Button = (
+    <motion.button
+      onClick={phone ? toggleDropdown : undefined}
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: 'spring', stiffness: 300 }}
+      className={`font-iranyekan flex h-10 w-40 cursor-pointer items-center justify-center rounded-lg bg-blue-600 px-4 text-center font-medium text-white shadow-md hover:shadow-lg focus:ring-2 focus:ring-blue-400 focus:outline-none`}
+    >
+      {ButtonContent}
+    </motion.button>
+  );
+
+  return (
+    <div className="relative inline-block text-left">
+      {!phone ? <Link to="/login">{Button}</Link> : Button}
+
+      <AnimatePresence>
+        {isOpen && phone && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: 'spring', stiffness: 300 }}
+            className="ring-opacity-5 absolute left-0 z-50 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black"
+          >
+            <div className="py-1">
+              <Link to="panel">
+                <button className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  رفتن به پنل
+                </button>
+              </Link>
+
+              <button
+                className="w-full px-4 py-2 text-sm text-red-600 hover:bg-red-100"
+                onClick={handleLogout}
+              >
+                خروج
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

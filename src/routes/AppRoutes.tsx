@@ -13,6 +13,7 @@ import DepositPricePrivider from '../context/price deposit/DepositPricePrivider'
 import FullPageLoading from '../ui/FullPageLoading';
 import ArticlePage from '../pages/ArticlePage';
 import Rules from '../pages/Rules';
+import UserPanel from '../pages/UserPanel';
 
 const Home = lazy(() => import('../pages/Home'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -82,6 +83,8 @@ const AppRoutes = () => {
                                 element={<ArticlePage />}
                               />
                             </Route>
+
+                            <Route path="panel" element={<UserPanel />} />
                           </Route>
                         </Route>
                         <Route path="login" element={<LoginPage />} />
