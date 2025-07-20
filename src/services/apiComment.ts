@@ -4,6 +4,7 @@ type AddCommentProps = {
   mainCar_id: string;
   avatar: string;
   text: string;
+  phone: string;
 };
 
 export const getAllComments = async (currentCarId: string) => {
@@ -23,10 +24,11 @@ export const sendComment = async ({
   mainCar_id,
   avatar,
   text,
+  phone,
 }: AddCommentProps) => {
   const { data, error } = await supabase
     .from('comments')
-    .insert([{ avatar, text, mainCar_id }]);
+    .insert([{ avatar, text, mainCar_id, phone }]);
 
   if (error) {
     throw new Error(error.message);

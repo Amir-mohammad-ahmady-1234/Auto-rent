@@ -16,6 +16,7 @@ export interface Comment {
   text: string;
   id?: string;
   created_at?: string;
+  phone: string;
 }
 
 const CommentForSelectedCar: React.FC = () => {
@@ -61,7 +62,7 @@ const CommentForSelectedCar: React.FC = () => {
         phone={phone ?? ''}
       />
 
-      <Comment comments={comments ?? []} phone={phone ?? ''} />
+      <Comment comments={comments ?? []} />
     </div>
   );
 };

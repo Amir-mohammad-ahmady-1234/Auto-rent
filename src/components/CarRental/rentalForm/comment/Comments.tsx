@@ -1,13 +1,7 @@
 import { convertDateToPersian } from '../../../../utils/converDateToPersian';
 import type { Comment } from './CommentForSelectedCar';
 
-const Comments = ({
-  comments,
-  phone,
-}: {
-  comments: Comment[];
-  phone: string;
-}) => {
+const Comments = ({ comments }: { comments: Comment[] }) => {
   return (
     <div className="max-h-80 space-y-4 overflow-y-auto pr-2">
       {comments
@@ -18,13 +12,13 @@ const Comments = ({
           >
             <img
               src={comment.avatar}
-              alt={phone ?? 'مهمان'}
+              alt={comment.phone ?? 'مهمان'}
               className="h-10 w-10 rounded-full object-cover"
             />
             <div className="flex-1">
               <p className="text-sm text-gray-700">{comment.text}</p>
               <p className="mt-1 text-xs text-gray-500">
-                شماره {phone ?? 'مهمان'} -{' '}
+                شماره {comment.phone ?? 'مهمان'} -{' '}
                 {convertDateToPersian(new Date(comment.created_at ?? ''))}
               </p>
             </div>

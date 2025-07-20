@@ -38,6 +38,7 @@ const SendComment = ({
       mainCar_id,
       avatar: `https://api.dicebear.com/8.x/avataaars/svg?seed=${phone}`,
       text: commentText,
+      phone,
     };
 
     mutate(newComment, {
