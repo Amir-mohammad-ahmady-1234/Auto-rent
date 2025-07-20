@@ -83,10 +83,9 @@ const AppRoutes = () => {
                                 element={<ArticlePage />}
                               />
                             </Route>
-
-                            <Route path="panel" element={<UserPanel />} />
                           </Route>
                         </Route>
+                        <Route path="panel" element={<UserPanel />} />
                         <Route path="login" element={<LoginPage />} />
                         <Route path="*" element={<NotFoundPage />} />
                       </Routes>
