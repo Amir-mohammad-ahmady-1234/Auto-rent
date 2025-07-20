@@ -12,6 +12,7 @@ import UserReservedInfoProvider from '../context/userReservedData/UserReservedIn
 import DepositPricePrivider from '../context/price deposit/DepositPricePrivider';
 import FullPageLoading from '../ui/FullPageLoading';
 import ArticlePage from '../pages/ArticlePage';
+import Rules from '../pages/Rules';
 
 const Home = lazy(() => import('../pages/Home'));
 const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
@@ -46,6 +47,7 @@ const AppRoutes = () => {
                             <Route path="faq" element={<FAQ />} />
                             <Route path="concat" element={<ContactPage />} />
                             <Route path="about" element={<AboutUs />} />
+                            <Route path="rules" element={<Rules />} />
 
                             {/* Dynamic Pages */}
                             <Route path="rent">

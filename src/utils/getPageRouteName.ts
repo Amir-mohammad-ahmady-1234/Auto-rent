@@ -12,8 +12,11 @@ const getPageRouteName = (irLoc: string) => {
     'رزرو خودرو': {
       route: 'rent/cars',
     },
-    'بلاگ': {
+    بلاگ: {
       route: 'blogs/all_blogs',
+    },
+    'قوانین و مقررات': {
+      route: 'rules',
     },
   };
 

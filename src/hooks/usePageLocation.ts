@@ -35,6 +35,10 @@ const usePageLocation = () => {
       title: 'مقالاات',
       subtitle: 'هلو هلو هلو',
     },
+    rules: {
+      title: 'قوانین و مقررات',
+      subtitle: 'قوانین و مقررات',
+    },
   };
 
   // Drived state

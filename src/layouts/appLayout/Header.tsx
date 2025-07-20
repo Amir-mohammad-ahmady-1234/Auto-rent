@@ -10,7 +10,7 @@ import SearchSuggestions from '../../components/HeaderNav/SearchSuggestions';
 const Header: React.FC = () => {
   const links: string[] = [
     'رزرو خودرو',
-    'خدمات ما',
+    'قوانین و مقررات',
     'بلاگ',
     'درباره ما',
     'تماس با ما',
