@@ -8,9 +8,7 @@ import { setCars as setFilterCars } from '../../features/rentCarFilters/filterCa
 import { setCars as setPriceCars } from '../../features/rentCarFilters/headerCarsFilterSlice';
 import { setCars as setSortCars } from '../../features/rentCarFilters/sortByFilterSlice';
 
-// provider
 const CarsProvider = ({ children }: { children: React.ReactNode }) => {
-  // const [cars, setCars] = useState<TCar[]>(carsData);
   const dispatch = useAppDispatch();
 
   const {

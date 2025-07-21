@@ -12,7 +12,7 @@ const AuthButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const { error, isPending, mutate } = useMutation({
+  const { error, isPending, mutate } = useMutation({  
     mutationFn: () => delteUserAcc(phone),
     onSuccess: () => {
       logout();
@@ -41,7 +41,7 @@ const AuthButton: React.FC = () => {
           ? 'خطا در خروج'
           : !phone
             ? 'ورود / ثبت نام'
-            : name !== 'بدون نام'
+            : name !== 'بدون نام' && name
               ? name
               : phone}
 

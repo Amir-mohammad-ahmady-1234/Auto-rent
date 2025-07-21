@@ -17,12 +17,12 @@ const CarCoversDetails = ({ carInfo }: MainCarType) => {
 
   if (isLoading) return <FullPageLoading />;
 
-  const { deposit_amount } = data;
-
   if (error) {
     toast.error('خطا در دریافت اصلاعات خودرو');
     return;
   }
+
+  const { deposit_amount } = data;
 
   return (
     <div

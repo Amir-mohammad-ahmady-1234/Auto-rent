@@ -16,6 +16,12 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   onConfirm,
   onClose,
 }) => {
+  function handleLogout() {
+    localStorage.removeItem('name');
+    onConfirm();
+    onClose();
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -41,10 +47,7 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
                 لغو
               </button>
               <button
-                onClick={() => {
-                  onConfirm();
-                  onClose();
-                }}
+                onClick={handleLogout}
                 className="rounded bg-red-600 px-4 py-2 text-sm font-bold text-white hover:bg-red-700"
               >
                 تایید

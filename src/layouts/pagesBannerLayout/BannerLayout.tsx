@@ -7,7 +7,7 @@ const BannerLayout = () => {
 
   return (
     <>
-      <ContactBanner title={title} subtitle={`انتورنت < ${subtitle}`} />
+      <ContactBanner title={title} subtitle={`اتورنت < ${subtitle}`} />
       <Outlet />
     </>
   );

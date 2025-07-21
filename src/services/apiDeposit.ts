@@ -16,7 +16,7 @@ export async function getCarFullDetails(carId: string | undefined) {
 
   if (error) {
     console.error('💀 ارور در دریافت مشخصات ماشین:', error);
-    return null;
+    // return null;
   }
 
   // console.log('🔥 مشخصات کامل ماشین:', data);
