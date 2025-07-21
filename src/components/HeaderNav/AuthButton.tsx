@@ -23,6 +23,8 @@ const AuthButton: React.FC = () => {
     },
   });
 
+  const name = localStorage.getItem('name');
+
   function handleLogout() {
     setShowConfirm(true);
   }
@@ -39,7 +41,9 @@ const AuthButton: React.FC = () => {
           ? 'خطا در خروج'
           : !phone
             ? 'ورود / ثبت نام'
-            : phone}
+            : name !== 'بدون نام'
+              ? name
+              : phone}
 
       {phone &&
         (isOpen ? (
