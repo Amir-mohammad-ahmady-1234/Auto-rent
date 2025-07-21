@@ -5,10 +5,12 @@ import { useMutation } from '@tanstack/react-query';
 import { delteUserAcc } from '../../services/apiLogout';
 import { useState } from 'react';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import ConfirmDialog from './ConfirmDialog';
 
 const AuthButton: React.FC = () => {
   const { phone, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const { error, isPending, mutate } = useMutation({
     mutationFn: () => delteUserAcc(phone),
@@ -22,8 +24,7 @@ const AuthButton: React.FC = () => {
   });
 
   function handleLogout() {
-    const isLogout = confirm('قصد داری از حسابت خارج شی ؟');
-    if (isLogout) mutate();
+    setShowConfirm(true);
   }
 
   function toggleDropdown() {
@@ -42,9 +43,9 @@ const AuthButton: React.FC = () => {
 
       {phone &&
         (isOpen ? (
-          <FiChevronUp className="ml-2" />
+          <FiChevronUp className="mr-2 scale-180" />
         ) : (
-          <FiChevronDown className="ml-2" />
+          <FiChevronDown className="mr-2 scale-180" />
         ))}
     </>
   );
@@ -75,13 +76,13 @@ const AuthButton: React.FC = () => {
           >
             <div className="py-1">
               <Link to="panel">
-                <button className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <button className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:font-bold">
                   رفتن به پنل
                 </button>
               </Link>
 
               <button
-                className="w-full px-4 py-2 text-sm text-red-600 hover:bg-red-100"
+                className="w-full px-4 py-2 text-sm text-red-600 hover:bg-red-100 hover:font-bold"
                 onClick={handleLogout}
               >
                 خروج
@@ -90,6 +91,14 @@ const AuthButton: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ConfirmDialog
+        isOpen={showConfirm}
+        title="خروج از حساب"
+        description="آیا مطمئنی می‌خواهی از حسابت خارج شی ؟"
+        onConfirm={() => mutate()}
+        onClose={() => setShowConfirm(false)}
+      />
     </div>
   );
 };
