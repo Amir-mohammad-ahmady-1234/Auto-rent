@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import PanelHeader from '../components/panel/components/PanelHeader';
 import PanelSidebar from '../components/panel/components/PanelSidebar';
+import { useAuth } from '../context/Auth/useAuth';
+import toast from 'react-hot-toast';
 
 const UserPanel: React.FC = () => {
+  const navigate = useNavigate();
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { phone } = useAuth();
+
+  useEffect(() => {
+    if (!phone) {
+      toast.error('ابتدا وارد حساب خود شوید.');
+      navigate('/login');
+    }
+  }, [phone, navigate]);
 
   return (
     <div className="flex min-h-screen flex-col bg-gray-50 md:flex-row">

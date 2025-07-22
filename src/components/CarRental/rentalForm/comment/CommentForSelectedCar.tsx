@@ -52,7 +52,7 @@ const CommentForSelectedCar: React.FC = () => {
     <div className="mx-auto w-full max-w-md rounded-lg bg-white p-4 shadow-md">
       <div className="mb-4 flex items-center justify-between border-b pb-2">
         <h3 className="text-xl font-semibold text-yellow-600">نظرات</h3>
-        {/* <span className="text-sm text-yellow-500">4.7 ★</span>s */}
+        <span className="text-sm text-yellow-500">{comments?.length} نظر</span>
       </div>
 
       <SendComment

@@ -49,7 +49,7 @@ const OtpForm = ({ phone, otp, setOtp }: Props) => {
 
     onSuccess: () => {
       toast.success('ورود با موفقیت انجام شد');
-      navigate(-1);
+      navigate('/');
     },
     onError: (err: unknown) => {
       setAttemptsLeft((prev) => prev - 1);
