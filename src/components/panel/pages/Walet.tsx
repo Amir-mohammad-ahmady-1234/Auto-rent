@@ -1,5 +1,5 @@
-import IncreaseWalet from '../components/IncreaseWalet';
-import UserCarts from '../components/UserCarts';
+import IncreaseWalet from '../components/walet/IncreaseWalet';
+import UserCarts from '../components/walet/UserCarts';
 
 const Walet = () => {
   return (

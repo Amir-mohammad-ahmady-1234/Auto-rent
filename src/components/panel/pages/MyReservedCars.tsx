@@ -1,5 +1,7 @@
+import MyReservations from '../components/my-reserved-cars/MyReservations';
+
 const MyReservedCars = () => {
-  return <h1>My Reserved Cars</h1>;
+  return <MyReservations />;
 };
 
 export default MyReservedCars;
