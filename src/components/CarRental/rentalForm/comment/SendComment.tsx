@@ -2,6 +2,7 @@ import type { UseMutateFunction } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import type { Comment } from './CommentForSelectedCar';
+import { useAuth } from '../../../../context/Auth/useAuth';
 
 interface PropsType {
   commentText: string;
@@ -22,8 +23,10 @@ const SendComment = ({
 }: PropsType) => {
   const navigate = useNavigate();
 
+  const { phone: phoneNumber } = useAuth();
+
   const handleSendComment = async () => {
-    if (!phone) {
+    if (!phoneNumber) {
       toast.error('ابتدا به حساب خود وارد شوید');
       navigate('/login');
       return;
@@ -36,7 +39,7 @@ const SendComment = ({
 
     const newComment: Comment = {
       mainCar_id,
-      avatar: `https://api.dicebear.com/8.x/avataaars/svg?seed=${phone}`,
+      avatar: `https://api.dicebear.com/8.x/avataaars/svg?seed=${phoneNumber}`,
       text: commentText,
       phone,
     };

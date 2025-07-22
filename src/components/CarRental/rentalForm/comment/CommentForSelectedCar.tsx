@@ -21,6 +21,8 @@ export interface Comment {
 
 const CommentForSelectedCar: React.FC = () => {
   const { phone } = useAuth();
+  const name = localStorage.getItem('name');
+
   const navigate = useNavigate();
   const { id: mainCar_id } = useParams();
 
@@ -59,7 +61,7 @@ const CommentForSelectedCar: React.FC = () => {
         setCommentText={setCommentText}
         mainCar_id={mainCar_id}
         mutate={mutate}
-        phone={phone ?? ''}
+        phone={name ? name : (phone ?? '')}
       />
 
       <Comment comments={comments ?? []} />
