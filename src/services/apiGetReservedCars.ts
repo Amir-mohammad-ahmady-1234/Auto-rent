@@ -9,7 +9,7 @@ export const getReservedCars = async (phone: string) => {
     .select(
       `
         *,
-        cars ( image, title, brand )
+        cars ( image, title, brand,model )
         `
     )
     .eq('mainUser_id', mainUser_id);
