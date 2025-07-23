@@ -35,7 +35,6 @@ export function ReservationCard({
 
   return (
     <div className="flex flex-col-reverse items-center justify-between gap-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:flex-row">
-      {/* دکمه */}
       <button
         onClick={onViewDetails}
         className="flex-shrink-0 rounded-md border border-blue-600 px-3 py-1.5 text-sm font-medium text-blue-600 transition hover:bg-blue-50"

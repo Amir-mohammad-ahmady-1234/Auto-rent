@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import { useAuth } from '../context/Auth/useAuth';
 import { getReservedCars } from '../services/apiGetReservedCars';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -7,7 +6,7 @@ import toast from 'react-hot-toast';
 import { useEffect } from 'react';
 
 export const useGetReservedCars = () => {
-  const { phone } = useAuth();
+  const phone = localStorage.getItem('phoneNumber');
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -9,10 +9,10 @@ function MyAddress() {
 
   if (isLoading) return <FullPageLoading />;
 
-  if (!addresses?.length)
+  if ((addresses?.length ?? 0) < 1)
     return (
-      <div className="flex items-center h-screen justify-center">
-        <p className="text-gray-600 bg-gray-300 p-8 rounded-2xl">
+      <div className="flex h-screen items-center justify-center">
+        <p className="rounded-2xl bg-gray-300 p-8 text-gray-600">
           ادرسی از شما ثبت نشده است , با رزرو یک ماشین ادرس جدیدی را ثبت کنید.
         </p>
       </div>

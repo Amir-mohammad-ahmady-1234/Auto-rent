@@ -14,8 +14,9 @@ export default function MyReservations() {
   if (isLoading) return <FullPageLoading />;
 
   if (error) {
+    console.log(error.message);
     return (
-      <Error message="خطا در دریافت ماشین های اجاره شده ی شما. لطا دوباره تلاس کنید" />
+      <Error message="خطا در دریافت ماشین های اجاره شده ی شما. لطفا دوباره تلاس کنید" />
     );
   }
 

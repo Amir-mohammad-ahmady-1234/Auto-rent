@@ -19,7 +19,6 @@ export function AddressCard({
 }: AddressCardProps) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      {/* توضیحات راست */}
       <div className="flex-1 pr-4 text-right">
         <p className="text-sm font-medium text-gray-900">
           {returnLocation} - {adress}
@@ -30,7 +29,6 @@ export function AddressCard({
         <p className="text-xs text-gray-500">گیرنده: {name}</p>
       </div>
 
-      {/* عکس و دکمه سمت چپ */}
       <div className="flex flex-col items-end space-y-3 space-x-2 rtl:space-x-reverse">
         <button className="text-gray-400 hover:text-gray-600">
           <HiOutlineDotsVertical className="h-5 w-5" />

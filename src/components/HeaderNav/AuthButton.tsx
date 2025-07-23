@@ -79,7 +79,7 @@ const AuthButton: React.FC = () => {
             className="ring-opacity-5 absolute left-0 z-50 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black"
           >
             <div className="py-1">
-              <Link to="panel">
+              <Link to="/panel">
                 <button className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 hover:font-bold">
                   رفتن به پنل
                 </button>
