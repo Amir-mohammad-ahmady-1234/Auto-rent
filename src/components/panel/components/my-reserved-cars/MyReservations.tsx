@@ -1,5 +1,6 @@
 import { useGetReservedCars } from '../../../../hooks/useGetReservedCars';
 import FullPageLoading from '../../../../ui/FullPageLoading';
+import { Error } from '../error';
 import { ReservationCard } from './ReservationCard';
 import { ReservationStatusCard } from './ReservationStatusCard';
 
@@ -14,11 +15,7 @@ export default function MyReservations() {
 
   if (error) {
     return (
-      <div className="flex h-screen items-center justify-center">
-        <h2 className="text-red-500">
-          خطا در دریافت ماشین های اجاره شده ی شما. لطا دوباره تلاس کنید
-        </h2>
-      </div>
+      <Error message="خطا در دریافت ماشین های اجاره شده ی شما. لطا دوباره تلاس کنید" />
     );
   }
 
