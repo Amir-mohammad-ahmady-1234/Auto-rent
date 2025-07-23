@@ -12,7 +12,7 @@ const AuthButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const { error, isPending, mutate } = useMutation({  
+  const { error, isPending, mutate } = useMutation({
     mutationFn: () => delteUserAcc(phone),
     onSuccess: () => {
       logout();
@@ -99,7 +99,7 @@ const AuthButton: React.FC = () => {
       <ConfirmDialog
         isOpen={showConfirm}
         title="خروج از حساب"
-        description="آیا مطمئنی می‌خواهی از حسابت خارج شی ؟"
+        description="آیا مطمئنی می‌خواهی از حسابت خارج شی و اطلاعاتت رو پاک کنی ؟"
         onConfirm={() => mutate()}
         onClose={() => setShowConfirm(false)}
       />

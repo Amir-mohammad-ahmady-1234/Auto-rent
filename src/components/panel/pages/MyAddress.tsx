@@ -8,6 +8,16 @@ function MyAddress() {
   const { reservations: addresses, error, isLoading } = useGetReservedCars();
 
   if (isLoading) return <FullPageLoading />;
+
+  if (!addresses?.length)
+    return (
+      <div className="flex items-center h-screen justify-center">
+        <p className="text-gray-600 bg-gray-300 p-8 rounded-2xl">
+          ادرسی از شما ثبت نشده است , با رزرو یک ماشین ادرس جدیدی را ثبت کنید.
+        </p>
+      </div>
+    );
+
   if (error)
     return (
       <Error message="خطا در دریافت ماشین های اجاره شده ی شما. لطا دوباره تلاس کنید" />
