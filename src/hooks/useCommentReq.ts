@@ -1,5 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { getAllComments, sendComment } from '../services/apiComment';
+import {
+  getAllComments,
+  getAllUserCommenteds,
+  sendComment,
+} from '../services/apiComment';
 import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import type { Comment } from '../components/CarRental/rentalForm/comment/CommentForSelectedCar';
@@ -10,6 +14,18 @@ export const useGetComments = () => {
   const { data, error, isLoading } = useQuery<Comment[]>({
     queryKey: ['comments', currentCarId],
     queryFn: () => getAllComments(currentCarId ?? ''),
+  });
+
+  return { data, error, isLoading };
+};
+
+export const useGetAllUserComments = () => {
+  const phoneNumber = localStorage.getItem('phoneNumber');
+  const name = localStorage.getItem('name');
+
+  const { data, error, isLoading } = useQuery<Comment[]>({
+    queryKey: ['comments', phoneNumber],
+    queryFn: () => getAllUserCommenteds(phoneNumber ?? '', name ?? ''),
   });
 
   return { data, error, isLoading };

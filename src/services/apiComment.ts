@@ -20,6 +20,22 @@ export const getAllComments = async (currentCarId: string) => {
   return data || [];
 };
 
+export const getAllUserCommenteds = async (
+  userPhoneOrName: string,
+  name: string
+) => {
+  const { data, error } = await supabase
+    .from('comments')
+    .select('*')
+    .in('phone', [userPhoneOrName, name]);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data || [];
+};
+
 export const sendComment = async ({
   mainCar_id,
   avatar,
