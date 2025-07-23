@@ -5,10 +5,10 @@ import { useUserRserveInfo } from '../../../context/userReservedData/useUserRese
 import { formatNumber } from '../../../utils/formatNumber.1';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../../context/Auth/useAuth';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getUserId } from '../../../services/apiAuth';
 import FullPageLoading from '../../../ui/FullPageLoading';
-import { insertReservation } from '../../../services/apiReservePosts';
+import { useReservedPost } from '../../../hooks/useResrvedPost';
 
 const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
   const { totalAmount } = useDepositPrice();
@@ -18,24 +18,12 @@ const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
   const { formInfo, mainCar } = useReservedInfo();
   const { phone } = useAuth();
 
-  const queryClient = useQueryClient();
-
   const { data: mainUser_id, isLoading } = useQuery<string | null, Error>({
     queryKey: ['users'],
     queryFn: () => getUserId(phone),
   });
 
-  const { data, mutateAsync, error, status } = useMutation({
-    mutationFn: insertReservation,
-    onSuccess: () => {
-      // Invalidate queries to refetch data after successful mutation
-      queryClient.invalidateQueries({ queryKey: ['reservations'] });
-      console.log('Item created successfully!');
-    },
-    onError: (error) => {
-      console.error('Error creating item:', error);
-    },
-  });
+  const { data, mutateAsync, error, status } = useReservedPost();
 
   if (error) throw new Error(error.message);
 
@@ -99,7 +87,6 @@ const PayAllManyBtn = ({ isRulsAccept }: { isRulsAccept: boolean }) => {
     console.log(data);
     setCurrentStep(5);
   }
-
 
   // console.log(totalAmount, userReservedInfo, formInfo, mainCar?.id, userID);
 

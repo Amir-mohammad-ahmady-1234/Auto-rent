@@ -1,4 +1,4 @@
-import { supabase } from './supabase'; 
+import { supabase } from './supabase';
 
 interface Reservation {
   deliveryDate: string;
@@ -23,7 +23,7 @@ interface Reservation {
 export async function insertReservation(reservation: Reservation) {
   const { data, error } = await supabase
     .from('reservations')
-    .insert([reservation]);
+    .insert([{ ...reservation }]);
 
   if (error) throw new Error(error.message);
   return data;

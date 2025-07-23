@@ -1,3 +1,5 @@
+import { useGetReservedCars } from '../../../../hooks/useGetReservedCars';
+import FullPageLoading from '../../../../ui/FullPageLoading';
 import { ReservationCard } from './ReservationCard';
 import { ReservationStatusCard } from './ReservationStatusCard';
 
@@ -6,35 +8,22 @@ export default function MyReservations() {
     console.log('View details clicked', reservationId);
   };
 
-  const reservations = [
-    {
-      id: '1',
-      carModel: 'بنز جی-کلاس',
-      carModelEn: 'Mercedes Benz G Class',
-      bookingDate: 'تاریخ تحویل: ۱۱ بهمن ۱۴۰۳ ساعت ۱۸',
-      carImage: '/placeholder.svg?height=64&width=96',
-      status: 'completed' as const,
-    },
-    {
-      id: '2',
-      carModel: 'بنز جی-کلاس',
-      carModelEn: 'Mercedes Benz G Class',
-      bookingDate: 'تاریخ تحویل: ۱۱ بهمن ۱۴۰۳ ساعت ۱۸',
-      carImage: '/placeholder.svg?height=64&width=96',
-      status: 'completed' as const,
-    },
-    {
-      id: '3',
-      carModel: 'بنز جی-کلاس',
-      carModelEn: 'Mercedes Benz G Class',
-      bookingDate: 'تاریخ تحویل: ۱۱ بهمن ۱۴۰۳ ساعت ۱۸',
-      carImage: '/placeholder.svg?height=64&width=96',
-      status: 'completed' as const,
-    },
-  ];
+  const { reservations, isLoading, error } = useGetReservedCars();
+
+  if (isLoading) return <FullPageLoading />;
+
+  if (error) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <h2 className="text-red-500">
+          خطا در دریافت ماشین های اجاره شده ی شما. لطا دوباره تلاس کنید
+        </h2>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-6" dir="rtl">
+    <div className="min-h-screen bg-gray-50 p-4 md:p-6" dir="ltr">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="mb-8">
@@ -45,27 +34,28 @@ export default function MyReservations() {
         <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
           <ReservationStatusCard
             title="لغو شده"
-            count={1}
+            count={0}
             variant="cancelled"
           />
           <ReservationStatusCard
             title="انجام شده"
-            count={3}
+            count={reservations?.length ?? 0}
             variant="completed"
           />
-          <ReservationStatusCard title="جاری" count={1} variant="current" />
+          <ReservationStatusCard title="جاری" count={0} variant="current" />
         </div>
 
         {/* Reservations List */}
         <div className="space-y-4">
-          {reservations.map((reservation) => (
+          {reservations?.map((reservation) => (
             <ReservationCard
               key={reservation.id}
-              carModel={reservation.carModel}
-              carModelEn={reservation.carModelEn}
-              bookingDate={reservation.bookingDate}
-              carImage={reservation.carImage}
-              status={reservation.status}
+              carModel={reservation.cars.title}
+              carModelEn={reservation.cars.brand}
+              bookingDate={reservation.returnDate}
+              bookingTime={reservation.returnTime}
+              carImage={reservation.cars.image}
+              status={'completed'}
               onViewDetails={() => handleViewDetails(reservation.id)}
             />
           ))}

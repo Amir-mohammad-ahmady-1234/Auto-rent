@@ -19,3 +19,30 @@ export function convertDateToPersian(date: Date) {
     return new Intl.DateTimeFormat('fa-IR', options).format(date);
   }
 }
+
+function persianToEnglishNumbers(str: string) {
+  return str.replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d).toString());
+}
+
+export function convertDateToPersianString(jalaliDateStr: string) {
+  const enStr = persianToEnglishNumbers(jalaliDateStr);
+  const [year, month, day] = enStr.split('/').map(Number);
+
+  const months = [
+    '',
+    'فروردین',
+    'اردیبهشت',
+    'خرداد',
+    'تیر',
+    'مرداد',
+    'شهریور',
+    'مهر',
+    'آبان',
+    'آذر',
+    'دی',
+    'بهمن',
+    'اسفند',
+  ];
+
+  return `${day} ${months[month]} ${year}`;
+}
