@@ -14,30 +14,31 @@ const MyComments = () => {
     );
 
   return (
-    <div className="mt-10 flex flex-col space-y-10">
+    <div className="mt-10 flex flex-col space-y-8 px-4 sm:px-10 md:px-20 lg:px-32">
       <HeaderComments />
 
       {!comments?.length && (
-        <div className="flex items-center justify-center bg-gray-500 text-white">
-          <h2>
-            نظری از شما ثبت نشده است! با ثبت نظری جدید زیر هر خودرو , نظر جدیدی
+        <div className="flex items-center justify-center rounded-xl bg-gradient-to-r from-gray-500 to-gray-700 p-6 text-center text-white shadow-lg">
+          <h2 className="text-lg font-semibold">
+            نظری از شما ثبت نشده است! با ثبت نظری جدید زیر هر خودرو، نظر جدیدی
             را ثبت کنید.
           </h2>
         </div>
       )}
 
       {comments?.length && (
-        <div className="m-5 flex flex-col items-center justify-center">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {comments
             .map((comment) => (
-              <>
-                <div className="items-starts m-5 flex w-full flex-col justify-center rounded-2xl bg-gray-400 p-3 hover:bg-gray-500">
-                  <p className="text-justify">{comment.text}</p>
-                  <p className="text-left text-gray-600">
-                    {convertDateToPersian(new Date(comment.created_at ?? ''))}
-                  </p>
-                </div>
-              </>
+              <div
+                key={comment.id}
+                className="flex w-full flex-col space-y-3 rounded-xl border border-gray-200 bg-white p-5 shadow-md transition hover:shadow-xl"
+              >
+                <p className="text-justify text-gray-700">{comment.text}</p>
+                <p className="text-left text-sm text-gray-500">
+                  {convertDateToPersian(new Date(comment.created_at ?? ''))}
+                </p>
+              </div>
             ))
             .reverse()}
         </div>
