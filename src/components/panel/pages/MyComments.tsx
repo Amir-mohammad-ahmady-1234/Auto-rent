@@ -21,7 +21,7 @@ const MyComments = () => {
         <div className="flex items-center justify-center rounded-xl bg-gradient-to-r from-gray-500 to-gray-700 p-6 text-center text-white shadow-lg">
           <h2 className="text-lg font-semibold">
             نظری از شما ثبت نشده است! با ثبت نظری جدید زیر هر خودرو، نظر جدیدی
-            را ثبت کنید.
+            را ثبت کنید
           </h2>
         </div>
       )}
