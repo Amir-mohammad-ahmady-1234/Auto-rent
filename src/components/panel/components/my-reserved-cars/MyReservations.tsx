@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useGetReservedCars } from '../../../../hooks/useGetReservedCars';
 import FullPageLoading from '../../../../ui/FullPageLoading';
 import { Error } from '../Error';
@@ -5,9 +6,7 @@ import { ReservationCard } from './ReservationCard';
 import { ReservationStatusCard } from './ReservationStatusCard';
 
 export default function MyReservations() {
-  const handleViewDetails = (reservationId?: string) => {
-    console.log('View details clicked', reservationId);
-  };
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false);
 
   const { reservations, isLoading, error } = useGetReservedCars();
 
@@ -18,6 +17,10 @@ export default function MyReservations() {
     return (
       <Error message="خطا در دریافت ماشین های اجاره شده ی شما. لطفا دوباره تلاس کنید" />
     );
+  }
+
+  function handleCloseDetailsModal() {
+    setIsDetailsModalOpen((is) => !is);
   }
 
   return (
@@ -53,8 +56,14 @@ export default function MyReservations() {
               bookingDate={reservation.returnDate}
               bookingTime={reservation.returnTime}
               carImage={reservation.cars.image}
+              pickupLocation={reservation.pickupLocation}
+              rentalType={reservation.rentalType}
+              returnLocation={reservation.returnLocation}
               status={'completed'}
-              onViewDetails={() => handleViewDetails(reservation.id)}
+              isDetailsModalOpen={isDetailsModalOpen}
+              deliveryDate={reservation.deliveryDate}
+              returnDate={reservation.returnDate}
+              onCloseDetailsModal={handleCloseDetailsModal}
             />
           ))}
         </div>
