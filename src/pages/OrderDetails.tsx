@@ -31,7 +31,7 @@ const OrderDetails = () => {
   } = formInfo;
 
   function handleOrderTracking() {
-    navigate('/');
+    navigate('/panel/my_reservedT');
   }
 
   return (

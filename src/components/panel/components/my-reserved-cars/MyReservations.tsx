@@ -1,6 +1,6 @@
 import { useGetReservedCars } from '../../../../hooks/useGetReservedCars';
 import FullPageLoading from '../../../../ui/FullPageLoading';
-import { Error } from '../error';
+import { Error } from '../Error';
 import { ReservationCard } from './ReservationCard';
 import { ReservationStatusCard } from './ReservationStatusCard';
 

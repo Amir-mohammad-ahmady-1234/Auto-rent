@@ -2,7 +2,7 @@ import { HiPlusCircle } from 'react-icons/hi';
 import { AddressCard } from '../components/my-address/AddressCard';
 import { useGetReservedCars } from '../../../hooks/useGetReservedCars';
 import FullPageLoading from '../../../ui/FullPageLoading';
-import { Error } from '../components/error';
+import { Error } from '../components/Error';
 
 function MyAddress() {
   const { reservations: addresses, error, isLoading } = useGetReservedCars();
