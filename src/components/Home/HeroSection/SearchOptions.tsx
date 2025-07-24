@@ -1,6 +1,11 @@
 import React from 'react';
-import { FiSearch } from 'react-icons/fi';
-import { FiCalendar, FiClock, FiChevronDown, FiX } from 'react-icons/fi';
+import {
+  FiSearch,
+  FiCalendar,
+  FiClock,
+  FiChevronDown,
+  FiX,
+} from 'react-icons/fi';
 
 interface SearchOptionsProps {
   isModal?: boolean;
@@ -15,11 +20,11 @@ const SearchOptions: React.FC<SearchOptionsProps> = ({
 }) => {
   return (
     <div
-      className={
+      className={`${
         isModal
           ? ''
-          : 'relative z-10 mt-12 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-6 py-6 backdrop-blur-[27.65px] md:mt-[47px] md:ml-0'
-      }
+          : 'relative z-10 mt-10 w-full max-w-[1223px] rounded-2xl border border-[#D7D7D7] bg-white px-4 py-6 md:mt-12 md:px-6'
+      }`}
     >
       {showCloseButton && onClose && (
         <div className="mb-4 flex justify-end">
@@ -32,101 +37,89 @@ const SearchOptions: React.FC<SearchOptionsProps> = ({
         </div>
       )}
 
-      {/* Top row: 'اطلاعات بیشتر' and rental types */}
+      {/* Rental Info and Types */}
       <div className="flex w-full flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <div className="text-sm font-normal text-[#194BF0]">
+        <span className="text-sm text-[#194BF0]">
           اطلاعات بیشتر در مورد رزرو خودرو
-        </div>
+        </span>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
-            اجاره ماشین عروس
-          </div>
-          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] px-3 py-1 text-sm font-bold text-[#0C0C0C]">
-            اجاره خودرو بی راننده
-          </div>
-          <div className="flex h-10 items-center justify-center rounded-[20px] border border-[#D7D7D7] bg-[#194BF0] px-3 py-1 text-sm font-bold text-white">
-            اجاره خودرو با راننده
-          </div>
+          {[
+            { text: 'اجاره ماشین عروس', active: false },
+            { text: 'اجاره خودرو بی راننده', active: false },
+            { text: 'اجاره خودرو با راننده', active: true },
+          ].map((item) => (
+            <div
+              key={item.text}
+              className={`flex h-9 items-center justify-center rounded-full border px-4 text-sm font-bold ${
+                item.active
+                  ? 'border-[#194BF0] bg-[#194BF0] text-white'
+                  : 'border-[#D7D7D7] text-[#0C0C0C]'
+              }`}
+            >
+              {item.text}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Middle row: Selection options */}
-      <div className="mt-4 flex flex-wrap items-center justify-end gap-10 md:gap-10">
-        <div className="flex items-center gap-1">
-          <span className="text-sm text-[#0C0C0C]">محل تحویل خودرو</span>
-          <FiChevronDown className="text-[#0C0C0C]" size={16} />
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="text-sm text-[#0C0C0C]">تاریخ تحویل</span>
-          <FiChevronDown className="text-[#0C0C0C]" size={16} />
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="text-sm text-[#0C0C0C]">ساعت تحویل</span>
-          <FiChevronDown className="text-[#0C0C0C]" size={16} />
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="text-sm text-[#0C0C0C]">تاریخ بازگشت</span>
-          <FiChevronDown className="text-[#0C0C0C]" size={16} />
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="text-sm text-[#0C0C0C]">ساعت بازگشت</span>
-          <FiChevronDown className="text-[#0C0C0C]" size={16} />
-        </div>
+      {/* Selection Options */}
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-6">
+        {[
+          'محل تحویل خودرو',
+          'تاریخ تحویل',
+          'ساعت تحویل',
+          'تاریخ بازگشت',
+          'ساعت بازگشت',
+        ].map((item) => (
+          <div key={item} className="flex items-center gap-1">
+            <span className="text-sm text-[#0C0C0C]">{item}</span>
+            <FiChevronDown size={16} className="text-[#0C0C0C]" />
+          </div>
+        ))}
       </div>
 
       {/* Search Form */}
-      <div className="mt-4 flex w-full flex-col items-center justify-between gap-3 rounded-2xl border border-[#F3F3F3] bg-white p-3 md:flex-row">
-        {/* Time 1 */}
-        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
-          <FiClock className="text-[#727272]" size={16} />
-          <span className="text-base text-[#0C0C0C]">07:00</span>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
-
-        {/* Date 1 */}
-        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
-          <FiCalendar className="text-[#727272]" size={16} />
-          <span className="text-base text-[#0C0C0C]">1403٫02٫10</span>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
-
-        {/* Time 2 */}
-        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
-          <FiClock className="text-[#727272]" size={16} />
-          <span className="text-base text-[#0C0C0C]">07:00</span>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
-
-        {/* Date 2 */}
-        <div className="flex w-full items-center justify-between gap-2 md:w-auto">
-          <FiCalendar className="text-[#727272]" size={16} />
-          <span className="text-base text-[#0C0C0C]">1403٫02٫10</span>
-        </div>
-
-        {/* Divider */}
-        <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
-
+      <div className="mt-6 flex w-full flex-col items-center gap-4 rounded-2xl border border-[#F3F3F3] bg-white p-4 md:flex-row md:justify-between">
         {/* Location */}
-        <div className="flex w-full flex-1 items-center justify-between gap-2 md:order-first">
-          <FiChevronDown className="text-[#868686]" size={16} />
+        <div className="flex w-full flex-1 items-center justify-between gap-2 md:order-first md:w-auto">
+          <FiChevronDown size={16} className="text-[#868686]" />
           <span className="text-base text-[#0C0C0C]">
             تهران-فرودگاه امام خمینی
           </span>
         </div>
 
+        <Divider />
+
+        {/* Time & Date 1 */}
+        <DateTime time="07:00" date="1403٫02٫10" />
+
+        <Divider />
+
+        {/* Time & Date 2 */}
+        <DateTime time="07:00" date="1403٫02٫10" />
+
+        <Divider />
+
         {/* Search Button */}
-        <div className="flex h-14 w-full items-center justify-center rounded-2xl bg-[#FDB713] md:w-14">
-          <FiSearch className="text-[#212121]" size={16} />
-        </div>
+        <button className="flex h-12 w-full items-center justify-center rounded-2xl bg-[#FDB713] md:w-12">
+          <FiSearch size={16} className="text-[#212121]" />
+        </button>
       </div>
     </div>
   );
 };
+
+const DateTime = ({ time, date }: { time: string; date: string }) => (
+  <div className="flex w-full items-center justify-between gap-2 md:w-auto">
+    <FiClock size={16} className="text-[#727272]" />
+    <span className="text-base text-[#0C0C0C]">{time}</span>
+    <FiCalendar size={16} className="ml-4 text-[#727272]" />
+    <span className="text-base text-[#0C0C0C]">{date}</span>
+  </div>
+);
+
+const Divider = () => (
+  <div className="h-px w-full bg-[#D7D7D7] md:h-8 md:w-px"></div>
+);
 
 export default SearchOptions;

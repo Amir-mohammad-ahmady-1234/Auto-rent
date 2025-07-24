@@ -1,24 +1,21 @@
 import { Link } from 'react-router-dom';
 
-const IntroBlogSection = () => {
-  return (
-    <div className="mt-12 ml-[23px] flex w-full max-w-[1034px] flex-wrap items-stretch gap-[5px] self-start text-center font-[Estedad-FD] md:mt-10 md:max-w-full">
-      <div className="mt-[47px] flex min-h-12 items-center justify-center gap-2 self-end overflow-hidden rounded-lg px-4 py-2 text-lg leading-8 font-semibold text-[#194BF0] capitalize md:mt-10">
-        <div className="my-auto flex h-5 w-5 flex-shrink-0 self-stretch"></div>
-        <Link to="/blogs/all_blogs">
-          <div className="my-auto self-stretch text-[#194BF0]">مشاهده همه</div>
-        </Link>
-      </div>
-      <div className="flex-basis-0 flex w-fit flex-shrink-0 flex-grow flex-col items-center justify-center md:max-w-full">
-        <div className="flex w-[845px] max-w-full flex-col items-center justify-center">
-          <div className="text-2xl font-normal text-[#5E5E5E]">مقالات ما</div>
-          <div className="mt-2 text-[32px] leading-[1.4] font-bold text-[#353535] md:max-w-full">
-            مجله <span className="text-[#d79c10]">خودرو</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+const IntroBlogSection = () => (
+  <div className="mb-10 flex flex-col items-center justify-center text-center">
+    <h2 className="text-2xl font-normal text-gray-600 md:text-3xl">
+      مقالات ما
+    </h2>
+    <h3 className="mt-2 text-3xl font-bold text-gray-800 md:text-4xl">
+      مجله <span className="text-[#d79c10]">خودرو</span>
+    </h3>
+
+    <Link
+      to="/blogs/all_blogs"
+      className="mt-6 inline-block rounded-lg bg-transparent px-6 py-2 text-sm font-semibold text-[#194BF0] ring-1 ring-[#194BF0] transition hover:bg-[#194BF0] hover:text-white md:text-base"
+    >
+      مشاهده همه مقالات
+    </Link>
+  </div>
+);
 
 export default IntroBlogSection;

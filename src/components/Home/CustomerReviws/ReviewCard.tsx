@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface ReviewCardProps {
   name: string;
   date: string;
@@ -5,33 +7,25 @@ interface ReviewCardProps {
   isHighlighted?: boolean;
 }
 
-const ReviewCard = ({
+const ReviewCard: React.FC<ReviewCardProps> = ({
   name,
   date,
   avatar,
   isHighlighted = false,
-}: ReviewCardProps) => {
-  return (
-    <div
-      className={`flex flex-col items-stretch justify-center self-stretch rounded-2xl border border-[#D7D7D7] ${isHighlighted ? 'bg-[#FDB713]' : 'bg-white'} font-iransans p-4 text-center`}
-    >
-      <div className="flex w-full items-center justify-center gap-4">
-        <div className="my-auto flex flex-col items-stretch justify-start self-stretch">
-          <div className="self-end text-base font-medium text-[#212121] sm:text-sm">
-            {name}
-          </div>
-          <div className="mt-2 text-sm leading-[25px] font-normal text-[#494949] sm:text-xs">
-            {date}
-          </div>
-        </div>
-        <img
-          src={avatar}
-          className="my-auto aspect-square w-16 flex-shrink-0 self-stretch rounded-[70px] object-contain object-center sm:w-12"
-          alt={`${name}'s avatar`}
-        />
-      </div>
-    </div>
-  );
-};
+}) => (
+  <div
+    className={`flex w-full flex-col items-center space-y-3 rounded-2xl bg-white px-6 py-5 shadow-sm transition-shadow hover:shadow-md ${
+      isHighlighted ? 'scale-105 border-2 border-[#d79c10] bg-[#fff8e1]' : ''
+    }`}
+  >
+    <img
+      src={avatar}
+      alt={`${name}'s avatar`}
+      className="h-16 w-16 rounded-full object-cover"
+    />
+    <div className="text-base font-semibold text-gray-800">{name}</div>
+    <div className="text-sm text-gray-500">{date}</div>
+  </div>
+);
 
 export default ReviewCard;

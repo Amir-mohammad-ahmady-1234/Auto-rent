@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         <HowToRent />
       </div>
 
-      <div className="mt-[58px] flex w-full flex-col items-center px-20 md:mt-10 md:max-w-full md:px-5">
+      <div className="mt-[58px] flex w-full flex-col items-center px-4 md:mt-10 md:max-w-full md:px-5">
         <RentSteps />
         <FAQTitle />
         <FAQContent />
