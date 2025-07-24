@@ -14,6 +14,7 @@
 ## اسکرین‌شات‌ها (Screenshots)
 
 ![ثبت نام]("./public/images/Screenshots/Screenshot (141).png")
+![ثبت نام](./public/images/Screenshots/1.png)
 ![مقالات]("./public/images/Screenshots/Screenshot (140).png")
 ![جزئیات خودرو]("./public/images/Screenshots/Screenshot (139).png")
 ![فیلتر خودرو]("./public/images/Screenshots/Screenshot (138).png")
