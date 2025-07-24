@@ -290,3 +290,20 @@
 .animate-slideUp {
   animation: slideUp 1s ease forwards;
 }
+
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-out both;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
